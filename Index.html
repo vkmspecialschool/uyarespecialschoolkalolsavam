@@ -15,11 +15,14 @@
 
     <!-- Header -->
     <header class="bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-center md:text-left">
-                <span class="bg-amber-500/30 text-amber-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/30">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
-                <h1 class="malayalam-title text-4xl md:text-5xl font-bold tracking-wide mt-1 text-amber-100">ഉയരെ</h1>
-                <p class="text-xs text-amber-200/80">സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം - തത്സമയ ഫലങ്ങൾ & പോയിന്റ് നില</p>
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3 text-center md:text-left">
+                <!-- Logo Added Here -->
+                <img src="100129.png" alt="Uyare Logo" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover bg-white shadow-md border-2 border-amber-300">
+                <div>
+                    <span class="bg-amber-500/30 text-amber-200 text-xs font-semibold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-400/30">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
+                    <h1 class="malayalam-title text-3xl md:text-4xl font-bold tracking-wide text-amber-100">ഉയരെ</h1>
+                </div>
             </div>
             <div class="flex gap-2">
                 <button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-medium shadow transition hover:bg-amber-500">മുഖ്യപേജ്</button>
@@ -156,10 +159,7 @@
     </main>
 
     <script>
-        // Admin Password
         const ADMIN_PASSWORD = "uyare2026";
-
-        // 20 Schools Data
         const schoolsList = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
 
         let appData = JSON.parse(localStorage.getItem('uyare_kalotsavam_data')) || {
@@ -169,7 +169,6 @@
             ]
         };
 
-        // Check if admin is requested via URL (?admin=true)
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             if(urlParams.get('admin') === 'true') {
@@ -205,7 +204,6 @@
         function checkAdminPassword() {
             let pass = prompt("അഡ്മിൻ പാസ്‌വേഡ് നൽകുക:");
             if(pass === ADMIN_PASSWORD) {
-                // Show admin button in header temporarily when logged in
                 document.getElementById('tab-admin').classList.remove('hidden');
                 switchTab('admin');
             } else if(pass !== null) {
