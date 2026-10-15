@@ -67,7 +67,7 @@
         <!-- HOME TAB -->
         <div id="content-home" class="space-y-8">
             
-            <!-- Hero Banner with Direct Image Support -->
+            <!-- Hero Banner -->
             <div class="bg-gradient-to-r from-amber-900 via-amber-800 to-amber-950 rounded-3xl p-6 md:p-10 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row justify-between items-center border border-amber-700/40 gap-8">
                 <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 
@@ -78,9 +78,9 @@
                     <p class="text-amber-100/90 text-sm md:text-base font-medium leading-relaxed">കേൾവി, കാഴ്ച പരിമിതികൾ, ബുദ്ധിപരമായ വെല്ലുവിളികൾ, സെറിബ്രൽ പാൾസി (HI, VI, ID, CP) എന്നീ വിഭാഗങ്ങളിലായി 20 പ്രത്യേക സ്കൂളുകൾ മാറ്റുരയ്ക്കുന്ന മഹാമേള.</p>
                 </div>
 
-                <!-- Custom Image Card Box -->
+                <!-- Poster Box -->
                 <div class="relative z-10 w-full md:w-80 h-64 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md rounded-2xl p-4 border border-amber-500/30 shadow-inner flex items-center justify-center overflow-hidden">
-                    <img src="100254.png" alt="Uyare Logo" class="max-h-full max-w-full object-contain rounded-xl shadow-md[span_1](start_span)"[span_1](end_span)>
+                    <img src="100254.png" alt="Uyare Poster" class="max-h-full max-w-full object-contain rounded-xl shadow-md">
                 </div>
             </div>
 
@@ -174,8 +174,8 @@
             </div>
         </div>
 
-        <!-- ADMIN TAB -->
-        <div id="content-admin" class="hidden space-y-6">
+        <!-- ADMIN TAB WITH MANAGE & DELETE RESULTS -->
+        <div id="content-admin" class="hidden space-y-8">
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
                     <h3 class="text-2xl font-black text-slate-900 dark:text-slate-100">അഡ്മിൻ സ്കോർ കീപ്പർ പാനൽ</h3>
@@ -219,6 +219,14 @@
                     <button type="submit" class="w-full py-4 bg-amber-800 text-white font-extrabold rounded-2xl shadow-lg hover:bg-amber-900 transition">ഫലം സേവ് ചെയ്യുക</button>
                 </form>
             </div>
+
+            <!-- Admin Results Management Section (Delete Feature) -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-4xl mx-auto transition-colors duration-300">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 mb-4 border-b border-slate-100 dark:border-slate-800 pb-3">ചേർത്ത ഫലങ്ങൾ തിരുത്താനും നീക്കം ചെയ്യാനും (Manage Results)</h4>
+                <div id="admin-manage-results" class="space-y-3">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
         </div>
 
     </main>
@@ -229,6 +237,7 @@
     </footer>
 
     <script>
+        const ADMIN_USERNAME = "admin";
         const ADMIN_PASSWORD = "uyare2026";
         const schoolsList = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
 
@@ -243,13 +252,25 @@
             }
 
             const urlParams = new URLSearchParams(window.location.search);
-            if(urlParams.get('admin') === 'true') {
-                checkAdminPassword();
+            if(urlParams.get('uyare') === 'admin') {
+                checkAdminLogin();
             } else {
                 switchTab('home');
             }
             updateStats();
         };
+
+        // Listen for data changes across tabs/windows automatically (Real-time TV/Phone Sync)
+        window.addEventListener('storage', function(e) {
+            if(e.key === 'uyare_kalotsavam_data') {
+                appData = JSON.parse(e.newValue) || { results: [] };
+                updateStats();
+                const activeHome = document.getElementById('content-home');
+                const activeResults = document.getElementById('content-results');
+                if(activeHome && !activeHome.classList.contains('hidden')) renderLeaderboard();
+                if(activeResults && !activeResults.classList.contains('hidden')) renderResults();
+            }
+        });
 
         function toggleDarkMode() {
             const htmlEl = document.documentElement;
@@ -299,18 +320,23 @@
             if(tab === 'results') renderResults();
         }
 
-        function checkAdminPassword() {
+        function checkAdminLogin() {
+            let user = prompt("യൂസർനെയിം (Username) നൽകുക:");
+            if(user === null) {
+                window.location.href = window.location.pathname;
+                return;
+            }
+            
             let pass = prompt("അഡ്മിൻ പാസ്‌വേഡ് നൽകുക:");
-            if(pass === ADMIN_PASSWORD) {
+            if(user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
                 ['home', 'results', 'contact'].forEach(t => {
                     document.getElementById(`content-${t}`).classList.add('hidden');
                 });
                 document.getElementById('content-admin').classList.remove('hidden');
                 populateAdminSchools();
-            } else if(pass !== null) {
-                alert("തെറ്റായ പാസ്‌വേഡ്!");
-                window.location.href = window.location.pathname;
+                renderAdminManageResults();
             } else {
+                alert("തെറ്റായ യൂസർനെയിം അല്ലെങ്കിൽ പാസ്‌വേഡ്!");
                 window.location.href = window.location.pathname;
             }
         }
@@ -424,7 +450,41 @@
             saveData();
             alert('ഫലം വിജയകരമായി സേവ് ചെയ്തു!');
             document.getElementById('result-form').reset();
-            window.location.href = window.location.pathname;
+            renderAdminManageResults();
+        }
+
+        function deleteResult(id) {
+            if(confirm("ഈ ഫലം നീക്കം ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+                appData.results = appData.results.filter(r => r.id !== id);
+                saveData();
+                renderAdminManageResults();
+            }
+        }
+
+        function renderAdminManageResults() {
+            const container = document.getElementById('admin-manage-results');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(appData.results.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 font-bold py-4">ഫലങ്ങൾ ഒന്നും ആഡ് ചെയ്തിട്ടില്ല.</p>`;
+                return;
+            }
+
+            appData.results.forEach(res => {
+                let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-xs font-bold text-amber-700 dark:text-amber-400 mr-2">[${res.category}]</span>
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${res.item}</span>
+                            <span class="text-xs bg-amber-100 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold px-2 py-0.5 rounded ml-2">${prizeText}</span>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">${res.school} - ${res.participant}</p>
+                        </div>
+                        <button onclick="deleteResult(${res.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">ഡിലീറ്റ്</button>
+                    </div>
+                `;
+            });
         }
     </script>
 </body>
