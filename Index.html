@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <!-- Official Header (Logo Removed) -->
+    <!-- Official Header -->
     <header class="bg-white dark:bg-slate-900 shadow-md sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left">
@@ -47,8 +47,9 @@
             <!-- Navigation & Dark Mode Toggle -->
             <div class="flex items-center gap-3">
                 <div class="flex gap-2 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
-                    <button onclick="switchTab('home')" id="tab-home" class="px-5 py-2.5 rounded-xl bg-amber-700 text-white text-sm font-bold shadow transition">മുഖ്യപേജ്</button>
-                    <button onclick="switchTab('results')" id="tab-results" class="px-5 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">ഫലങ്ങൾ</button>
+                    <button onclick="switchTab('home')" id="tab-home" class="px-5 py-2.5 rounded-xl bg-amber-700 text-white text-sm font-bold shadow transition">HOME</button>
+                    <button onclick="switchTab('results')" id="tab-results" class="px-5 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">RESULTS</button>
+                    <button onclick="switchTab('contact')" id="tab-contact" class="px-5 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">CONTACT</button>
                 </div>
                 
                 <!-- Dark Mode Button -->
@@ -160,6 +161,14 @@
             </div>
         </div>
 
+        <!-- CONTACT TAB -->
+        <div id="content-contact" class="hidden space-y-6">
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto text-center space-y-4 transition-colors duration-300">
+                <h3 class="text-2xl font-black text-slate-900 dark:text-slate-100">ബന്ധപ്പെടാൻ (Contact Us)</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400">ഈ വിഭാഗത്തിലേക്കുള്ള വിവരങ്ങൾ ഉടൻ ചേർക്കുന്നതാണ്.</p>
+            </div>
+        </div>
+
         <!-- ADMIN TAB -->
         <div id="content-admin" class="hidden space-y-6">
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300">
@@ -264,12 +273,12 @@
         function switchTab(tab) {
             if(tab === 'admin') return;
 
-            ['home', 'results', 'admin'].forEach(t => {
+            ['home', 'results', 'contact', 'admin'].forEach(t => {
                 const el = document.getElementById(`content-${t}`);
                 if(el) el.classList.add('hidden');
                 const btn = document.getElementById(`tab-${t}`);
                 if(btn) {
-                    btn.className = "px-6 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400";
+                    btn.className = "px-5 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400";
                 }
             });
             
@@ -278,7 +287,7 @@
             
             const targetBtn = document.getElementById(`tab-${tab}`);
             if(targetBtn) {
-                targetBtn.className = "px-6 py-2.5 rounded-xl bg-amber-700 text-white text-sm font-bold shadow transition";
+                targetBtn.className = "px-5 py-2.5 rounded-xl bg-amber-700 text-white text-sm font-bold shadow transition";
             }
 
             if(tab === 'home') renderLeaderboard();
@@ -288,7 +297,7 @@
         function checkAdminPassword() {
             let pass = prompt("അഡ്മിൻ പാസ്‌വേഡ് നൽകുക:");
             if(pass === ADMIN_PASSWORD) {
-                ['home', 'results'].forEach(t => {
+                ['home', 'results', 'contact'].forEach(t => {
                     document.getElementById(`content-${t}`).classList.add('hidden');
                 });
                 document.getElementById('content-admin').classList.remove('hidden');
