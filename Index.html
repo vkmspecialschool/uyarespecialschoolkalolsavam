@@ -9,28 +9,46 @@
     <style>
         body { font-family: 'Manrope', sans-serif; }
         .malayalam-title { font-family: 'Chathuram', sans-serif; }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-slate-100 text-slate-800">
+
+    <!-- Top Announcement Ticker -->
+    <div class="bg-amber-900 text-amber-100 text-xs py-2 px-4 overflow-hidden whitespace-nowrap border-b border-amber-800">
+        <div class="max-w-6xl mx-auto flex items-center">
+            <span class="bg-amber-600 text-white px-2 py-0.5 rounded font-bold mr-3 uppercase tracking-wider text-[10px]">അറിയിപ്പുകൾ</span>
+            <div class="overflow-hidden w-full">
+                <p class="animate-marquee">📢 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 'ഉയരെ' - തത്സമയ ഫലങ്ങളും പോയിന്റ് നിലയും ഇവിടെ ലഭ്യമാണ്. | വിജയികൾക്ക് അഭിനന്ദനങ്ങൾ!</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Header -->
-    <header class="bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white shadow-lg sticky top-0 z-50">
+    <header class="bg-white shadow-md sticky top-0 z-50 border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4 text-center md:text-left">
-                <!-- Improved Full Logo Container -->
-                <div class="bg-white p-1.5 rounded-xl shadow-md border border-amber-300 flex items-center justify-center">
-                    <img src="100129.png" alt="Uyare Logo" class="h-14 md:h-16 w-auto object-contain rounded-lg">
+                <!-- Logo -->
+                <div class="bg-white p-1 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center">
+                    <img src="100129.png" alt="Uyare Logo" class="h-14 md:h-16 w-auto object-contain rounded-lg[span_0](start_span)"[span_0](end_span)>
                 </div>
                 <div>
-                    <span class="bg-amber-500/30 text-amber-200 text-xs font-semibold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-400/30">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
-                    <h1 class="malayalam-title text-3xl md:text-4xl font-bold tracking-wide text-amber-100">ഉയരെ</h1>
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
+                    <h1 class="malayalam-title text-3xl md:text-4xl font-bold tracking-wide text-amber-900 mt-0.5">ഉയരെ</h1>
                 </div>
             </div>
-            <div class="flex gap-2">
-                <button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-medium shadow transition hover:bg-amber-500">മുഖ്യപേജ്</button>
-                <button onclick="switchTab('results')" id="tab-results" class="px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600">ഫലങ്ങൾ</button>
+            <div class="flex gap-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
+                <button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 rounded-lg bg-amber-700 text-white text-sm font-semibold shadow transition">മുഖ്യപേജ്</button>
+                <button onclick="switchTab('results')" id="tab-results" class="px-4 py-2 rounded-lg text-slate-700 text-sm font-semibold transition hover:text-amber-700">ഫലങ്ങൾ</button>
                 <!-- Hidden Admin Button for Public -->
-                <button onclick="checkAdminPassword()" id="tab-admin" class="hidden px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600">അഡ്മിൻ</button>
+                <button onclick="checkAdminPassword()" id="tab-admin" class="hidden px-4 py-2 rounded-lg text-red-600 text-sm font-semibold transition hover:bg-red-50">അഡ്മിൻ</button>
             </div>
         </div>
     </header>
@@ -41,31 +59,35 @@
         <!-- HOME TAB -->
         <div id="content-home" class="space-y-6">
             <!-- Hero banner -->
-            <div class="bg-gradient-to-br from-amber-600 to-amber-800 rounded-2xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
-                <div class="relative z-10">
-                    <h2 class="malayalam-title text-3xl md:text-4xl font-bold mb-2">കലോത്സവ ലൈവ് പോർട്ടലിലേക്ക് സ്വാഗതം</h2>
-                    <p class="text-amber-100 text-sm md:text-base max-w-2xl mb-4">മലപ്പുറം ജില്ലയിലെ വിവിധ സ്പെഷ്യൽ സ്കൂളുകളിൽ നിന്നുള്ള പ്രതിഭകൾ മാറ്റുരയ്ക്കുന്ന കലാമേളയുടെ സമ്പൂർണ്ണ പോയിന്റ് നിലയും ഇനം തിരിച്ചുള്ള ഫലങ്ങളും ഇവിടെ തത്സമയം അറിയാം.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <button onclick="switchTab('results')" class="bg-white text-amber-900 font-semibold px-5 py-2 rounded-xl text-sm shadow hover:bg-amber-50 transition">ഫലങ്ങൾ പരിശോധിക്കുക</button>
+            <div class="bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900 rounded-2xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden flex flex-col md:flex-row justify-between items-center">
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-amber-500/30 text-amber-200 text-xs font-semibold px-3 py-1 rounded-full border border-amber-400/30">തത്സമയ പോർട്ടൽ</span>
+                    <h2 class="malayalam-title text-3xl md:text-5xl font-bold">ഉയരെ - സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം</h2>
+                    <p class="text-amber-100 text-sm md:text-base max-w-xl">HI, VI, ID, CP കാറ്റഗറികളിലെ 20 സ്കൂളുകളുടെ മത്സര ഫലങ്ങളും പോയിന്റ് നിലയും തത്സമയം അറിയാം.</p>
+                    <div class="pt-2">
+                        <button onclick="switchTab('results')" class="bg-white text-amber-900 font-bold px-6 py-2.5 rounded-xl text-sm shadow hover:bg-amber-50 transition">ഫലങ്ങൾ പരിശോധിക്കുക</button>
                     </div>
                 </div>
             </div>
 
             <!-- Leaderboard Section -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden p-6">
-                <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <span>🏆</span> ലീഡർബോർഡ് (ടോപ്പ് സ്കൂളുകൾ)
-                </h3>
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <span class="text-2xl">🏆</span> ലീഡർബോർഡ് (ടോപ്പ് സ്കൂളുകൾ)
+                    </h3>
+                    <span class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full font-medium">ലൈവ് അപ്ഡേറ്റഡ്</span>
+                </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-slate-100 text-slate-700 text-xs uppercase tracking-wider">
-                                <th class="p-3 rounded-l-lg">സ്ഥാനം</th>
-                                <th class="p-3">സ്കൂൾ പേര്</th>
-                                <th class="p-3 text-center">A ഗ്രേഡ്</th>
-                                <th class="p-3 text-center">B ഗ്രേഡ്</th>
-                                <th class="p-3 text-center">C ഗ്രേഡ്</th>
-                                <th class="p-3 text-right rounded-r-lg font-bold">ആകെ പോയിന്റ്</th>
+                            <tr class="bg-slate-50 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
+                                <th class="p-3.5 rounded-l-xl font-bold">സ്ഥാനം</th>
+                                <th class="p-3.5 font-bold">സ്കൂൾ പേര്</th>
+                                <th class="p-3.5 text-center font-bold">A ഗ്രേഡ്</th>
+                                <th class="p-3.5 text-center font-bold">B ഗ്രേഡ്</th>
+                                <th class="p-3.5 text-center font-bold">C ഗ്രേഡ്</th>
+                                <th class="p-3.5 text-right rounded-r-xl font-bold">ആകെ പോയിന്റ്</th>
                             </tr>
                         </thead>
                         <tbody id="leaderboard-body" class="divide-y divide-slate-100 text-sm">
@@ -78,11 +100,11 @@
 
         <!-- RESULTS TAB -->
         <div id="content-results" class="hidden space-y-6">
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 justify-between items-center">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div class="w-full md:w-1/3">
-                    <label class="block text-xs font-semibold text-slate-500 mb-1">കാറ്റഗറി തിരഞ്ഞെടുക്കുക</label>
-                    <select id="filter-category" onchange="renderResults()" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-amber-500">
-                        <option value="all">എല്ലാ കാറ്റഗറിയും</option>
+                    <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">കാറ്റഗറി തിരഞ്ഞെടുക്കുക</label>
+                    <select id="filter-category" onchange="renderResults()" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-600 outline-none">
+                        <option value="all">എല്ലാ കാറ്റഗറിയും (All)</option>
                         <option value="HI">കേൾവി പരിമിതി (HI)</option>
                         <option value="VI">കാഴ്ച പരിമിതി (VI)</option>
                         <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (ID)</option>
@@ -90,8 +112,8 @@
                     </select>
                 </div>
                 <div class="w-full md:w-1/3">
-                    <label class="block text-xs font-semibold text-slate-500 mb-1">തിരയുക (ഇനം / സ്കൂൾ / ചെസ്റ്റ് നം)</label>
-                    <input type="text" id="search-input" oninput="renderResults()" placeholder="സെർച്ച് ചെയ്യൂ..." class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-amber-500">
+                    <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">തിരയുക (ഇനം / സ്കൂൾ)</label>
+                    <input type="text" id="search-input" oninput="renderResults()" placeholder="ഇനം, സ്കൂൾ പേര് സെർച്ച് ചെയ്യൂ..." class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-600 outline-none">
                 </div>
             </div>
 
@@ -103,21 +125,20 @@
         <!-- ADMIN TAB -->
         <div id="content-admin" class="hidden space-y-6">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
-                <div class="flex justify-between items-center mb-2">
+                <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100">
                     <h3 class="text-xl font-bold text-slate-800">അഡ്മിൻ സ്കോർ കീപ്പർ പാനൽ</h3>
-                    <button onclick="logoutAdmin()" class="text-xs text-red-600 font-semibold bg-red-50 px-3 py-1.5 rounded-lg border border-red-200 hover:bg-red-100">ലോഗ് ഔട്ട്</button>
+                    <button onclick="logoutAdmin()" class="text-xs text-red-600 font-bold bg-red-50 px-3 py-1.5 rounded-lg border border-red-200 hover:bg-red-100 transition">ലോഗ് ഔട്ട്</button>
                 </div>
-                <p class="text-xs text-slate-500 mb-6">മത്സരഫലങ്ങൾ പുതിയതായി ചേർക്കുമ്പോൾ ലീഡർബോർഡിലെ പോയിന്റുകൾ ഓട്ടോമാറ്റിക്കായി അപ്ഡേറ്റ് ആകുന്നതാണ്.</p>
                 
                 <form id="result-form" onsubmit="handleAddResult(event)" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">മത്സരത്തിന്റെ പേര് (Item Name)</label>
-                        <input type="text" id="admin-item" required placeholder="ഉദാ: ഭരതനാട്യം" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                        <label class="block text-xs font-bold text-slate-600 mb-1">മത്സരത്തിന്റെ പേര് (Item Name)</label>
+                        <input type="text" id="admin-item" required placeholder="ഉദാ: ലളിതഗാനം" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:border-amber-600">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">കാറ്റഗറി</label>
-                            <select id="admin-cat" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                            <label class="block text-xs font-bold text-slate-600 mb-1">കാറ്റഗറി</label>
+                            <select id="admin-cat" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
                                 <option value="HI">കേൾവി പരിമിതി (HI)</option>
                                 <option value="VI">കാഴ്ച പരിമിതി (VI)</option>
                                 <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (ID)</option>
@@ -125,40 +146,45 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">സ്ഥാനം / വിജയം</label>
-                            <select id="admin-pos" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
-                                <option value="1st">ഒന്നാം സ്ഥാനം (5 Points + A)</option>
-                                <option value="2nd">രണ്ടാം സ്ഥാനം (3 Points + A)</option>
-                                <option value="3rd">മൂന്നാം സ്ഥാനം (1 Point + B)</option>
+                            <label class="block text-xs font-bold text-slate-600 mb-1">സ്ഥാനം / വിജയം</label>
+                            <select id="admin-pos" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
+                                <option value="1st">ഒന്നാം സ്ഥാനം (5 Points)</option>
+                                <option value="2nd">രണ്ടാം സ്ഥാനം (3 Points)</option>
+                                <option value="3rd">മൂന്നാം സ്ഥാനം (1 Point)</option>
                             </select>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">സ്കൂൾ തിരഞ്ഞെടുക്കുക</label>
-                        <select id="admin-school" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                        <label class="block text-xs font-bold text-slate-600 mb-1">സ്കൂൾ തിരഞ്ഞെടുക്കുക</label>
+                        <select id="admin-school" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
                             <!-- Populated by JS -->
                         </select>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">കളിക്കാരന്റെ പേര് / ചെസ്റ്റ് നമ്പർ</label>
-                            <input type="text" id="admin-participant" required placeholder="ഉദാ: അശ്വിൻ (C01)" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                            <label class="block text-xs font-bold text-slate-600 mb-1">കളിക്കാരന്റെ പേര് / ചെസ്റ്റ് നമ്പർ</label>
+                            <input type="text" id="admin-participant" required placeholder="ഉദാ: അശ്വിൻ (C01)" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">ഗ്രേഡ്</label>
-                            <select id="admin-grade" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                            <label class="block text-xs font-bold text-slate-600 mb-1">ഗ്രേഡ്</label>
+                            <select id="admin-grade" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
                                 <option value="A">A ഗ്രേഡ്</option>
                                 <option value="B">B ഗ്രേഡ്</option>
                                 <option value="C">C ഗ്രേഡ്</option>
                             </select>
                         </div>
                     </div>
-                    <button type="submit" class="w-full py-3 bg-amber-700 text-white font-semibold rounded-xl shadow hover:bg-amber-800 transition">ഫലം സേവ് ചെയ്യുക</button>
+                    <button type="submit" class="w-full py-3.5 bg-amber-700 text-white font-bold rounded-xl shadow hover:bg-amber-800 transition">ഫലം സേവ് ചെയ്യുക</button>
                 </form>
             </div>
         </div>
 
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 ഉയരെ - 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം. എല്ലാ അവകാശങ്ങളും സുരക്ഷിതം.</p>
+    </footer>
 
     <script>
         const ADMIN_PASSWORD = "uyare2026";
@@ -189,14 +215,18 @@
                 const el = document.getElementById(`content-${t}`);
                 if(el) el.classList.add('hidden');
                 const btn = document.getElementById(`tab-${t}`);
-                if(btn) btn.className = "px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600";
+                if(btn) {
+                    btn.className = "px-4 py-2 rounded-lg text-slate-700 text-sm font-semibold transition hover:text-amber-700";
+                }
             });
             
             const targetContent = document.getElementById(`content-${tab}`);
             if(targetContent) targetContent.classList.remove('hidden');
             
             const targetBtn = document.getElementById(`tab-${tab}`);
-            if(targetBtn) targetBtn.className = "px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-medium shadow transition";
+            if(targetBtn) {
+                targetBtn.className = "px-4 py-2 rounded-lg bg-amber-700 text-white text-sm font-semibold shadow transition";
+            }
 
             if(tab === 'home') renderLeaderboard();
             if(tab === 'results') renderResults();
@@ -252,12 +282,12 @@
             data.forEach((item, index) => {
                 tbody.innerHTML += `
                     <tr class="hover:bg-slate-50 transition">
-                        <td class="p-3 font-semibold text-slate-500">#${index + 1}</td>
-                        <td class="p-3 font-medium text-slate-800">${item.name}</td>
-                        <td class="p-3 text-center text-amber-600 font-semibold">${item.a}</td>
-                        <td class="p-3 text-center text-blue-600 font-semibold">${item.b}</td>
-                        <td class="p-3 text-center text-slate-600 font-semibold">${item.c}</td>
-                        <td class="p-3 text-right font-bold text-amber-800 text-base">${item.points}</td>
+                        <td class="p-3.5 font-bold text-slate-500">#${index + 1}</td>
+                        <td class="p-3.5 font-bold text-slate-800">${item.name}</td>
+                        <td class="p-3.5 text-center text-amber-700 font-bold">${item.a}</td>
+                        <td class="p-3.5 text-center text-blue-600 font-bold">${item.b}</td>
+                        <td class="p-3.5 text-center text-slate-600 font-bold">${item.c}</td>
+                        <td class="p-3.5 text-right font-extrabold text-amber-900 text-base">${item.points}</td>
                     </tr>
                 `;
             });
@@ -278,23 +308,23 @@
             });
 
             if(filtered.length === 0) {
-                container.innerHTML = `<div class="col-span-2 text-center py-8 text-slate-400 text-sm">ഫലങ്ങൾ ഒന്നും ലഭ്യമല്ല</div>`;
+                container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-400 text-sm bg-white rounded-2xl border border-slate-200">ഫലങ്ങൾ ഒന്നും ലഭ്യമല്ല</div>`;
                 return;
             }
 
             filtered.forEach(res => {
                 container.innerHTML += `
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
                         <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-1 rounded-md">${res.category} കാറ്റഗറി</span>
-                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-md">${res.position}</span>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-full">${res.category} കാറ്റഗറി</span>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full">${res.position}</span>
                             </div>
                             <h4 class="text-lg font-bold text-slate-800 mb-1">${res.item}</h4>
-                            <p class="text-sm font-medium text-slate-600 mb-2">${res.school} - <span class="text-slate-500">${res.participant}</span></p>
+                            <p class="text-sm font-semibold text-slate-600 mb-2">${res.school} - <span class="text-slate-500 font-normal">${res.participant}</span></p>
                         </div>
                         <div class="flex justify-between items-center mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
-                            <span>ഗ്രേഡ്: <strong class="text-slate-700">${res.grade} ഗ്രേഡ്</strong></span>
+                            <span>ഗ്രേഡ്: <strong class="text-slate-800">${res.grade} ഗ്രേഡ്</strong></span>
                         </div>
                     </div>
                 `;
