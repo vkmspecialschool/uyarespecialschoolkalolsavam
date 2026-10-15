@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ഉയരെ | 19-ാമത് മലപ്പുറം ജില്ലാ സ്‌പെഷ്യൽ സ്കൂൾ കലോത്സവം</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Malayalam & Sans-serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        uyare: {
+                            orange: '#FF6B00',
+                            gold: '#FFB800',
+                            goldlight: '#FFF0C2',
+                            maroon: '#580A14',
+                            maroonlight: '#8B1222',
+                            navy: '#0F172A',
+                            cardbg: '#1E293B',
+                            teal: '#0284C7'
+                        }
+                    },
+                    fontFamily: {
+                        manjari: ['Manjari', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manjari', 'Plus Jakarta Sans', sans-serif;
+            background-color: #0B0F19;
+            color: #F8FAFC;
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker-move {
+            display: inline-block;
+            animation: ticker 25s linear infinite;
+        }
+        .ticker-move:hover {
+            animation-play-state: paused;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(100%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+        .uyare-gradient {
+            background: linear-gradient(135deg, #FF6B00 0%, #FFB800 50%, #E65100 100%);
+        }
+        .maroon-gradient {
+            background: linear-gradient(135deg, #580A14 0%, #8B1222 100%);
+        }
+        .card-glass {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 184, 0, 0.18);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+
+    <!-- Top Announcement Ticker -->
+    <div class="bg-uyare-maroon text-amber-200 text-sm font-semibold py-2 px-4 border-b border-amber-500/30 flex items-center shadow-lg">
+        <span class="bg-amber-500 text-slate-950 text-xs px-2.5 py-0.5 rounded-full font-extrabold uppercase tracking-wider mr-3 flex items-center gap-1 shrink-0 shadow">
+            <span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+            തത്സമയം
+        </span>
+        <div class="ticker-wrap flex-1 overflow-hidden">
+            <div id="tickerText" class="ticker-move text-amber-100 text-sm font-bold">
+                ✨ "ഉയരെ" 19-ാമത് മലപ്പുറം ജില്ലാ സ്‌പെഷ്യൽ സ്കൂൾ കലോത്സവം ലൈവ് റിസൾട്ടുകൾ പ്രഖ്യാപിക്കുന്നു | വേദി 1 ൽ വിഷ്വലി ഇംപയേർഡ് വിഭാഗം ലളിതഗാനം പൂർത്തിയായി...
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Banner -->
+    <header class="relative bg-gradient-to-b from-slate-900 via-amber-950/30 to-slate-950 border-b border-amber-500/20 py-6 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+            
+            <div class="flex items-center gap-4">
+                <!-- Artistic Custom Festival Emblem/Badge Placeholder -->
+                <div class="relative group cursor-pointer">
+                    <div class="absolute -inset-1 rounded-2xl uyare-gradient blur opacity-40 group-hover:opacity-75 transition duration-300"></div>
+                    <div class="relative w-16 h-16 rounded-2xl bg-slate-900 border-2 border-amber-400/80 flex flex-col items-center justify-center p-1 shadow-2xl overflow-hidden">
+                        <div class="text-amber-400 font-black text-xs tracking-tighter">19th</div>
+                        <i class="fa-solid fa-hands-holding-child text-amber-400 text-xl my-0.5 animate-bounce"></i>
+                        <span class="text-[9px] font-bold text-amber-200 tracking-widest uppercase">മലപ്പുറം</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-center sm:justify-start gap-2 mb-0.5">
+                        <span class="text-xs font-black tracking-widest text-amber-400 uppercase bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md">
+                            Special School Kalotsavam
+                        </span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text uyare-gradient tracking-tight">
+                        ഉയരെ 
+                    </h1>
+                    <p class="text-xs sm:text-sm font-bold text-slate-300 mt-0.5">
+                        19-ാമത് മലപ്പുറം ജില്ലാ സ്‌പെഷ്യൽ സ്കൂൾ കലോത്സവം
+                    </p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="openAdminModal()" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-400 border border-amber-500/40 text-xs font-extrabold flex items-center gap-2 transition-all shadow-lg hover:border-amber-400">
+                    <i class="fa-solid fa-user-shield text-amber-400"></i>
+                    <span>സ്കോർകീപ്പർ പാനൽ (Admin)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="sticky top-0 z-30 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-xl">
+        <div class="max-w-6xl mx-auto px-2 sm:px-4">
+            <div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-2 text-sm">
+                <button onclick="switchTab('leaderboard')" id="tab-leaderboard" class="tab-btn px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 whitespace-nowrap transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span>പോയിന്റ് നില (Leaderboard)</span>
+                </button>
+
+                <button onclick="switchTab('results')" id="tab-results" class="tab-btn px-4 py-2.5 rounded-xl font-semibold text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap transition-all">
+                    <i class="fa-solid fa-award"></i>
+                    <span>മത്സരഫലങ്ങൾ (Item Results)</span>
+                </button>
+
+                <button onclick="switchTab('stages')" id="tab-stages" class="tab-btn px-4 py-2.5 rounded-xl font-semibold text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap transition-all">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                    <span>വേദി & ലൈവ് വിവരങ്ങൾ (Stages)</span>
+                </button>
+
+                <button onclick="switchTab('search')" id="tab-search" class="tab-btn px-4 py-2.5 rounded-xl font-semibold text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap transition-all">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>സെർച്ച് (Search Results)</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-6">
+
+        <!-- ================= TAB 1: OVERALL LEADERBOARD ================= -->
+        <section id="sec-leaderboard" class="space-y-6">
+            
+            <!-- Quick Highlights Header Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="card-glass rounded-2xl p-4 flex items-center gap-4 border-l-4 border-l-amber-500">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl font-bold shrink-0">
+                        🏆
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-semibold">മുന്നിൽ നിൽക്കുന്ന സബ് ഡിസ്ട്രിക്റ്റ്/സോൺ</div>
+                        <div id="leadingTeamName" class="text-lg font-black text-amber-300">ലോഡിംഗ്...</div>
+                        <div id="leadingTeamPoints" class="text-xs text-amber-400/80 font-bold">-- Points</div>
+                    </div>
+                </div>
+
+                <div class="card-glass rounded-2xl p-4 flex items-center gap-4 border-l-4 border-l-emerald-500">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl font-bold shrink-0">
+                        🎭
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-semibold">പൂർത്തിയായ മത്സരങ്ങൾ</div>
+                        <div id="completedEventsCount" class="text-lg font-black text-emerald-300">0 ഇനങ്ങൾ</div>
+                        <div class="text-xs text-emerald-400/80 font-bold">ഉയരെ ലൈവ് ഫലങ്ങൾ</div>
+                    </div>
+                </div>
+
+                <div class="card-glass rounded-2xl p-4 flex items-center gap-4 border-l-4 border-l-blue-500">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl font-bold shrink-0">
+                        🎪
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-semibold">പ്രധാന വേദികൾ</div>
+                        <div class="text-lg font-black text-blue-300">3 വേദികൾ</div>
+                        <div class="text-xs text-blue-400/80 font-bold">മത്സരങ്ങൾ പുരോഗമിക്കുന്നു</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Performing Zones Visual -->
+            <div>
+                <h2 class="text-lg font-extrabold text-amber-400 flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-crown text-amber-400"></i>
+                    മുൻനിര സബ് ഡിസ്ട്രിക്റ്റുകൾ / സോണുകൾ (Top Standings)
+                </h2>
+                <div id="topThreeCards" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Detailed Leaderboard Table -->
+            <div class="card-glass rounded-2xl overflow-hidden shadow-xl border border-slate-800">
+                <div class="p-4 bg-slate-900/80 border-b border-slate-800 flex justify-between items-center">
+                    <h3 class="font-extrabold text-slate-200 flex items-center gap-2">
+                        <i class="fa-solid fa-list-ol text-amber-400"></i>
+                        സബ് ഡിസ്ട്രിക്റ്റ് പോയിന്റ് പട്ടിക (Sub-District Points Table)
+                    </h3>
+                    <span class="text-xs text-amber-400/80 font-semibold bg-amber-500/10 px-2 py-1 rounded">തത്സമയം അപ്‌ഡേറ്റ് ആകുന്നു</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-900 text-amber-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                            <tr>
+                                <th class="p-3.5 text-center">റാങ്ക്</th>
+                                <th class="p-3.5">സബ് ഡിസ്ട്രിക്റ്റ് / സോൺ</th>
+                                <th class="p-3.5 text-center">A Grade</th>
+                                <th class="p-3.5 text-center">B Grade</th>
+                                <th class="p-3.5 text-center">C Grade</th>
+                                <th class="p-3.5 text-right font-black">ആകെ പോയിന്റ്</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardTableBody" class="divide-y divide-slate-800/70 font-medium">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 2: ITEM-WISE RESULTS ================= -->
+        <section id="sec-results" class="hidden space-y-6">
+            
+            <!-- Filters Section -->
+            <div class="card-glass rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2 w-full md:w-auto">
+                    <i class="fa-solid fa-filter text-amber-400"></i>
+                    <span class="font-extrabold text-sm text-slate-200">ഫിൽട്ടർ ചെയ്യുക:</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 w-full md:w-auto flex-1">
+                    <!-- Category Filter -->
+                    <select id="filterCategory" onchange="renderResults()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-semibold">
+                        <option value="ALL">എല്ലാ വിഭാഗങ്ങളും (All Categories)</option>
+                        <option value="HI">കേൾവി പരിമിതി (Hearing Impaired - HI)</option>
+                        <option value="VI">കാഴ്ച പരിമിതി (Visually Impaired - VI)</option>
+                        <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (Intellectual Disability - ID)</option>
+                        <option value="CP">സെറിബ്രൽ പാൾസി (Cerebral Palsy - CP)</option>
+                    </select>
+
+                    <!-- Event Filter -->
+                    <select id="filterEvent" onchange="renderResults()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500 font-semibold">
+                        <option value="ALL">എല്ലാ ഇനങ്ങളും (All Items)</option>
+                    </select>
+
+                    <!-- Reset Button -->
+                    <button onclick="resetResultsFilter()" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl px-4 py-2 text-sm font-extrabold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>റീസെറ്റ്</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item Results List -->
+            <div id="resultsListContainer" class="space-y-6">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 3: STAGE SCHEDULE & LIVE STATUS ================= -->
+        <section id="sec-stages" class="hidden space-y-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-black text-amber-400 flex items-center gap-2">
+                        <i class="fa-solid fa-tower-broadcast animate-pulse text-red-500"></i>
+                        വേദികളുടെ തത്സമയ വിവരങ്ങൾ (Stage Live Status)
+                    </h2>
+                    <p class="text-xs text-slate-400">ഓരോ വേദിയിലും നിലവിൽ നടക്കുന്നതും അടുത്തതായി നടക്കുന്നതുമായ മത്സരങ്ങൾ</p>
+                </div>
+            </div>
+
+            <div id="stagesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Dynamic Stages Cards JS -->
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 4: SEARCH RESULTS ================= -->
+        <section id="sec-search" class="hidden space-y-6">
+            <div class="card-glass rounded-2xl p-6 text-center max-w-2xl mx-auto space-y-4">
+                <div class="w-16 h-16 bg-amber-500/10 text-amber-400 rounded-2xl mx-auto flex items-center justify-center text-2xl">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <h2 class="text-xl font-bold text-amber-300">ഫലങ്ങൾ വേഗത്തിൽ കണ്ടെത്താം</h2>
+                <p class="text-xs text-slate-400">മത്സരാർത്ഥിയുടെ പേര്, ചെസ്റ്റ് നമ്പർ അല്ലെങ്കിൽ മത്സരത്തിന്റെ പേര് നൽകി തിരയുക.</p>
+                
+                <div class="relative max-w-md mx-auto">
+                    <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="ഉദാഹരണത്തിന്: 105 അല്ലെങ്കിൽ മാപ്പിളപ്പാട്ട്" class="w-full bg-slate-900 border-2 border-amber-500/40 focus:border-amber-400 rounded-xl px-4 py-3 pl-11 text-slate-100 placeholder-slate-500 focus:outline-none transition-all shadow-inner font-semibold">
+                    <i class="fa-solid fa-search absolute left-4 top-4 text-slate-500"></i>
+                </div>
+            </div>
+
+            <div id="searchResultsContainer" class="space-y-4">
+                <div class="text-center py-8 text-slate-500 text-sm">
+                    തിരയാനായി മുകളിലെ ബോക്സിൽ ടൈപ്പ് ചെയ്യുക...
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500 mt-12">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+                <span class="font-extrabold text-amber-400">"ഉയരെ" 2026</span> - 19-ാമത് മലപ്പുറം ജില്ലാ സ്‌പെഷ്യൽ സ്കൂൾ കലോത്സവം
+            </div>
+            <div class="text-slate-400">
+                ഐ.ടി & ഐ.ടി.ഇ.എസ് മീഡിയ സെൽ, മലപ്പുറം 🎨
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ================= ADMIN MODAL PANEL ================= -->
+    <div id="adminModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-amber-500/40 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative space-y-6">
+            
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg font-bold">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-extrabold text-amber-400">ഉയരെ സ്കോർകീപ്പർ എൻട്രി (Admin)</h3>
+                    <p class="text-xs text-slate-400">തത്സമയം ഫലങ്ങൾ അപ്‌ഡേറ്റ് ചെയ്യാനുള്ള പാനൽ</p>
+                </div>
+            </div>
+
+            <!-- Form to Add Result -->
+            <form id="addResultForm" onsubmit="saveNewResult(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">വിഭാഗം (Category)</label>
+                        <select id="adminCategory" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-sm text-slate-200">
+                            <option value="HI">കേൾവി പരിമിതി (Hearing Impaired)</option>
+                            <option value="VI">കാഴ്ച പരിമിതി (Visually Impaired)</option>
+                            <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (Intellectual Disability)</option>
+                            <option value="CP">സെറിബ്രൽ പാൾസി (Cerebral Palsy)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">മത്സര ഇനം (Item Name)</label>
+                        <input type="text" id="adminItemName" placeholder="ഉദാ: മാപ്പിളപ്പാട്ട്" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-sm text-slate-200">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">വേദി (Stage)</label>
+                        <input type="text" id="adminStage" placeholder="ഉദാ: വേദി 1 (പ്രധാന വേദി)" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-sm text-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">സമയം</label>
+                        <input type="text" id="adminTime" placeholder="ഉദാ: 11:30 AM" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-sm text-slate-200">
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-800 pt-3">
+                    <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">വിജയികൾ (Winners Details)</h4>
+                    
+                    <!-- Winner 1 -->
+                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700/50 space-y-2 mb-3">
+                        <span class="text-xs font-bold text-amber-300">🥇 ഒന്നാം സ്ഥാനം (1st Place)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <input type="text" id="w1_chest" placeholder="ചെസ്റ്റ് നോ" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                            <input type="text" id="w1_name" placeholder="പേര്" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                            <select id="w1_team" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200"></select>
+                            <select id="w1_grade" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                                <option value="A">A Grade (5 pts)</option>
+                                <option value="B">B Grade (3 pts)</option>
+                                <option value="C">C Grade (1 pt)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Winner 2 -->
+                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700/50 space-y-2 mb-3">
+                        <span class="text-xs font-bold text-slate-300">🥈 രണ്ടാം സ്ഥാനം (2nd Place)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <input type="text" id="w2_chest" placeholder="ചെസ്റ്റ് നോ" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                            <input type="text" id="w2_name" placeholder="പേര്" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                            <select id="w2_team" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200"></select>
+                            <select id="w2_grade" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                                <option value="A">A Grade (5 pts)</option>
+                                <option value="B">B Grade (3 pts)</option>
+                                <option value="C">C Grade (1 pt)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Winner 3 -->
+                    <div class="p-3 bg-slate-800/50 rounded-xl border border-slate-700/50 space-y-2">
+                        <span class="text-xs font-bold text-amber-600">🥉 മൂന്നാം സ്ഥാനം (3rd Place)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <input type="text" id="w3_chest" placeholder="ചെസ്റ്റ് നോ" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                            <input type="text" id="w3_name" placeholder="പേര്" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                            <select id="w3_team" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200"></select>
+                            <select id="w3_grade" required class="bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200">
+                                <option value="A">A Grade (5 pts)</option>
+                                <option value="B">B Grade (3 pts)</option>
+                                <option value="C">C Grade (1 pt)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 border-t border-slate-800">
+                    <button type="button" onclick="resetToDefaultData()" class="px-4 py-2.5 rounded-xl bg-red-900/40 hover:bg-red-900/60 text-red-300 text-xs font-semibold transition-all">
+                        ഡാറ്റ റീസെറ്റ്
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-lg transition-all">
+                        ഫലം അപ്‌ലോഡ് ചെയ്യുക
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- JavaScript App Logic -->
+    <script>
+        // Sub-Districts / Zones of Malappuram Special Schools
+        const defaultTeams = [
+            { id: 'TM_MJR', name: 'മഞ്ചേരി സബ് ഡിസ്ട്രിക്റ്റ് (Manjeri)', color: 'from-amber-500 to-yellow-600' },
+            { id: 'TM_TIR', name: 'തിരൂർ സബ് ഡിസ്ട്രിക്റ്റ് (Tirur)', color: 'from-emerald-500 to-teal-600' },
+            { id: 'TM_MLP', name: 'മലപ്പുറം സബ് ഡിസ്ട്രിക്റ്റ് (Malappuram)', color: 'from-blue-500 to-indigo-600' },
+            { id: 'TM_PNT', name: 'പെരിന്തൽമണ്ണ സബ് ഡിസ്ട്രിക്റ്റ് (Perinthalmanna)', color: 'from-purple-500 to-pink-600' },
+            { id: 'TM_VND', name: 'വണ്ടൂർ സബ് ഡിസ്ട്രിക്റ്റ് (Wandoor)', color: 'from-rose-500 to-red-600' }
+        ];
+
+        // Sample Event Results Data for Malappuram Special School Kalotsavam
+        const defaultResults = [
+            {
+                id: 101,
+                category: 'HI',
+                itemName: 'വട്ടപ്പാട്ട് (Vattappattu)',
+                stage: 'വേദി 1 (പ്രധാന വേദി)',
+                time: '10:30 AM',
+                winners: [
+                    { place: 1, chestNo: '105', name: 'മുഹമ്മദ് റയ്യാൻ & സംഘം', teamId: 'TM_MJR', grade: 'A', points: 10 },
+                    { place: 2, chestNo: '112', name: 'അൻഷിദ് കെ & സംഘം', teamId: 'TM_TIR', grade: 'A', points: 8 },
+                    { place: 3, chestNo: '108', name: 'ഫാസില ബിഎം & സംഘം', teamId: 'TM_MLP', grade: 'B', points: 4 }
+                ]
+            },
+            {
+                id: 102,
+                category: 'VI',
+                itemName: 'ലളിതഗാനം (Light Music)',
+                stage: 'വേദി 2',
+                time: '11:15 AM',
+                winners: [
+                    { place: 1, chestNo: '201', name: 'ശ്രേയ ആർ', teamId: 'TM_PNT', grade: 'A', points: 10 },
+                    { place: 2, chestNo: '214', name: 'മുഹമ്മദ് അസ്‌ലം', teamId: 'TM_MLP', grade: 'A', points: 8 },
+                    { place: 3, chestNo: '209', name: 'അനന്യ സി കെ', teamId: 'TM_MJR', grade: 'B', points: 4 }
+                ]
+            },
+            {
+                id: 103,
+                category: 'ID',
+                itemName: 'സംഘനൃത്തം (Group Dance)',
+                stage: 'വേദി 1 (പ്രധാന വേദി)',
+                time: '12:00 PM',
+                winners: [
+                    { place: 1, chestNo: '302', name: 'ആദിത്യൻ & ടീം', teamId: 'TM_VND', grade: 'A', points: 10 },
+                    { place: 2, chestNo: '310', name: 'ഫാത്തിമ നസ്രിൻ & ടീം', teamId: 'TM_MJR', grade: 'A', points: 8 },
+                    { place: 3, chestNo: '307', name: 'നിഹാൽ വി & ടീം', teamId: 'TM_PNT', grade: 'A', points: 6 }
+                ]
+            },
+            {
+                id: 104,
+                category: 'CP',
+                itemName: 'പെയിന്റിംഗ് (Water Color)',
+                stage: 'വേദി 3',
+                time: '01:30 PM',
+                winners: [
+                    { place: 1, chestNo: '405', name: 'മുഹമ്മദ് ഷാനിബ്', teamId: 'TM_TIR', grade: 'A', points: 10 },
+                    { place: 2, chestNo: '412', name: 'ദേവിക പ്രകാശ്', teamId: 'TM_PNT', grade: 'A', points: 8 },
+                    { place: 3, chestNo: '401', name: 'സിനാൻ കെ', teamId: 'TM_VND', grade: 'B', points: 4 }
+                ]
+            }
+        ];
+
+        // Default Stages Info
+        const stagesData = [
+            { id: 1, name: 'വേദി 1 (പ്രധാന വേദി)', currentItem: 'മിമിക്രി (Mimicry)', category: 'HI', status: 'Live Running', nextItem: 'നാടോടിനൃത്തം' },
+            { id: 2, name: 'വേദി 2 (സംഗീത വേദി)', currentItem: 'മാപ്പിളപ്പാട്ട് (Mappilapattu)', category: 'VI', status: 'Live Running', nextItem: 'ശാസ്ത്രീയസംഗീതം' },
+            { id: 3, name: 'വേദി 3 (രചനാ വേദി)', currentItem: 'പെയിന്റിംഗ് (Painting)', category: 'ID / CP', status: 'Live Running', nextItem: 'കാർട്ടൂൺ വര' }
+        ];
+
+        let appResults = [];
+        let appTeams = defaultTeams;
+
+        window.onload = function() {
+            loadInitialData();
+            renderAllViews();
+            populateTeamSelectDropdowns();
+            populateEventFilterDropdown();
+        };
+
+        function loadInitialData() {
+            const localResults = localStorage.getItem('uyare_results');
+            if (localResults) {
+                appResults = JSON.parse(localResults);
+            } else {
+                appResults = defaultResults;
+                localStorage.setItem('uyare_results', JSON.stringify(defaultResults));
+            }
+        }
+
+        // Calculate Overall Leaderboard Points
+        function computeLeaderboard() {
+            const leaderboard = appTeams.map(team => ({
+                ...team,
+                totalPoints: 0,
+                gradeA: 0,
+                gradeB: 0,
+                gradeC: 0
+            }));
+
+            appResults.forEach(res => {
+                res.winners.forEach(w => {
+                    const teamObj = leaderboard.find(t => t.id === w.teamId);
+                    if (teamObj) {
+                        teamObj.totalPoints += (w.points || 0);
+                        if (w.grade === 'A') teamObj.gradeA += 1;
+                        if (w.grade === 'B') teamObj.gradeB += 1;
+                        if (w.grade === 'C') teamObj.gradeC += 1;
+                    }
+                });
+            });
+
+            return leaderboard.sort((a, b) => b.totalPoints - a.totalPoints);
+        }
+
+        function renderAllViews() {
+            renderLeaderboard();
+            renderResults();
+            renderStages();
+        }
+
+        // Render Leaderboard Cards & Table
+        function renderLeaderboard() {
+            const standings = computeLeaderboard();
+
+            if(standings.length > 0) {
+                document.getElementById('leadingTeamName').innerText = standings[0].name;
+                document.getElementById('leadingTeamPoints').innerText = `${standings[0].totalPoints} Points`;
+            }
+            document.getElementById('completedEventsCount').innerText = `${appResults.length} ഇനങ്ങൾ`;
+
+            const topThreeContainer = document.getElementById('topThreeCards');
+            topThreeContainer.innerHTML = '';
+
+            const top3 = standings.slice(0, 3);
+            const medals = ['🥇 1st Rank', '🥈 2nd Rank', '🥉 3rd Rank'];
+
+            top3.forEach((team, index) => {
+                const cardHtml = `
+                    <div class="card-glass rounded-2xl p-5 relative overflow-hidden border-t-4 border-amber-500 shadow-xl flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-black px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                                ${medals[index]}
+                            </span>
+                            <span class="text-2xl font-black text-amber-400">${team.totalPoints} <span class="text-xs font-normal text-slate-400">Pts</span></span>
+                        </div>
+                        <div class="my-4">
+                            <h3 class="text-base font-bold text-slate-100">${team.name}</h3>
+                            <p class="text-xs text-slate-400 mt-1">A ഗ്രേഡുകൾ: <span class="text-amber-400 font-bold">${team.gradeA}</span></p>
+                        </div>
+                        <div class="flex gap-2 text-xs pt-3 border-t border-slate-800">
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-amber-300 font-bold">A: ${team.gradeA}</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">B: ${team.gradeB}</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400">C: ${team.gradeC}</span>
+                        </div>
+                    </div>
+                `;
+                topThreeContainer.innerHTML += cardHtml;
+            });
+
+            const tbody = document.getElementById('leaderboardTableBody');
+            tbody.innerHTML = '';
+
+            standings.forEach((team, idx) => {
+                const rankClass = idx === 0 ? 'text-amber-400 font-black' : 'text-slate-300';
+                const row = `
+                    <tr class="hover:bg-slate-900/40 transition-colors">
+                        <td class="p-3.5 text-center font-bold text-base ${rankClass}">#${idx + 1}</td>
+                        <td class="p-3.5 font-bold text-slate-200">${team.name}</td>
+                        <td class="p-3.5 text-center font-bold text-amber-300">${team.gradeA}</td>
+                        <td class="p-3.5 text-center text-slate-300">${team.gradeB}</td>
+                        <td class="p-3.5 text-center text-slate-400">${team.gradeC}</td>
+                        <td class="p-3.5 text-right font-black text-amber-400 text-base">${team.totalPoints}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Render Item Results List
+        function renderResults() {
+            const catFilter = document.getElementById('filterCategory').value;
+            const eventFilter = document.getElementById('filterEvent').value;
+            const container = document.getElementById('resultsListContainer');
+            container.innerHTML = '';
+
+            let filtered = appResults;
+
+            if (catFilter !== 'ALL') {
+                filtered = filtered.filter(r => r.category === catFilter);
+            }
+
+            if (eventFilter !== 'ALL') {
+                filtered = filtered.filter(r => r.itemName === eventFilter);
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="card-glass rounded-2xl p-8 text-center text-slate-400">
+                        <i class="fa-solid fa-folder-open text-3xl mb-2 text-slate-600"></i>
+                        <p>ഫലങ്ങളൊന്നും ലഭ്യമായിട്ടില്ല.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(item => {
+                let winnersRows = item.winners.map(w => {
+                    const teamObj = appTeams.find(t => t.id === w.teamId) || { name: 'Unknown' };
+                    const badgeIcon = w.place === 1 ? '🥇' : w.place === 2 ? '🥈' : '🥉';
+                    const placeBg = w.place === 1 ? 'bg-amber-500/10 border-amber-500/30' : 'bg-slate-800/40 border-slate-800';
+
+                    return `
+                        <div class="flex items-center justify-between p-3 rounded-xl border ${placeBg} gap-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">${badgeIcon}</span>
+                                <div>
+                                    <div class="font-bold text-slate-100 text-sm flex items-center gap-2">
+                                        <span>${w.name}</span>
+                                        <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-amber-400 font-mono">Ch: ${w.chestNo}</span>
+                                    </div>
+                                    <div class="text-xs text-slate-400">${teamObj.name}</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="inline-block px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold text-xs">
+                                    ${w.grade} Grade (${w.points} Pts)
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                const categoryLabels = {
+                    'HI': 'Hearing Impaired',
+                    'VI': 'Visually Impaired',
+                    'ID': 'Intellectual Disability',
+                    'CP': 'Cerebral Palsy'
+                };
+
+                const cardHtml = `
+                    <div class="card-glass rounded-2xl p-5 border border-slate-800 space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-3">
+                            <div>
+                                <span class="text-xs font-bold px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 mr-2">
+                                    ${item.category} (${categoryLabels[item.category] || item.category})
+                                </span>
+                                <h3 class="text-lg font-bold text-slate-100 inline-block">${item.itemName}</h3>
+                            </div>
+                            <div class="text-xs text-slate-400 flex items-center gap-3">
+                                <span><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i>${item.stage}</span>
+                                <span><i class="fa-regular fa-clock text-slate-500 mr-1"></i>${item.time}</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            ${winnersRows}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        // Render Stages Live Cards
+        function renderStages() {
+            const grid = document.getElementById('stagesGrid');
+            grid.innerHTML = '';
+
+            stagesData.forEach(st => {
+                grid.innerHTML += `
+                    <div class="card-glass rounded-2xl p-5 border border-slate-800 space-y-4 relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-extrabold text-amber-300 text-base flex items-center gap-2">
+                                    <i class="fa-solid fa-masks-theater text-amber-400"></i>
+                                    ${st.name}
+                                </h3>
+                                <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                    ${st.status}
+                                </span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2">
+                                <div class="text-xs text-slate-400 uppercase tracking-wider font-bold">നിലവിൽ നടക്കുന്ന മത്സരം:</div>
+                                <div class="text-base font-extrabold text-slate-100 flex items-center justify-between">
+                                    <span>${st.currentItem}</span>
+                                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">${st.category}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+                            <span>അടുത്തത്: <strong class="text-slate-200">${st.nextItem}</strong></span>
+                            <span class="text-amber-400/80 font-bold hover:underline cursor-pointer" onclick="switchTab('results')">ഫലങ്ങൾ കാണുക &rarr;</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Handle Search Input
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const container = document.getElementById('searchResultsContainer');
+
+            if (!query) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-slate-500 text-sm">
+                        തിരയാനായി മുകളിലെ ബോക്സിൽ ടൈപ്പ് ചെയ്യുക...
+                    </div>
+                `;
+                return;
+            }
+
+            const matchedResults = [];
+
+            appResults.forEach(res => {
+                const isItemMatch = res.itemName.toLowerCase().includes(query);
+                
+                const matchedWinners = res.winners.filter(w => 
+                    w.chestNo.toLowerCase().includes(query) || 
+                    w.name.toLowerCase().includes(query)
+                );
+
+                if (isItemMatch || matchedWinners.length > 0) {
+                    matchedResults.push({
+                        event: res,
+                        matchedWinners: matchedWinners.length > 0 ? matchedWinners : res.winners
+                    });
+                }
+            });
+
+            if (matchedResults.length === 0) {
+                container.innerHTML = `
+                    <div class="card-glass rounded-2xl p-8 text-center text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass-minus text-3xl mb-2 text-slate-600"></i>
+                        <p>"${query}" എന്ന തിരച്ചിലിന് ഫലങ്ങളൊന്നും കണ്ടെത്തിയില്ല.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = matchedResults.map(item => {
+                const res = item.event;
+                const winnersList = item.matchedWinners.map(w => {
+                    const teamObj = appTeams.find(t => t.id === w.teamId) || { name: 'Unknown' };
+                    return `
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-sm">
+                            <div>
+                                <span class="font-bold text-amber-300">${w.name}</span>
+                                <span class="text-xs text-slate-400 ml-2 font-mono">Ch: ${w.chestNo}</span>
+                                <div class="text-xs text-slate-400">${teamObj.name}</div>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs px-2 py-1 rounded bg-slate-800 text-amber-400 font-bold">${w.place}st / ${w.grade} Grade</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="card-glass rounded-2xl p-5 border border-slate-800 space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <h3 class="font-bold text-slate-100">${res.itemName} (${res.category})</h3>
+                            <span class="text-xs text-slate-400">${res.stage}</span>
+                        </div>
+                        <div class="space-y-2">
+                            ${winnersList}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Tab Switcher Helper
+        function switchTab(tabName) {
+            const tabs = ['leaderboard', 'results', 'stages', 'search'];
+            
+            tabs.forEach(t => {
+                const sec = document.getElementById(`sec-${t}`);
+                const btn = document.getElementById(`tab-${t}`);
+                
+                if (t === tabName) {
+                    sec.classList.remove('hidden');
+                    btn.className = "tab-btn px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 whitespace-nowrap transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20";
+                } else {
+                    sec.classList.add('hidden');
+                    btn.className = "tab-btn px-4 py-2.5 rounded-xl font-semibold text-slate-300 hover:text-white hover:bg-slate-800 flex items-center gap-2 whitespace-nowrap transition-all";
+                }
+            });
+        }
+
+        // Admin Modal Functions
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function populateTeamSelectDropdowns() {
+            const selects = ['w1_team', 'w2_team', 'w3_team'];
+            selects.forEach(id => {
+                const el = document.getElementById(id);
+                el.innerHTML = appTeams.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+            });
+        }
+
+        function populateEventFilterDropdown() {
+            const filterEl = document.getElementById('filterEvent');
+            const uniqueEvents = [...new Set(appResults.map(r => r.itemName))];
+            
+            filterEl.innerHTML = '<option value="ALL font-semibold">എല്ലാ ഇനങ്ങളും (All Items)</option>';
+            uniqueEvents.forEach(evt => {
+                filterEl.innerHTML += `<option value="${evt}">${evt}</option>`;
+            });
+        }
+
+        function resetResultsFilter() {
+            document.getElementById('filterCategory').value = 'ALL';
+            document.getElementById('filterEvent').value = 'ALL';
+            renderResults();
+        }
+
+        // Save New Result
+        function saveNewResult(e) {
+            e.preventDefault();
+
+            const newResult = {
+                id: Date.now(),
+                category: document.getElementById('adminCategory').value,
+                itemName: document.getElementById('adminItemName').value,
+                stage: document.getElementById('adminStage').value,
+                time: document.getElementById('adminTime').value,
+                winners: [
+                    {
+                        place: 1,
+                        chestNo: document.getElementById('w1_chest').value,
+                        name: document.getElementById('w1_name').value,
+                        teamId: document.getElementById('w1_team').value,
+                        grade: document.getElementById('w1_grade').value,
+                        points: document.getElementById('w1_grade').value === 'A' ? 10 : document.getElementById('w1_grade').value === 'B' ? 8 : 4
+                    },
+                    {
+                        place: 2,
+                        chestNo: document.getElementById('w2_chest').value,
+                        name: document.getElementById('w2_name').value,
+                        teamId: document.getElementById('w2_team').value,
+                        grade: document.getElementById('w2_grade').value,
+                        points: document.getElementById('w2_grade').value === 'A' ? 8 : document.getElementById('w2_grade').value === 'B' ? 6 : 3
+                    },
+                    {
+                        place: 3,
+                        chestNo: document.getElementById('w3_chest').value,
+                        name: document.getElementById('w3_name').value,
+                        teamId: document.getElementById('w3_team').value,
+                        grade: document.getElementById('w3_grade').value,
+                        points: document.getElementById('w3_grade').value === 'A' ? 6 : document.getElementById('w3_grade').value === 'B' ? 4 : 2
+                    }
+                ]
+            };
+
+            appResults.unshift(newResult);
+            localStorage.setItem('uyare_results', JSON.stringify(appResults));
+
+            renderAllViews();
+            populateEventFilterDropdown();
+            closeAdminModal();
+            document.getElementById('addResultForm').reset();
+
+            // Update Ticker
+            document.getElementById('tickerText').innerText = `🎉 പുതിയ ഫലം: ${newResult.category} ${newResult.itemName} ഫലം പ്രഖ്യാപിച്ചു! | 1st: ${newResult.winners[0].name} (Ch: ${newResult.winners[0].chestNo})`;
+        }
+
+        function resetToDefaultData() {
+            localStorage.removeItem('uyare_results');
+            appResults = defaultResults;
+            renderAllViews();
+            populateEventFilterDropdown();
+            closeAdminModal();
+        }
+    </script>
+</body>
+</html>
