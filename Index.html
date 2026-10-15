@@ -40,15 +40,13 @@
                     <img src="100129.png" alt="Uyare Logo" class="h-14 md:h-16 w-auto object-contain rounded-lg">
                 </div>
                 <div>
-                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം</span>
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
                     <h1 class="malayalam-title text-3xl md:text-4xl font-bold tracking-wide text-amber-900 mt-0.5">ഉയരെ</h1>
                 </div>
             </div>
             <div class="flex gap-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
                 <button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 rounded-lg bg-amber-700 text-white text-sm font-semibold shadow transition">മുഖ്യപേജ്</button>
                 <button onclick="switchTab('results')" id="tab-results" class="px-4 py-2 rounded-lg text-slate-700 text-sm font-semibold transition hover:text-amber-700">ഫലങ്ങൾ</button>
-                <!-- Hidden Admin Button for Public -->
-                <button onclick="checkAdminPassword()" id="tab-admin" class="hidden px-4 py-2 rounded-lg text-red-600 text-sm font-semibold transition hover:bg-red-50">അഡ്മിൻ</button>
             </div>
         </div>
     </header>
@@ -122,7 +120,7 @@
             </div>
         </div>
 
-        <!-- ADMIN TAB -->
+        <!-- ADMIN TAB (Hidden by default, opens only via URL ?admin=true & password) -->
         <div id="content-admin" class="hidden space-y-6">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
                 <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100">
@@ -211,7 +209,10 @@
         }
 
         function switchTab(tab) {
-            ['home', 'results', 'admin'].forEach(t => {
+            // Do not allow switching to admin tab directly via normal clicks
+            if(tab === 'admin') return;
+
+            ['home', 'results'].forEach(t => {
                 const el = document.getElementById(`content-${t}`);
                 if(el) el.classList.add('hidden');
                 const btn = document.getElementById(`tab-${t}`);
@@ -220,6 +221,9 @@
                 }
             });
             
+            // Also hide admin content if switching to other tabs
+            document.getElementById('content-admin').classList.add('hidden');
+
             const targetContent = document.getElementById(`content-${tab}`);
             if(targetContent) targetContent.classList.remove('hidden');
             
@@ -230,26 +234,28 @@
 
             if(tab === 'home') renderLeaderboard();
             if(tab === 'results') renderResults();
-            if(tab === 'admin') populateAdminSchools();
         }
 
         function checkAdminPassword() {
             let pass = prompt("അഡ്മിൻ പാസ്‌വേഡ് നൽകുക:");
             if(pass === ADMIN_PASSWORD) {
-                document.getElementById('tab-admin').classList.remove('hidden');
-                switchTab('admin');
+                // Hide home/results tabs content and show admin panel
+                ['home', 'results'].forEach(t => {
+                    document.getElementById(`content-${t}`).classList.add('hidden');
+                });
+                document.getElementById('content-admin').classList.remove('hidden');
+                populateAdminSchools();
             } else if(pass !== null) {
                 alert("തെറ്റായ പാസ്‌വേഡ്!");
-                switchTab('home');
+                window.location.href = window.location.pathname; // Redirect to clean URL
             } else {
-                switchTab('home');
+                window.location.href = window.location.pathname; // Redirect to clean URL
             }
         }
 
         function logoutAdmin() {
-            document.getElementById('tab-admin').classList.add('hidden');
-            switchTab('home');
             alert("അഡ്മിൻ പാനലിൽ നിന്ന് ലോഗ് ഔട്ട് ചെയ്തു.");
+            window.location.href = window.location.pathname; // Clear ?admin=true from URL
         }
 
         function calculateLeaderboard() {
@@ -356,7 +362,7 @@
             saveData();
             alert('ഫലം വിജയകരമായി സേവ് ചെയ്തു!');
             document.getElementById('result-form').reset();
-            switchTab('results');
+            window.location.href = window.location.pathname; // Go back to main public page after saving
         }
     </script>
 </body>
