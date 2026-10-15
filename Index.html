@@ -120,7 +120,7 @@
             </div>
         </div>
 
-        <!-- ADMIN TAB (Hidden by default, opens only via URL ?admin=true & password) -->
+        <!-- ADMIN TAB -->
         <div id="content-admin" class="hidden space-y-6">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
                 <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100">
@@ -200,7 +200,7 @@
             if(urlParams.get('admin') === 'true') {
                 checkAdminPassword();
             } else {
-                renderLeaderboard();
+                switchTab('home');
             }
         };
 
@@ -209,10 +209,9 @@
         }
 
         function switchTab(tab) {
-            // Do not allow switching to admin tab directly via normal clicks
             if(tab === 'admin') return;
 
-            ['home', 'results'].forEach(t => {
+            ['home', 'results', 'admin'].forEach(t => {
                 const el = document.getElementById(`content-${t}`);
                 if(el) el.classList.add('hidden');
                 const btn = document.getElementById(`tab-${t}`);
@@ -221,9 +220,6 @@
                 }
             });
             
-            // Also hide admin content if switching to other tabs
-            document.getElementById('content-admin').classList.add('hidden');
-
             const targetContent = document.getElementById(`content-${tab}`);
             if(targetContent) targetContent.classList.remove('hidden');
             
@@ -239,7 +235,6 @@
         function checkAdminPassword() {
             let pass = prompt("അഡ്മിൻ പാസ്‌വേഡ് നൽകുക:");
             if(pass === ADMIN_PASSWORD) {
-                // Hide home/results tabs content and show admin panel
                 ['home', 'results'].forEach(t => {
                     document.getElementById(`content-${t}`).classList.add('hidden');
                 });
@@ -247,15 +242,15 @@
                 populateAdminSchools();
             } else if(pass !== null) {
                 alert("തെറ്റായ പാസ്‌വേഡ്!");
-                window.location.href = window.location.pathname; // Redirect to clean URL
+                window.location.href = window.location.pathname;
             } else {
-                window.location.href = window.location.pathname; // Redirect to clean URL
+                window.location.href = window.location.pathname;
             }
         }
 
         function logoutAdmin() {
             alert("അഡ്മിൻ പാനലിൽ നിന്ന് ലോഗ് ഔട്ട് ചെയ്തു.");
-            window.location.href = window.location.pathname; // Clear ?admin=true from URL
+            window.location.href = window.location.pathname;
         }
 
         function calculateLeaderboard() {
@@ -362,7 +357,7 @@
             saveData();
             alert('ഫലം വിജയകരമായി സേവ് ചെയ്തു!');
             document.getElementById('result-form').reset();
-            window.location.href = window.location.pathname; // Go back to main public page after saving
+            window.location.href = window.location.pathname;
         }
     </script>
 </body>
