@@ -24,7 +24,8 @@
             <div class="flex gap-2">
                 <button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-medium shadow transition hover:bg-amber-500">മുഖ്യപേജ്</button>
                 <button onclick="switchTab('results')" id="tab-results" class="px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600">ഫലങ്ങൾ</button>
-                <button onclick="switchTab('admin')" id="tab-admin" class="px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600">അഡ്മിൻ</button>
+                <!-- Hidden Admin Button for Public -->
+                <button onclick="checkAdminPassword()" id="tab-admin" class="hidden px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600">അഡ്മിൻ</button>
             </div>
         </div>
     </header>
@@ -97,7 +98,10 @@
         <!-- ADMIN TAB -->
         <div id="content-admin" class="hidden space-y-6">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
-                <h3 class="text-xl font-bold text-slate-800 mb-2">അഡ്മിൻ സ്കോർ കീപ്പർ പാനൽ</h3>
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-xl font-bold text-slate-800">അഡ്മിൻ സ്കോർ കീപ്പർ പാനൽ</h3>
+                    <button onclick="logoutAdmin()" class="text-xs text-red-600 font-semibold bg-red-50 px-3 py-1.5 rounded-lg border border-red-200 hover:bg-red-100">ലോഗ് ഔട്ട്</button>
+                </div>
                 <p class="text-xs text-slate-500 mb-6">മത്സരഫലങ്ങൾ പുതിയതായി ചേർക്കുമ്പോൾ ലീഡർബോർഡിലെ പോയിന്റുകൾ ഓട്ടോമാറ്റിക്കായി അപ്ഡേറ്റ് ആകുന്നതാണ്.</p>
                 
                 <form id="result-form" onsubmit="handleAddResult(event)" class="space-y-4">
@@ -152,15 +156,27 @@
     </main>
 
     <script>
+        // Admin Password
+        const ADMIN_PASSWORD = "uyare2026";
+
         // 20 Schools Data
         const schoolsList = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
 
-        // Initial Data Store (Stored in LocalStorage if available)
         let appData = JSON.parse(localStorage.getItem('uyare_kalotsavam_data')) || {
             results: [
-                { id: 1, item: 'ಲളിതഗാനം', category: 'HI', school: 'School 1', participant: 'രാഹുൽ (H01)', position: '1st', grade: 'A' },
+                { id: 1, item: 'ലളിതഗാനം', category: 'HI', school: 'School 1', participant: 'രാഹുൽ (H01)', position: '1st', grade: 'A' },
                 { id: 2, item: 'പ്രസംഗം', category: 'ID', school: 'School 5', participant: 'ഫാത്വിമ (I04)', position: '1st', grade: 'A' }
             ]
+        };
+
+        // Check if admin is requested via URL (?admin=true)
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if(urlParams.get('admin') === 'true') {
+                checkAdminPassword();
+            } else {
+                renderLeaderboard();
+            }
         };
 
         function saveData() {
@@ -169,15 +185,41 @@
 
         function switchTab(tab) {
             ['home', 'results', 'admin'].forEach(t => {
-                document.getElementById(`content-${t}`).classList.add('hidden');
-                document.getElementById(`tab-${t}`).className = "px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600";
+                const el = document.getElementById(`content-${t}`);
+                if(el) el.classList.add('hidden');
+                const btn = document.getElementById(`tab-${t}`);
+                if(btn) btn.className = "px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600";
             });
-            document.getElementById(`content-${tab}`).classList.remove('hidden');
-            document.getElementById(`tab-${tab}`).className = "px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-medium shadow transition";
+            
+            const targetContent = document.getElementById(`content-${tab}`);
+            if(targetContent) targetContent.classList.remove('hidden');
+            
+            const targetBtn = document.getElementById(`tab-${tab}`);
+            if(targetBtn) targetBtn.className = "px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-medium shadow transition";
 
             if(tab === 'home') renderLeaderboard();
             if(tab === 'results') renderResults();
             if(tab === 'admin') populateAdminSchools();
+        }
+
+        function checkAdminPassword() {
+            let pass = prompt("അഡ്മിൻ പാസ്‌വേഡ് നൽകുക:");
+            if(pass === ADMIN_PASSWORD) {
+                // Show admin button in header temporarily when logged in
+                document.getElementById('tab-admin').classList.remove('hidden');
+                switchTab('admin');
+            } else if(pass !== null) {
+                alert("തെറ്റായ പാസ്‌വേഡ്!");
+                switchTab('home');
+            } else {
+                switchTab('home');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('tab-admin').classList.add('hidden');
+            switchTab('home');
+            alert("അഡ്മിൻ പാനലിൽ നിന്ന് ലോഗ് ഔട്ട് ചെയ്തു.");
         }
 
         function calculateLeaderboard() {
@@ -203,6 +245,7 @@
 
         function renderLeaderboard() {
             const tbody = document.getElementById('leaderboard-body');
+            if(!tbody) return;
             const data = calculateLeaderboard();
             tbody.innerHTML = '';
 
@@ -222,6 +265,7 @@
 
         function renderResults() {
             const container = document.getElementById('results-container');
+            if(!container) return;
             const catFilter = document.getElementById('filter-category').value;
             const searchVal = document.getElementById('search-input').value.toLowerCase();
             
@@ -259,6 +303,7 @@
 
         function populateAdminSchools() {
             const select = document.getElementById('admin-school');
+            if(!select) return;
             select.innerHTML = '';
             schoolsList.forEach(school => {
                 select.innerHTML += `<option value="${school}">${school}</option>`;
@@ -283,9 +328,6 @@
             document.getElementById('result-form').reset();
             switchTab('results');
         }
-
-        // Initial render on load
-        renderLeaderboard();
     </script>
 </body>
 </html>
