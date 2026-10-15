@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ഉയരെ - 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Chathuram:wght@400;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chathuram:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Manrope', sans-serif; }
         .malayalam-title { font-family: 'Chathuram', sans-serif; }
@@ -19,118 +19,121 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-slate-100 text-slate-900">
 
-    <!-- Top Announcement Ticker -->
-    <div class="bg-amber-900 text-amber-100 text-xs py-2 px-4 overflow-hidden whitespace-nowrap border-b border-amber-800 shadow-inner">
+    <!-- Top Ticker Bar -->
+    <div class="bg-amber-950 text-amber-100 text-xs py-2 px-4 overflow-hidden whitespace-nowrap border-b border-amber-900 shadow-sm">
         <div class="max-w-7xl mx-auto flex items-center">
-            <span class="bg-amber-600 text-white px-2.5 py-0.5 rounded font-bold mr-3 uppercase tracking-wider text-[10px]">അറിയിപ്പുകൾ</span>
+            <span class="bg-amber-600 text-white px-2.5 py-0.5 rounded font-bold mr-3 uppercase tracking-wider text-[10px]">തത്സമയ അറിയിപ്പ്</span>
             <div class="overflow-hidden w-full">
-                <p class="animate-marquee font-medium">📢 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 'ഉയരെ' - തത്സമയ ഫലങ്ങളും പോയിന്റ് നിലയും ഇവിടെ ലഭ്യമാണ്. | വിജയികൾക്ക് ഹാർദ്യമായ അഭിനന്ദനങ്ങൾ!</p>
+                <p class="animate-marquee font-medium">📢 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 'ഉയരെ' - ഔദ്യോഗിക ലൈവ് പോർട്ടലിലേക്ക് സ്വാഗതം! മത്സരഫലങ്ങളും പോയിന്റ് നിലയും തത്സമയം അറിയാം.</p>
             </div>
         </div>
     </div>
 
     <!-- Official Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+    <header class="bg-white shadow-md sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4 text-center md:text-left">
-                <div class="bg-white p-1.5 rounded-xl shadow-sm border border-slate-200 flex items-center justify-center">
-                    <img src="100129.png" alt="Uyare Logo" class="h-14 md:h-16 w-auto object-contain rounded-lg">
+                <div class="bg-white p-1.5 rounded-2xl shadow-sm border border-amber-200 flex items-center justify-center">
+                    <img src="100129.png" alt="Uyare Logo" class="h-14 md:h-16 w-auto object-contain rounded-xl">
                 </div>
                 <div>
-                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
-                    <h1 class="malayalam-title text-3xl md:text-4xl font-bold tracking-wide text-amber-900 mt-0.5">ഉയരെ</h1>
+                    <span class="bg-amber-100 text-amber-900 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-200">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
+                    <h1 class="malayalam-title text-3xl md:text-4xl font-extrabold tracking-wide text-amber-950 mt-0.5">ഉയരെ</h1>
                 </div>
             </div>
             <!-- Navigation Tabs -->
-            <div class="flex gap-2 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
-                <button onclick="switchTab('home')" id="tab-home" class="px-5 py-2 rounded-lg bg-amber-700 text-white text-sm font-bold shadow transition">മുഖ്യപേജ്</button>
-                <button onclick="switchTab('results')" id="tab-results" class="px-5 py-2 rounded-lg text-slate-700 text-sm font-bold transition hover:text-amber-700">ഫലങ്ങൾ</button>
+            <div class="flex gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
+                <button onclick="switchTab('home')" id="tab-home" class="px-6 py-2.5 rounded-xl bg-amber-700 text-white text-sm font-bold shadow transition">മുഖ്യപേജ്</button>
+                <button onclick="switchTab('results')" id="tab-results" class="px-6 py-2.5 rounded-xl text-slate-700 text-sm font-bold transition hover:text-amber-800">ഫലങ്ങൾ</button>
             </div>
         </div>
     </header>
 
-    <!-- Main Container matching University Portal Structure -->
-    <main class="max-w-7xl mx-auto px-4 py-6">
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
 
         <!-- HOME TAB -->
-        <div id="content-home" class="space-y-6">
-            <!-- Hero Banner / Welcome Section -->
-            <div class="bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900 rounded-2xl p-6 md:p-10 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row justify-between items-center">
-                <div class="relative z-10 space-y-4 max-w-2xl">
-                    <span class="bg-amber-500/30 text-amber-200 text-xs font-semibold px-3 py-1 rounded-full border border-amber-400/30">ഒഫീഷ്യൽ ലൈവ് പോർട്ടൽ</span>
-                    <h2 class="malayalam-title text-3xl md:text-5xl font-bold leading-tight">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം</h2>
-                    <p class="text-amber-100 text-sm md:text-base">HI, VI, ID, CP കാറ്റഗറികളിലായി 20 സ്പെഷ്യൽ സ്കൂളുകൾ മാറ്റുരയ്ക്കുന്ന കലാമേളയുടെ തത്സമയ പോയിന്റ് നിലയും വിജയ വിവരങ്ങളും ഇവിടെ അറിയാം.</p>
-                    <div class="pt-2">
-                        <button onclick="switchTab('results')" class="bg-white text-amber-900 font-bold px-6 py-3 rounded-xl text-sm shadow-md hover:bg-amber-50 transition">ഫലങ്ങൾ പരിശോധിക്കുക</button>
+        <div id="content-home" class="space-y-8">
+            
+            <!-- Hero Banner Section -->
+            <div class="bg-gradient-to-r from-amber-900 via-amber-800 to-amber-950 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row justify-between items-center border border-amber-700/40">
+                <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 space-y-4 max-w-2xl text-center md:text-left">
+                    <span class="bg-amber-500/30 text-amber-200 text-xs font-bold px-3.5 py-1.5 rounded-full border border-amber-400/30 tracking-wider">OFFICIAL FESTIVAL PORTAL</span>
+                    <h2 class="malayalam-title text-4xl md:text-6xl font-extrabold leading-tight text-amber-100">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം</h2>
+                    <p class="text-amber-100/90 text-base md:text-lg font-medium leading-relaxed">കേൾവി, കാഴ്ച പരിമിതികൾ, ബുദ്ധിപരമായ വെല്ലുവിളികൾ, സെറിബ്രൽ പാൾസി (HI, VI, ID, CP) എന്നീ വിഭാഗങ്ങളിലായി 20 പ്രത്യേക സ്കൂളുകൾ മാറ്റുരയ്ക്കുന്ന മഹാമേള.</p>
+                    <div class="pt-4 flex flex-wrap gap-3 justify-center md:justify-start">
+                        <button onclick="switchTab('results')" class="bg-amber-500 text-amber-950 font-extrabold px-7 py-3.5 rounded-2xl text-sm shadow-lg hover:bg-amber-400 transition transform hover:-translate-y-0.5">തത്സമയ ഫലങ്ങൾ കാണുക</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Grid Layout for Stats & Quick Info -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Leaderboard (Takes 2 Columns) -->
-                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden p-6">
-                    <div class="flex justify-between items-center mb-6 pb-3 border-b border-slate-100">
-                        <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                            <span class="text-2xl">🏆</span> ലീഡർബോർഡ് (ടോപ്പ് സ്കൂളുകൾ)
-                        </h3>
-                        <span class="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full font-bold">● ലൈവ്</span>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-50 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
-                                    <th class="p-3.5 rounded-l-xl font-bold">സ്ഥാനം</th>
-                                    <th class="p-3.5 font-bold">സ്കൂൾ പേര്</th>
-                                    <th class="p-3.5 text-center font-bold">A ഗ്രേഡ്</th>
-                                    <th class="p-3.5 text-center font-bold">B ഗ്രേഡ്</th>
-                                    <th class="p-3.5 text-center font-bold">C ഗ്രേഡ്</th>
-                                    <th class="p-3.5 text-right rounded-r-xl font-bold">ആകെ പോയിന്റ്</th>
-                                </tr>
-                            </thead>
-                            <tbody id="leaderboard-body" class="divide-y divide-slate-100 text-sm">
-                                <!-- Populated by JS -->
-                            </tbody>
-                        </table>
-                    </div>
+            <!-- Quick Stats Highlights Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center space-y-1 hover:border-amber-400 transition">
+                    <span class="text-3xl">🏫</span>
+                    <h4 class="text-2xl font-black text-amber-900">20</h4>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">പ്രത്യേക സ്കൂളുകൾ</p>
                 </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center space-y-1 hover:border-amber-400 transition">
+                    <span class="text-3xl">✨</span>
+                    <h4 class="text-2xl font-black text-amber-900">4</h4>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">കാറ്റഗറികൾ (HI,VI,ID,CP)</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center space-y-1 hover:border-amber-400 transition">
+                    <span class="text-3xl">🏆</span>
+                    <h4 class="text-2xl font-black text-amber-900" id="stat-total-results">0</h4>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">പ്രഖ്യാപിച്ച ഫലങ്ങൾ</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center space-y-1 hover:border-amber-400 transition">
+                    <span class="text-3xl">🎯</span>
+                    <h4 class="text-2xl font-black text-amber-900">ലൈവ്</h4>
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">പോയിന്റ് അപ്ഡേറ്റ്</p>
+                </div>
+            </div>
 
-                <!-- Quick Sidebar Info (Matching University Portal Look) -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between space-y-4">
+            <!-- Leaderboard Section -->
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden p-6 md:p-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b border-slate-100 gap-4">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
-                            <span>📌</span> മേളയുടെ പ്രത്യേകതകൾ
+                        <h3 class="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
+                            <span>🏆</span> ഓവറോൾ ലീഡർബോർഡ് (ടോപ്പ് സ്കൂളുകൾ)
                         </h3>
-                        <ul class="space-y-3 text-sm text-slate-600">
-                            <li class="flex items-start gap-2">
-                                <span class="text-amber-600 font-bold">▪</span> 20 പ്രത്യേക സ്കൂളുകളുടെ സജീവ പങ്കാളിത്തം.
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-amber-600 font-bold">▪</span> HI, VI, ID, CP വിഭാഗങ്ങളിലായി മത്സരങ്ങൾ.
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-amber-600 font-bold">▪</span> തത്സമയ പോയിന്റ് നിർണ്ണയവും ഗ്രേഡിംഗും.
-                            </li>
-                        </ul>
+                        <p class="text-xs text-slate-500 mt-1">മത്സരഫലങ്ങൾക്കനുസരിച്ച് പോയിന്റുകൾ സ്വയം അപ്ഡേറ്റ് ആകുന്നു.</p>
                     </div>
-                    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-900">
-                        <p class="font-bold mb-1">💡 ശ്രദ്ധിക്കുക:</p>
-                        ഫലങ്ങൾ അപ്പപ്പോൾ അഡ്മിൻ പാനൽ വഴി ഒഫീഷ്യലായി അപ്ഡേറ്റ് ചെയ്യുന്നതാണ്.
-                    </div>
+                    <span class="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full font-bold flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> ലൈവ് പോയിന്റ് നില
+                    </span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
+                                <th class="p-4 rounded-l-2xl font-extrabold">സ്ഥാനം</th>
+                                <th class="p-4 font-extrabold">സ്കൂൾ പേര്</th>
+                                <th class="p-4 text-center font-extrabold text-amber-700">A ഗ്രേഡ്</th>
+                                <th class="p-4 text-center font-extrabold text-blue-600">B ഗ്രേഡ്</th>
+                                <th class="p-4 text-center font-extrabold text-slate-600">C ഗ്രേഡ്</th>
+                                <th class="p-4 text-right rounded-r-2xl font-extrabold text-amber-950">ആകെ പോയിന്റ്</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body" class="divide-y divide-slate-100 text-sm font-medium">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
         <!-- RESULTS TAB -->
         <div id="content-results" class="hidden space-y-6">
-            <!-- Filter & Search Controls -->
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 justify-between items-center">
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 justify-between items-center">
                 <div class="w-full md:w-1/3">
-                    <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">കാറ്റഗറി തിരഞ്ഞെടുക്കുക</label>
-                    <select id="filter-category" onchange="renderResults()" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-600 outline-none">
-                        <option value="all">എല്ലാ കാറ്റഗറിയും (All)</option>
+                    <label class="block text-xs font-extrabold text-slate-600 mb-2 uppercase tracking-wider">കാറ്റഗറി ഫിൽട്ടർ</label>
+                    <select id="filter-category" onchange="renderResults()" class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-2xl text-sm font-bold focus:ring-2 focus:ring-amber-600 outline-none">
+                        <option value="all">എല്ലാ കാറ്റഗറിയും (All Categories)</option>
                         <option value="HI">കേൾവി പരിമിതി (HI)</option>
                         <option value="VI">കാഴ്ച പരിമിതി (VI)</option>
                         <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (ID)</option>
@@ -138,8 +141,8 @@
                     </select>
                 </div>
                 <div class="w-full md:w-1/3">
-                    <label class="block text-xs font-bold text-slate-600 mb-1.5 uppercase">തിരയുക (ഇനം / സ്കൂൾ)</label>
-                    <input type="text" id="search-input" oninput="renderResults()" placeholder="ഇനം, സ്കൂൾ പേര് സെർച്ച് ചെയ്യൂ..." class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-600 outline-none">
+                    <label class="block text-xs font-extrabold text-slate-600 mb-2 uppercase tracking-wider">തിരയുക</label>
+                    <input type="text" id="search-input" oninput="renderResults()" placeholder="ഇനം, സ്കൂൾ പേര് സെർച്ച് ചെയ്യൂ..." class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-2xl text-sm font-bold focus:ring-2 focus:ring-amber-600 outline-none">
                 </div>
             </div>
 
@@ -149,23 +152,23 @@
             </div>
         </div>
 
-        <!-- ADMIN TAB (Hidden by default, opens only via URL ?admin=true & password) -->
+        <!-- ADMIN TAB -->
         <div id="content-admin" class="hidden space-y-6">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
-                <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100">
-                    <h3 class="text-xl font-bold text-slate-800">അഡ്മിൻ സ്കോർ കീപ്പർ പാനൽ</h3>
-                    <button onclick="logoutAdmin()" class="text-xs text-red-600 font-bold bg-red-50 px-3 py-1.5 rounded-lg border border-red-200 hover:bg-red-100 transition">ലോഗ് ഔട്ട്</button>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+                    <h3 class="text-2xl font-black text-slate-900">അഡ്മിൻ സ്കോർ കീപ്പർ പാനൽ</h3>
+                    <button onclick="logoutAdmin()" class="text-xs text-red-600 font-bold bg-red-50 px-4 py-2 rounded-xl border border-red-200 hover:bg-red-100 transition">ലോഗ് ഔട്ട്</button>
                 </div>
                 
-                <form id="result-form" onsubmit="handleAddResult(event)" class="space-y-4">
+                <form id="result-form" onsubmit="handleAddResult(event)" class="space-y-5">
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">മത്സരത്തിന്റെ പേര് (Item Name)</label>
-                        <input type="text" id="admin-item" required placeholder="ഉദാ: ലളിതഗാനം" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none focus:border-amber-600">
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5">മത്സരത്തിന്റെ പേര് (Item Name)</label>
+                        <input type="text" id="admin-item" required placeholder="ഉദാ: ലളിതഗാനം" class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-2xl text-sm font-medium outline-none focus:border-amber-600">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 mb-1">കാറ്റഗറി</label>
-                            <select id="admin-cat" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">കാറ്റഗറി</label>
+                            <select id="admin-cat" class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-2xl text-sm font-medium outline-none">
                                 <option value="HI">കേൾവി പരിമിതി (HI)</option>
                                 <option value="VI">കാഴ്ച പരിമിതി (VI)</option>
                                 <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (ID)</option>
@@ -173,8 +176,8 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 mb-1">സ്ഥാനം / വിജയം</label>
-                            <select id="admin-pos" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">സ്ഥാനം / വിജയം</label>
+                            <select id="admin-pos" class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-2xl text-sm font-medium outline-none">
                                 <option value="1st">ഒന്നാം സ്ഥാനം (5 Points)</option>
                                 <option value="2nd">രണ്ടാം സ്ഥാനം (3 Points)</option>
                                 <option value="3rd">മൂന്നാം സ്ഥാനം (1 Point)</option>
@@ -182,34 +185,34 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 mb-1">സ്കൂൾ തിരഞ്ഞെടുക്കുക</label>
-                        <select id="admin-school" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5">സ്കൂൾ തിരഞ്ഞെടുക്കുക</label>
+                        <select id="admin-school" class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-2xl text-sm font-medium outline-none">
                             <!-- Populated by JS -->
                         </select>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 mb-1">കളിക്കാരന്റെ പേര് / ചെസ്റ്റ് നമ്പർ</label>
-                            <input type="text" id="admin-participant" required placeholder="ഉദാ: അശ്വിൻ (C01)" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">കളിക്കാരന്റെ പേര് / ചെസ്റ്റ് നമ്പർ</label>
+                            <input type="text" id="admin-participant" required placeholder="ഉദാ: അശ്വിൻ (C01)" class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-2xl text-sm font-medium outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 mb-1">ഗ്രേഡ്</label>
-                            <select id="admin-grade" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm outline-none">
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">ഗ്രേഡ്</label>
+                            <select id="admin-grade" class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-2xl text-sm font-medium outline-none">
                                 <option value="A">A ഗ്രേഡ്</option>
                                 <option value="B">B ഗ്രേഡ്</option>
                                 <option value="C">C ഗ്രേഡ്</option>
                             </select>
                         </div>
                     </div>
-                    <button type="submit" class="w-full py-3.5 bg-amber-700 text-white font-bold rounded-xl shadow hover:bg-amber-800 transition">ഫലം സേവ് ചെയ്യുക</button>
+                    <button type="submit" class="w-full py-4 bg-amber-800 text-white font-extrabold rounded-2xl shadow-lg hover:bg-amber-900 transition">ഫലം സേവ് ചെയ്യുക</button>
                 </form>
             </div>
         </div>
 
     </main>
 
-    <!-- Official Footer -->
-    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-16 py-8 text-center text-xs text-slate-500 font-medium">
         <p>© 2026 ഉയരെ - 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം. എല്ലാ അവകാശങ്ങളും സുരക്ഷിതം.</p>
     </footer>
 
@@ -231,10 +234,17 @@
             } else {
                 switchTab('home');
             }
+            updateStats();
         };
 
         function saveData() {
             localStorage.setItem('uyare_kalotsavam_data', JSON.stringify(appData));
+            updateStats();
+        }
+
+        function updateStats() {
+            const statEl = document.getElementById('stat-total-results');
+            if(statEl) statEl.innerText = appData.results.length;
         }
 
         function switchTab(tab) {
@@ -245,7 +255,7 @@
                 if(el) el.classList.add('hidden');
                 const btn = document.getElementById(`tab-${t}`);
                 if(btn) {
-                    btn.className = "px-5 py-2 rounded-lg text-slate-700 text-sm font-bold transition hover:text-amber-700";
+                    btn.className = "px-6 py-2.5 rounded-xl text-slate-700 text-sm font-bold transition hover:text-amber-800";
                 }
             });
             
@@ -254,7 +264,7 @@
             
             const targetBtn = document.getElementById(`tab-${tab}`);
             if(targetBtn) {
-                targetBtn.className = "px-5 py-2 rounded-lg bg-amber-700 text-white text-sm font-bold shadow transition";
+                targetBtn.className = "px-6 py-2.5 rounded-xl bg-amber-700 text-white text-sm font-bold shadow transition";
             }
 
             if(tab === 'home') renderLeaderboard();
@@ -311,13 +321,13 @@
 
             data.forEach((item, index) => {
                 tbody.innerHTML += `
-                    <tr class="hover:bg-slate-50 transition">
-                        <td class="p-3.5 font-bold text-slate-500">#${index + 1}</td>
-                        <td class="p-3.5 font-bold text-slate-800">${item.name}</td>
-                        <td class="p-3.5 text-center text-amber-700 font-bold">${item.a}</td>
-                        <td class="p-3.5 text-center text-blue-600 font-bold">${item.b}</td>
-                        <td class="p-3.5 text-center text-slate-600 font-bold">${item.c}</td>
-                        <td class="p-3.5 text-right font-extrabold text-amber-900 text-base">${item.points}</td>
+                    <tr class="hover:bg-slate-50/80 transition">
+                        <td class="p-4 font-black text-slate-500">#${index + 1}</td>
+                        <td class="p-4 font-extrabold text-slate-900">${item.name}</td>
+                        <td class="p-4 text-center text-amber-700 font-extrabold">${item.a}</td>
+                        <td class="p-4 text-center text-blue-600 font-extrabold">${item.b}</td>
+                        <td class="p-4 text-center text-slate-600 font-extrabold">${item.c}</td>
+                        <td class="p-4 text-right font-black text-amber-950 text-base">${item.points}</td>
                     </tr>
                 `;
             });
@@ -338,20 +348,20 @@
             });
 
             if(filtered.length === 0) {
-                container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-400 text-sm bg-white rounded-2xl border border-slate-200">ഫലങ്ങൾ ഒന്നും ലഭ്യമല്ല</div>`;
+                container.innerHTML = `<div class="col-span-2 text-center py-16 text-slate-400 text-sm font-bold bg-white rounded-3xl border border-slate-200">ഫലങ്ങൾ ഒന്നും ലഭ്യമല്ല</div>`;
                 return;
             }
 
             filtered.forEach(res => {
                 container.innerHTML += `
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 flex flex-col justify-between hover:shadow-md transition">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-full">${res.category} കാറ്റഗറി</span>
-                                <span class="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full">${res.position}</span>
+                                <span class="bg-amber-100 text-amber-900 text-xs font-extrabold px-3 py-1 rounded-full">${res.category} കാറ്റഗറി</span>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-black px-3 py-1 rounded-full">${res.position}</span>
                             </div>
-                            <h4 class="text-lg font-bold text-slate-800 mb-1">${res.item}</h4>
-                            <p class="text-sm font-semibold text-slate-600 mb-2">${res.school} - <span class="text-slate-500 font-normal">${res.participant}</span></p>
+                            <h4 class="text-lg font-black text-slate-900 mb-1">${res.item}</h4>
+                            <p class="text-sm font-bold text-slate-700 mb-2">${res.school} - <span class="text-slate-500 font-normal">${res.participant}</span></p>
                         </div>
                         <div class="flex justify-between items-center mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
                             <span>ഗ്രേഡ്: <strong class="text-slate-800">${res.grade} ഗ്രേഡ്</strong></span>
