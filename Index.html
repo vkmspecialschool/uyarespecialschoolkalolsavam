@@ -381,4 +381,48 @@
             }
 
             filtered.forEach(res => {
-                let prizeText
+                let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
+                container.innerHTML += `
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-md transition">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <span class="bg-amber-100 dark:bg-amber-950/65 text-amber-900 dark:text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/60">${res.category} കാറ്റഗറി</span>
+                                <span class="bg-emerald-100 dark:bg-emerald-950/65 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/60">${prizeText}</span>
+                            </div>
+                            <h4 class="text-lg font-black text-slate-900 dark:text-slate-100 mb-1">${res.item}</h4>
+                            <p class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">${res.school} - <span class="text-slate-500 dark:text-slate-400 font-normal">${res.participant}</span></p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function populateAdminSchools() {
+            const select = document.getElementById('admin-school');
+            if(!select) return;
+            select.innerHTML = '';
+            schoolsList.forEach(school => {
+                select.innerHTML += `<option value="${school}">${school}</option>`;
+            });
+        }
+
+        function handleAddResult(e) {
+            e.preventDefault();
+            const newItem = {
+                id: Date.now(),
+                item: document.getElementById('admin-item').value,
+                category: document.getElementById('admin-cat').value,
+                position: document.getElementById('admin-pos').value,
+                school: document.getElementById('admin-school').value,
+                participant: document.getElementById('admin-participant').value
+            };
+
+            appData.results.unshift(newItem);
+            saveData();
+            alert('ഫലം വിജയകരമായി സേവ് ചെയ്തു!');
+            document.getElementById('result-form').reset();
+            window.location.href = window.location.pathname;
+        }
+    </script>
+</body>
+</html>
