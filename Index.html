@@ -40,9 +40,9 @@
     <!-- Official Header -->
     <header class="bg-white dark:bg-slate-900 shadow-md sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-center md:text-left">
-                <span class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800/60">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
-                <h1 class="malayalam-title text-3xl md:text-4xl font-extrabold tracking-wide text-amber-950 dark:text-amber-100 mt-1">ഉയരെ</h1>
+            <div class="text-center md:text-left space-y-0.5">
+                <span class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800/60">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</span>
+                <p class="text-xs md:text-sm font-bold text-slate-600 dark:text-slate-400 mt-1">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
             </div>
             
             <!-- Navigation & Dark Mode Toggle -->
@@ -72,7 +72,8 @@
                 <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 space-y-4 max-w-2xl text-center md:text-left">
                     <span class="bg-amber-500/30 text-amber-200 text-xs font-bold px-3.5 py-1.5 rounded-full border border-amber-400/30 tracking-wider">OFFICIAL FESTIVAL PORTAL</span>
-                    <h2 class="malayalam-title text-4xl md:text-6xl font-extrabold leading-tight text-amber-100">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം</h2>
+                    <h2 class="malayalam-title text-4xl md:text-6xl font-extrabold leading-tight text-amber-100">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</h2>
+                    <p class="text-amber-100/90 text-sm md:text-base font-semibold text-amber-200">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
                     <p class="text-amber-100/90 text-base md:text-lg font-medium leading-relaxed">കേൾവി, കാഴ്ച പരിമിതികൾ, ബുദ്ധിപരമായ വെല്ലുവിളികൾ, സെറിബ്രൽ പാൾസി (HI, VI, ID, CP) എന്നീ വിഭാഗങ്ങളിലായി 20 പ്രത്യേക സ്കൂളുകൾ മാറ്റുരയ്ക്കുന്ന മഹാമേള.</p>
                     <div class="pt-4 flex flex-wrap gap-3 justify-center md:justify-start">
                         <button onclick="switchTab('results')" class="bg-amber-500 text-amber-950 font-extrabold px-7 py-3.5 rounded-2xl text-sm shadow-lg hover:bg-amber-400 transition transform hover:-translate-y-0.5">തത്സമയ ഫലങ്ങൾ കാണുക</button>
@@ -380,48 +381,4 @@
             }
 
             filtered.forEach(res => {
-                let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
-                container.innerHTML += `
-                    <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-md transition">
-                        <div>
-                            <div class="flex justify-between items-start mb-3">
-                                <span class="bg-amber-100 dark:bg-amber-950/65 text-amber-900 dark:text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/60">${res.category} കാറ്റഗറി</span>
-                                <span class="bg-emerald-100 dark:bg-emerald-950/65 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/60">${prizeText}</span>
-                            </div>
-                            <h4 class="text-lg font-black text-slate-900 dark:text-slate-100 mb-1">${res.item}</h4>
-                            <p class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">${res.school} - <span class="text-slate-500 dark:text-slate-400 font-normal">${res.participant}</span></p>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function populateAdminSchools() {
-            const select = document.getElementById('admin-school');
-            if(!select) return;
-            select.innerHTML = '';
-            schoolsList.forEach(school => {
-                select.innerHTML += `<option value="${school}">${school}</option>`;
-            });
-        }
-
-        function handleAddResult(e) {
-            e.preventDefault();
-            const newItem = {
-                id: Date.now(),
-                item: document.getElementById('admin-item').value,
-                category: document.getElementById('admin-cat').value,
-                position: document.getElementById('admin-pos').value,
-                school: document.getElementById('admin-school').value,
-                participant: document.getElementById('admin-participant').value
-            };
-
-            appData.results.unshift(newItem);
-            saveData();
-            alert('ഫലം വിജയകരമായി സേവ് ചെയ്തു!');
-            document.getElementById('result-form').reset();
-            window.location.href = window.location.pathname;
-        }
-    </script>
-</body>
-</html>
+                let prizeText
