@@ -41,7 +41,7 @@
         <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4 text-center md:text-left">
                 <div class="bg-white dark:bg-slate-800 p-1.5 rounded-2xl shadow-sm border border-amber-200 dark:border-amber-600/30 flex items-center justify-center">
-                    <img src="100129.png" alt="Uyare Logo" class="h-14 md:h-16 w-auto object-contain rounded-xl">
+                    <img src="100129.png" alt="Uyare Logo" class="h-14 md:h-16 w-auto object-contain rounded-xl">[span_0](start_span)[span_0](end_span)
                 </div>
                 <div>
                     <span class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800/60">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
@@ -233,15 +233,12 @@
         const ADMIN_PASSWORD = "uyare2026";
         const schoolsList = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
 
+        // Results is now empty so all schools start with 0 points
         let appData = JSON.parse(localStorage.getItem('uyare_kalotsavam_data')) || {
-            results: [
-                { id: 1, item: 'ലളിതഗാനം', category: 'HI', school: 'School 1', participant: 'രാഹുൽ (H01)', position: '1st', grade: 'A' },
-                { id: 2, item: 'പ്രസംഗം', category: 'ID', school: 'School 5', participant: 'ഫാത്വിമ (I04)', position: '1st', grade: 'A' }
-            ]
+            results: []
         };
 
         window.onload = function() {
-            // Initialize Dark Mode based on localStorage
             if(localStorage.getItem('uyare_theme') === 'dark') {
                 document.documentElement.classList.add('dark');
                 document.getElementById('theme-icon').innerText = '☀️';
