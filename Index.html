@@ -12,7 +12,8 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Chathuram:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Manrope', sans-serif; }
+        body { font-family: 'Manrope', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; }
         .malayalam-title { font-family: 'Chathuram', sans-serif; }
         @keyframes marquee {
             0% { transform: translateX(100%); }
@@ -61,7 +62,7 @@
     </header>
 
     <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
+    <main class="max-w-7xl mx-auto px-4 py-8 w-full">
 
         <!-- HOME TAB -->
         <div id="content-home" class="space-y-8">
@@ -218,8 +219,8 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-16 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300">
+    <!-- Footer Fixed at Bottom across all tabs -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-16 py-6 text-center text-xs text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300">
         <p>© 2026 ഉയരെ - 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം. എല്ലാ അവകാശങ്ങളും സുരക്ഷിതം.</p>
     </footer>
 
