@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ഉയരെ - 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chathuram:wght@400;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Manrope', sans-serif; }
+        .malayalam-title { font-family: 'Chathuram', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-center md:text-left">
+                <span class="bg-amber-500/30 text-amber-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-amber-400/30">19-ാമത് മലപ്പുറം ജില്ലാ കലോത്സവം</span>
+                <h1 class="malayalam-title text-4xl md:text-5xl font-bold tracking-wide mt-1 text-amber-100">ഉയരെ</h1>
+                <p class="text-xs text-amber-200/80">സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം - തത്സമയ ഫലങ്ങൾ & പോയിന്റ് നില</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-medium shadow transition hover:bg-amber-500">മുഖ്യപേജ്</button>
+                <button onclick="switchTab('results')" id="tab-results" class="px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600">ഫലങ്ങൾ</button>
+                <button onclick="switchTab('admin')" id="tab-admin" class="px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600">അഡ്മിൻ</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 py-6">
+
+        <!-- HOME TAB -->
+        <div id="content-home" class="space-y-6">
+            <!-- Hero banner -->
+            <div class="bg-gradient-to-br from-amber-600 to-amber-800 rounded-2xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="malayalam-title text-3xl md:text-4xl font-bold mb-2">കലോത്സവ ലൈവ് പോർട്ടലിലേക്ക് സ്വാഗതം</h2>
+                    <p class="text-amber-100 text-sm md:text-base max-w-2xl mb-4">മലപ്പുറം ജില്ലയിലെ വിവിധ സ്പെഷ്യൽ സ്കൂളുകളിൽ നിന്നുള്ള പ്രതിഭകൾ മാറ്റുരയ്ക്കുന്ന കലാമേളയുടെ സമ്പൂർണ്ണ പോയിന്റ് നിലയും ഇനം തിരിച്ചുള്ള ഫലങ്ങളും ഇവിടെ തത്സമയം അറിയാം.</p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="switchTab('results')" class="bg-white text-amber-900 font-semibold px-5 py-2 rounded-xl text-sm shadow hover:bg-amber-50 transition">ഫലങ്ങൾ പരിശോധിക്കുക</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Section -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden p-6">
+                <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <span>🏆</span> ലീഡർബോർഡ് (ടോപ്പ് സ്കൂളുകൾ)
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700 text-xs uppercase tracking-wider">
+                                <th class="p-3 rounded-l-lg">സ്ഥാനം</th>
+                                <th class="p-3">സ്കൂൾ പേര്</th>
+                                <th class="p-3 text-center">A ഗ്രേഡ്</th>
+                                <th class="p-3 text-center">B ഗ്രേഡ്</th>
+                                <th class="p-3 text-center">C ഗ്രേഡ്</th>
+                                <th class="p-3 text-right rounded-r-lg font-bold">ആകെ പോയിന്റ്</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body" class="divide-y divide-slate-100 text-sm">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS TAB -->
+        <div id="content-results" class="hidden space-y-6">
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 justify-between items-center">
+                <div class="w-full md:w-1/3">
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">കാറ്റഗറി തിരഞ്ഞെടുക്കുക</label>
+                    <select id="filter-category" onchange="renderResults()" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-amber-500">
+                        <option value="all">എല്ലാ കാറ്റഗറിയും</option>
+                        <option value="HI">കേൾവി പരിമിതി (HI)</option>
+                        <option value="VI">കാഴ്ച പരിമിതി (VI)</option>
+                        <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (ID)</option>
+                        <option value="CP">സെറിബ്രൽ പാൾസി (CP)</option>
+                    </select>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">തിരയുക (ഇനം / സ്കൂൾ / ചെസ്റ്റ് നം)</label>
+                    <input type="text" id="search-input" oninput="renderResults()" placeholder="സെർച്ച് ചെയ്യൂ..." class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-amber-500">
+                </div>
+            </div>
+
+            <div id="results-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- ADMIN TAB -->
+        <div id="content-admin" class="hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 max-w-2xl mx-auto">
+                <h3 class="text-xl font-bold text-slate-800 mb-2">അഡ്മിൻ സ്കോർ കീപ്പർ പാനൽ</h3>
+                <p class="text-xs text-slate-500 mb-6">മത്സരഫലങ്ങൾ പുതിയതായി ചേർക്കുമ്പോൾ ലീഡർബോർഡിലെ പോയിന്റുകൾ ഓട്ടോമാറ്റിക്കായി അപ്ഡേറ്റ് ആകുന്നതാണ്.</p>
+                
+                <form id="result-form" onsubmit="handleAddResult(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">മത്സരത്തിന്റെ പേര് (Item Name)</label>
+                        <input type="text" id="admin-item" required placeholder="ഉദാ: ഭരതനാട്യം" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">കാറ്റഗറി</label>
+                            <select id="admin-cat" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                                <option value="HI">കേൾവി പരിമിതി (HI)</option>
+                                <option value="VI">കാഴ്ച പരിമിതി (VI)</option>
+                                <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (ID)</option>
+                                <option value="CP">സെറിബ്രൽ പാൾസി (CP)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">സ്ഥാനം / വിജയം</label>
+                            <select id="admin-pos" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                                <option value="1st">ഒന്നാം സ്ഥാനം (5 Points + A)</option>
+                                <option value="2nd">രണ്ടാം സ്ഥാനം (3 Points + A)</option>
+                                <option value="3rd">മൂന്നാം സ്ഥാനം (1 Point + B)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">സ്കൂൾ തിരഞ്ഞെടുക്കുക</label>
+                        <select id="admin-school" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">കളിക്കാരന്റെ പേര് / ചെസ്റ്റ് നമ്പർ</label>
+                            <input type="text" id="admin-participant" required placeholder="ഉദാ: അശ്വിൻ (C01)" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">ഗ്രേഡ്</label>
+                            <select id="admin-grade" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm">
+                                <option value="A">A ഗ്രേഡ്</option>
+                                <option value="B">B ഗ്രേഡ്</option>
+                                <option value="C">C ഗ്രേഡ്</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-amber-700 text-white font-semibold rounded-xl shadow hover:bg-amber-800 transition">ഫലം സേവ് ചെയ്യുക</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // 20 Schools Data
+        const schoolsList = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
+
+        // Initial Data Store (Stored in LocalStorage if available)
+        let appData = JSON.parse(localStorage.getItem('uyare_kalotsavam_data')) || {
+            results: [
+                { id: 1, item: 'ಲളിതഗാനം', category: 'HI', school: 'School 1', participant: 'രാഹുൽ (H01)', position: '1st', grade: 'A' },
+                { id: 2, item: 'പ്രസംഗം', category: 'ID', school: 'School 5', participant: 'ഫാത്വിമ (I04)', position: '1st', grade: 'A' }
+            ]
+        };
+
+        function saveData() {
+            localStorage.setItem('uyare_kalotsavam_data', JSON.stringify(appData));
+        }
+
+        function switchTab(tab) {
+            ['home', 'results', 'admin'].forEach(t => {
+                document.getElementById(`content-${t}`).classList.add('hidden');
+                document.getElementById(`tab-${t}`).className = "px-4 py-2 rounded-lg bg-amber-950/60 text-amber-100 text-sm font-medium shadow transition hover:bg-amber-600";
+            });
+            document.getElementById(`content-${tab}`).classList.remove('hidden');
+            document.getElementById(`tab-${tab}`).className = "px-4 py-2 rounded-lg bg-amber-600 text-white text-sm font-medium shadow transition";
+
+            if(tab === 'home') renderLeaderboard();
+            if(tab === 'results') renderResults();
+            if(tab === 'admin') populateAdminSchools();
+        }
+
+        function calculateLeaderboard() {
+            let stats = {};
+            schoolsList.forEach(school => {
+                stats[school] = { name: school, points: 0, a: 0, b: 0, c: 0 };
+            });
+
+            appData.results.forEach(res => {
+                if(!stats[res.school]) stats[res.school] = { name: res.school, points: 0, a: 0, b: 0, c: 0 };
+                
+                if(res.position === '1st') stats[res.school].points += 5;
+                if(res.position === '2nd') stats[res.school].points += 3;
+                if(res.position === '3rd') stats[res.school].points += 1;
+
+                if(res.grade === 'A') stats[res.school].a += 1;
+                if(res.grade === 'B') stats[res.school].b += 1;
+                if(res.grade === 'C') stats[res.school].c += 1;
+            });
+
+            return Object.values(stats).sort((a, b) => b.points - a.points);
+        }
+
+        function renderLeaderboard() {
+            const tbody = document.getElementById('leaderboard-body');
+            const data = calculateLeaderboard();
+            tbody.innerHTML = '';
+
+            data.forEach((item, index) => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="p-3 font-semibold text-slate-500">#${index + 1}</td>
+                        <td class="p-3 font-medium text-slate-800">${item.name}</td>
+                        <td class="p-3 text-center text-amber-600 font-semibold">${item.a}</td>
+                        <td class="p-3 text-center text-blue-600 font-semibold">${item.b}</td>
+                        <td class="p-3 text-center text-slate-600 font-semibold">${item.c}</td>
+                        <td class="p-3 text-right font-bold text-amber-800 text-base">${item.points}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function renderResults() {
+            const container = document.getElementById('results-container');
+            const catFilter = document.getElementById('filter-category').value;
+            const searchVal = document.getElementById('search-input').value.toLowerCase();
+            
+            container.innerHTML = '';
+
+            const filtered = appData.results.filter(res => {
+                const matchCat = catFilter === 'all' || res.category === catFilter;
+                const matchSearch = res.item.toLowerCase().includes(searchVal) || res.school.toLowerCase().includes(searchVal) || res.participant.toLowerCase().includes(searchVal);
+                return matchCat && matchSearch;
+            });
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-2 text-center py-8 text-slate-400 text-sm">ഫലങ്ങൾ ഒന്നും ലഭ്യമല്ല</div>`;
+                return;
+            }
+
+            filtered.forEach(res => {
+                container.innerHTML += `
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-1 rounded-md">${res.category} കാറ്റഗറി</span>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-md">${res.position}</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-slate-800 mb-1">${res.item}</h4>
+                            <p class="text-sm font-medium text-slate-600 mb-2">${res.school} - <span class="text-slate-500">${res.participant}</span></p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500">
+                            <span>ഗ്രേഡ്: <strong class="text-slate-700">${res.grade} ഗ്രേഡ്</strong></span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function populateAdminSchools() {
+            const select = document.getElementById('admin-school');
+            select.innerHTML = '';
+            schoolsList.forEach(school => {
+                select.innerHTML += `<option value="${school}">${school}</option>`;
+            });
+        }
+
+        function handleAddResult(e) {
+            e.preventDefault();
+            const newItem = {
+                id: Date.now(),
+                item: document.getElementById('admin-item').value,
+                category: document.getElementById('admin-cat').value,
+                position: document.getElementById('admin-pos').value,
+                school: document.getElementById('admin-school').value,
+                participant: document.getElementById('admin-participant').value,
+                grade: document.getElementById('admin-grade').value
+            };
+
+            appData.results.unshift(newItem);
+            saveData();
+            alert('ഫലം വിജയകരമായി സേവ് ചെയ്തു!');
+            document.getElementById('result-form').reset();
+            switchTab('results');
+        }
+
+        // Initial render on load
+        renderLeaderboard();
+    </script>
+</body>
+</html>
