@@ -42,20 +42,23 @@
         <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left space-y-0.5">
                 <span class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800/60">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</span>
-                <p class="text-xs md:text-sm font-bold text-slate-600 dark:text-slate-400 mt-1">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
+                <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
             </div>
             
             <!-- Navigation & Dark Mode Toggle -->
             <div class="flex items-center gap-3">
-                <div class="flex gap-2 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
-                    <button onclick="switchTab('home')" id="tab-home" class="px-5 py-2.5 rounded-xl bg-amber-700 text-white text-sm font-bold shadow transition">HOME</button>
-                    <button onclick="switchTab('results')" id="tab-results" class="px-5 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">RESULTS</button>
-                    <button onclick="switchTab('contact')" id="tab-contact" class="px-5 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">CONTACT</button>
+                <div class="flex flex-wrap gap-1.5 md:gap-2 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
+                    <button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 rounded-xl bg-amber-700 text-white text-xs md:text-sm font-bold shadow transition">HOME</button>
+                    <button onclick="switchTab('results')" id="tab-results" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">RESULTS</button>
+                    <button onclick="switchTab('schedule')" id="tab-schedule" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">SCHEDULE</button>
+                    <button onclick="switchTab('contact')" id="tab-contact" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">CONTACT</button>
+                    <!-- Admin Tab (Hidden by default, appears when logged in) -->
+                    <button onclick="switchTab('admin')" id="tab-admin" class="hidden px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">ADMIN</button>
                 </div>
                 
                 <!-- Dark Mode Button -->
-                <button onclick="toggleDarkMode()" id="dark-mode-btn" class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition shadow-inner" title="ഡാർക്ക് / ലൈറ്റ് മോഡ്">
-                    <span id="theme-icon" class="text-lg">🌙</span>
+                <button onclick="toggleDarkMode()" id="dark-mode-btn" class="px-4 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition shadow-inner text-xs md:text-sm font-bold">
+                    <span id="theme-text">Dark Mode</span>
                 </button>
             </div>
         </div>
@@ -73,9 +76,9 @@
                 
                 <div class="relative z-10 space-y-4 max-w-xl text-center md:text-left">
                     <span class="bg-amber-500/30 text-amber-200 text-xs font-bold px-3.5 py-1.5 rounded-full border border-amber-400/30 tracking-wider">OFFICIAL FESTIVAL PORTAL</span>
-                    <h2 class="malayalam-title text-3xl md:text-5xl font-extrabold leading-tight text-amber-100">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</h2>
-                    <p class="text-amber-100/90 text-sm md:text-base font-semibold text-amber-200">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
-                    <p class="text-amber-100/90 text-sm md:text-base font-medium leading-relaxed">കേൾവി, കാഴ്ച പരിമിതികൾ, ബുദ്ധിപരമായ വെല്ലുവിളികൾ, സെറിബ്രൽ പാൾസി (HI, VI, ID, CP) എന്നീ വിഭാഗങ്ങളിലായി 20 പ്രത്യേക സ്കൂളുകൾ മാറ്റുരയ്ക്കുന്ന മഹാമേള.</p>
+                    <h2 class="malayalam-title text-4xl md:text-6xl font-black leading-tight text-amber-100 tracking-wide">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</h2>
+                    <p class="text-xs md:text-sm font-medium text-amber-200/90">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
+                    <p class="text-amber-100/80 text-xs md:text-sm font-medium leading-relaxed">മലപ്പുറം ജില്ലയിലെ സ്പെഷ്യൽ സ്കൂളുകൾ ജൂനിയർ, സീനിയർ വിഭാഗങ്ങളിലായി മാറ്റുരയ്ക്കുന്ന കലാമാമാങ്കം.</p>
                 </div>
 
                 <!-- Poster Box -->
@@ -86,25 +89,29 @@
 
             <!-- Quick Stats Highlights Cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-400 transition">
+                <!-- 1st Card: Special Schools -->
+                <div onclick="openSchoolWiseModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
                     <span class="text-3xl">🏫</span>
-                    <h4 class="text-2xl font-black text-amber-900 dark:text-amber-400">20</h4>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">പ്രത്യേക സ്കൂളുകൾ</p>
+                    <h4 class="text-xl md:text-2xl font-black text-amber-900 dark:text-amber-400">Special Schools</h4>
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Click for School Results</p>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-400 transition">
+                <!-- 2nd Card: Category-wise Results -->
+                <div onclick="openCategoryWiseModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
                     <span class="text-3xl">✨</span>
-                    <h4 class="text-2xl font-black text-amber-900 dark:text-amber-400">4</h4>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">കാറ്റഗറികൾ (HI,VI,ID,CP)</p>
+                    <h4 class="text-lg md:text-xl font-black text-amber-900 dark:text-amber-400">Category-wise Results</h4>
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Junior & Senior</p>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-400 transition">
+                <!-- 3rd Card: Published Results -->
+                <div onclick="openPublishedResultsModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
                     <span class="text-3xl">🏆</span>
                     <h4 class="text-2xl font-black text-amber-900 dark:text-amber-400" id="stat-total-results">0</h4>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">പ്രഖ്യാപിച്ച ഫലങ്ങൾ</p>
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Published Results</p>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-400 transition">
+                <!-- 4th Card: Live Point Update -->
+                <div onclick="openLivePointModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
                     <span class="text-3xl">🎯</span>
-                    <h4 class="text-2xl font-black text-amber-900 dark:text-amber-400">ലൈവ്</h4>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">പോയിന്റ് അപ്ഡേറ്റ്</p>
+                    <h4 class="text-xl md:text-2xl font-black text-amber-900 dark:text-amber-400">Live Point Update</h4>
+                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Click for Leaderboard</p>
                 </div>
             </div>
 
@@ -147,11 +154,8 @@
                 <div class="w-full md:w-1/3">
                     <label class="block text-xs font-extrabold text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-wider">കാറ്റഗറി ഫിൽട്ടർ</label>
                     <select id="filter-category" onchange="renderResults()" class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-bold focus:ring-2 focus:ring-amber-600 outline-none">
-                        <option value="all">എല്ലാ കാറ്റഗറിയും (All Categories)</option>
-                        <option value="HI">കേൾവി പരിമിതി (HI)</option>
-                        <option value="VI">കാഴ്ച പരിമിതി (VI)</option>
-                        <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (ID)</option>
-                        <option value="CP">സെറിബ്രൽ പാൾസി (CP)</option>
+                        <option value="Junior">Junior Category</option>
+                        <option value="Senior">Senior Category</option>
                     </select>
                 </div>
                 <div class="w-full md:w-1/3">
@@ -166,15 +170,58 @@
             </div>
         </div>
 
-        <!-- CONTACT TAB -->
-        <div id="content-contact" class="hidden space-y-6">
-            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto text-center space-y-4 transition-colors duration-300">
-                <h3 class="text-2xl font-black text-slate-900 dark:text-slate-100">ബന്ധപ്പെടാൻ (Contact Us)</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400">ഈ വിഭാഗത്തിലേക്കുള്ള വിവരങ്ങൾ ഉടൻ ചേർക്കുന്നതാണ്.</p>
+        <!-- SCHEDULE TAB -->
+        <div id="content-schedule" class="hidden space-y-6">
+            <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 transition-colors duration-300">
+                <div>
+                    <h3 class="text-2xl font-black text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                        <span>📅</span> മത്സര ക്രമപട്ടിക (Event Schedule)
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">വേദികളും സമയക്രമവും താഴെ നൽകിയിരിക്കുന്നു.</p>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <select id="schedule-stage-filter" onchange="renderSchedule()" class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-bold focus:ring-2 focus:ring-amber-600 outline-none">
+                        <option value="all">എല്ലാ വേദികളും (All Stages)</option>
+                        <option value="Stage 1">വേദി 1</option>
+                        <option value="Stage 2">വേദി 2</option>
+                        <option value="Stage 3">വേദി 3</option>
+                        <option value="Stage 4">വേദി 4</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Schedule Cards Container -->
+            <div id="schedule-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Populated by JS -->
             </div>
         </div>
 
-        <!-- ADMIN TAB WITH MANAGE & DELETE RESULTS -->
+        <!-- CONTACT TAB -->
+        <div id="content-contact" class="hidden space-y-6">
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto space-y-6 transition-colors duration-300">
+                <h3 class="text-2xl font-black text-slate-900 dark:text-slate-100 text-center">ബന്ധപ്പെടാൻ (Contact Us)</h3>
+                
+                <div class="space-y-4 text-sm font-medium text-slate-700 dark:text-slate-300">
+                    <div class="flex items-start gap-3 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="text-xl">📍</span>
+                        <p class="leading-relaxed">
+                            <strong>VKM Special School</strong><br>
+                            Puramannur (P.O.), Near Majlis Arts and Science College (Autonomous), Valanchery, Malappuram District - 676 552<br>
+                            Kerala, India
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="text-xl">📞</span>
+                        <p class="font-bold text-amber-800 dark:text-amber-400">
+                            +91 984721495
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADMIN TAB -->
         <div id="content-admin" class="hidden space-y-8">
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
@@ -182,19 +229,21 @@
                     <button onclick="logoutAdmin()" class="text-xs text-red-600 font-bold bg-red-50 dark:bg-red-950/60 px-4 py-2 rounded-xl border border-red-200 dark:border-red-800/60 hover:bg-red-100 transition">ലോഗ് ഔട്ട്</button>
                 </div>
                 
+                <!-- Add Result Form -->
                 <form id="result-form" onsubmit="handleAddResult(event)" class="space-y-5">
+                    <h4 class="font-extrabold text-base text-amber-800 dark:text-amber-400">🏆 മത്സര ഫലം ചേർക്കുക</h4>
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">മത്സരത്തിന്റെ പേര് (Item Name)</label>
-                        <input type="text" id="admin-item" required placeholder="ഉദാ: ലളിതഗാനം" class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none focus:border-amber-600">
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">മത്സര ഇനം (Select Event Item)</label>
+                        <select id="admin-item" required class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                            <!-- Populated by JS -->
+                        </select>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">കാറ്റഗറി</label>
                             <select id="admin-cat" class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
-                                <option value="HI">കേൾവി പരിമിതി (HI)</option>
-                                <option value="VI">കാഴ്ച പരിമിതി (VI)</option>
-                                <option value="ID">ബുദ്ധിപരമായ വെല്ലുവിളികൾ (ID)</option>
-                                <option value="CP">സെറിബ്രൽ പാൾസി (CP)</option>
+                                <option value="Junior">Junior Category</option>
+                                <option value="Senior">Senior Category</option>
                             </select>
                         </div>
                         <div>
@@ -220,6 +269,48 @@
                 </form>
             </div>
 
+            <!-- Manage Event Items & Stage Names Section -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">📅 മത്സര ഇനങ്ങളും വേദികളും മാറ്റാൻ (Manage Events & Stages)</h4>
+                
+                <form onsubmit="addNewEventItem(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <h5 class="font-extrabold text-sm text-amber-800 dark:text-amber-400">പുതിയ മത്സര ഇനം ചേർക്കുക</h5>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">മത്സര ഇനത്തിന്റെ പേര് (Item Name)</label>
+                        <input type="text" id="new-event-name" required placeholder="ഉദാ: നാടോടിനൃത്തം" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">വേദി (Stage Name)</label>
+                            <input type="text" id="new-event-stage" required placeholder="ഉദാ: Stage 1 / Main Auditorium" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">സമയം (Time)</label>
+                            <input type="text" id="new-event-time" required placeholder="ഉദാ: 10:00 AM" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-blue-700 text-white font-bold rounded-2xl hover:bg-blue-800 transition text-sm">മത്സര ഇനം ആഡ് ചെയ്യുക</button>
+                </form>
+
+                <div id="admin-events-list" class="space-y-3 max-h-80 overflow-y-auto pr-1 pt-2">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Manage Schools Section (Add & Delete Schools) -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">🏫 സ്കൂളുകൾ ചേർക്കാനും നീക്കം ചെയ്യാനും (Manage Schools)</h4>
+                
+                <div class="flex gap-2">
+                    <input type="text" id="new-school-name" placeholder="പുതിയ സ്കൂളിന്റെ പേര് നൽകുക..." class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                    <button onclick="addNewSchool()" class="px-6 py-3.5 bg-emerald-700 text-white font-bold rounded-2xl hover:bg-emerald-800 transition whitespace-nowrap">ആഡ് ചെയ്യുക</button>
+                </div>
+
+                <div id="admin-schools-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
             <!-- Admin Results Management Section (Delete Feature) -->
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-4xl mx-auto transition-colors duration-300">
                 <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 mb-4 border-b border-slate-100 dark:border-slate-800 pb-3">ചേർത്ത ഫലങ്ങൾ തിരുത്താനും നീക്കം ചെയ്യാനും (Manage Results)</h4>
@@ -231,6 +322,66 @@
 
     </main>
 
+    <!-- School-wise Results Modal -->
+    <div id="school-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 class="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                    <span>🏫</span> School-wise Results
+                </h3>
+                <button onclick="closeSchoolWiseModal()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 font-bold hover:bg-red-100 dark:hover:bg-red-950 transition">✕</button>
+            </div>
+            <div id="school-modal-body" class="overflow-y-auto space-y-3 pr-2 flex-1">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Category-wise Results Modal -->
+    <div id="category-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 class="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                    <span>✨</span> Category-wise Results
+                </h3>
+                <button onclick="closeCategoryWiseModal()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 font-bold hover:bg-red-100 dark:hover:bg-red-950 transition">✕</button>
+            </div>
+            <div id="category-modal-body" class="overflow-y-auto space-y-6 pr-2 flex-1">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Published Results Modal -->
+    <div id="published-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 class="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                    <span>🏆</span> Published Results
+                </h3>
+                <button onclick="closePublishedResultsModal()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 font-bold hover:bg-red-100 dark:hover:bg-red-950 transition">✕</button>
+            </div>
+            <div id="published-modal-body" class="overflow-y-auto space-y-3 pr-2 flex-1">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Point Update Modal -->
+    <div id="live-point-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
+                <h3 class="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                    <span>🎯</span> Live Point Update (Leaderboard)
+                </h3>
+                <button onclick="closeLivePointModal()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 font-bold hover:bg-red-100 dark:hover:bg-red-950 transition">✕</button>
+            </div>
+            <div id="live-point-modal-body" class="overflow-y-auto space-y-2.5 pr-2 flex-1">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Fixed at Bottom across all tabs -->
     <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-16 py-6 text-center text-xs text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300">
         <p>© 2026 ഉയരെ - 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം. എല്ലാ അവകാശങ്ങളും സുരക്ഷിതം.</p>
@@ -239,50 +390,80 @@
     <script>
         const ADMIN_USERNAME = "admin";
         const ADMIN_PASSWORD = "uyare2026";
-        const schoolsList = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
+        
+        let defaultSchools = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
+
+        let defaultSchedule = [
+            { id: 1, stage: "Stage 1", time: "09:30 AM", item: "ലളിതഗാനം (Light Music)", category: "Junior" },
+            { id: 2, stage: "Stage 1", time: "11:00 AM", item: "നാടോടിനൃത്തം (Folk Dance)", category: "Senior" },
+            { id: 3, stage: "Stage 2", time: "10:00 AM", item: "പെൻസിൽ ഡ്രോയിംഗ് (Pencil Drawing)", category: "Junior" },
+            { id: 4, stage: "Stage 2", time: "01:30 PM", item: "വാദ്യസംഗീതം (Instrumental Music)", category: "Senior" },
+            { id: 5, stage: "Stage 3", time: "10:30 AM", item: "പ്രസംഗം (Elocution)", category: "Junior" },
+            { id: 6, stage: "Stage 3", time: "02:00 PM", item: "കവിതാ പാരായണം (Recitation)", category: "Senior" },
+            { id: 7, stage: "Stage 4", time: "10:00 AM", item: "ക്ലേ മോഡലിംഗ് (Clay Modeling)", category: "Junior" },
+            { id: 8, stage: "Stage 4", time: "01:00 PM", item: "ചിത്രരചന (Painting)", category: "Senior" }
+        ];
 
         let appData = JSON.parse(localStorage.getItem('uyare_kalotsavam_data')) || {
-            results: []
+            results: [],
+            schools: defaultSchools,
+            schedule: defaultSchedule
         };
 
+        if(!appData.schools) appData.schools = defaultSchools;
+        if(!appData.schedule) appData.schedule = defaultSchedule;
+
+        let isAdminLoggedIn = localStorage.getItem('uyare_admin_logged') === 'true';
+
         window.onload = function() {
+            const textEl = document.getElementById('theme-text');
             if(localStorage.getItem('uyare_theme') === 'dark') {
                 document.documentElement.classList.add('dark');
-                document.getElementById('theme-icon').innerText = '☀️';
+                if(textEl) textEl.innerText = 'Light Mode';
+            } else {
+                if(textEl) textEl.innerText = 'Dark Mode';
             }
 
             const urlParams = new URLSearchParams(window.location.search);
-            if(urlParams.get('uyare') === 'admin') {
+            if(urlParams.get('uyare') === 'admin' && !isAdminLoggedIn) {
                 checkAdminLogin();
             } else {
-                switchTab('home');
+                updateAdminTabVisibility();
+                if(isAdminLoggedIn && urlParams.get('uyare') === 'admin') {
+                    switchTab('admin');
+                } else {
+                    switchTab('home');
+                }
             }
             updateStats();
         };
 
-        // Listen for data changes across tabs/windows automatically (Real-time TV/Phone Sync)
         window.addEventListener('storage', function(e) {
             if(e.key === 'uyare_kalotsavam_data') {
-                appData = JSON.parse(e.newValue) || { results: [] };
+                appData = JSON.parse(e.newValue) || { results: [], schools: defaultSchools, schedule: defaultSchedule };
                 updateStats();
                 const activeHome = document.getElementById('content-home');
                 const activeResults = document.getElementById('content-results');
                 if(activeHome && !activeHome.classList.contains('hidden')) renderLeaderboard();
                 if(activeResults && !activeResults.classList.contains('hidden')) renderResults();
             }
+            if(e.key === 'uyare_admin_logged') {
+                isAdminLoggedIn = e.newValue === 'true';
+                updateAdminTabVisibility();
+            }
         });
 
         function toggleDarkMode() {
             const htmlEl = document.documentElement;
-            const iconEl = document.getElementById('theme-icon');
+            const textEl = document.getElementById('theme-text');
             if(htmlEl.classList.contains('dark')) {
                 htmlEl.classList.remove('dark');
                 localStorage.setItem('uyare_theme', 'light');
-                iconEl.innerText = '🌙';
+                if(textEl) textEl.innerText = 'Dark Mode';
             } else {
                 htmlEl.classList.add('dark');
                 localStorage.setItem('uyare_theme', 'dark');
-                iconEl.innerText = '☀️';
+                if(textEl) textEl.innerText = 'Light Mode';
             }
         }
 
@@ -296,15 +477,29 @@
             if(statEl) statEl.innerText = appData.results.length;
         }
 
-        function switchTab(tab) {
-            if(tab === 'admin') return;
+        function updateAdminTabVisibility() {
+            const adminTabBtn = document.getElementById('tab-admin');
+            if(adminTabBtn) {
+                if(isAdminLoggedIn) {
+                    adminTabBtn.classList.remove('hidden');
+                } else {
+                    adminTabBtn.classList.add('hidden');
+                }
+            }
+        }
 
-            ['home', 'results', 'contact', 'admin'].forEach(t => {
+        function switchTab(tab) {
+            if(tab === 'admin' && !isAdminLoggedIn) {
+                checkAdminLogin();
+                return;
+            }
+
+            ['home', 'results', 'schedule', 'contact', 'admin'].forEach(t => {
                 const el = document.getElementById(`content-${t}`);
                 if(el) el.classList.add('hidden');
                 const btn = document.getElementById(`tab-${t}`);
                 if(btn) {
-                    btn.className = "px-5 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400";
+                    btn.className = "px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400";
                 }
             });
             
@@ -313,42 +508,237 @@
             
             const targetBtn = document.getElementById(`tab-${tab}`);
             if(targetBtn) {
-                targetBtn.className = "px-5 py-2.5 rounded-xl bg-amber-700 text-white text-sm font-bold shadow transition";
+                targetBtn.className = "px-4 py-2 rounded-xl bg-amber-700 text-white text-xs md:text-sm font-bold shadow transition";
             }
 
             if(tab === 'home') renderLeaderboard();
             if(tab === 'results') renderResults();
+            if(tab === 'schedule') renderSchedule();
+            if(tab === 'admin') {
+                populateAdminSchools();
+                populateAdminEventItems();
+                renderAdminSchoolsList();
+                renderAdminEventsList();
+                renderAdminManageResults();
+            }
+        }
+
+        function renderSchedule() {
+            const container = document.getElementById('schedule-container');
+            if(!container) return;
+            const stageFilter = document.getElementById('schedule-stage-filter').value;
+            
+            container.innerHTML = '';
+
+            const filtered = appData.schedule.filter(item => stageFilter === 'all' || item.stage === stageFilter);
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-2 text-center py-12 text-slate-400 text-sm font-bold bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">മത്സര ക്രമപട്ടിക ലഭ്യവുമല്ല</div>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                container.innerHTML += `
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex justify-between items-center hover:shadow-md transition">
+                        <div class="space-y-1">
+                            <span class="bg-amber-100 dark:bg-amber-950/65 text-amber-900 dark:text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/60">${item.stage}</span>
+                            <h4 class="text-lg font-black text-slate-900 dark:text-slate-100 mt-2">${item.item}</h4>
+                            <p class="text-xs font-bold text-slate-500 dark:text-slate-400">കാറ്റഗറി: <span class="text-amber-700 dark:text-amber-400">${item.category || 'Junior'}</span></p>
+                        </div>
+                        <div class="text-right">
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-black px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700">⏰ ${item.time}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function openSchoolWiseModal() {
+            const modal = document.getElementById('school-modal');
+            const body = document.getElementById('school-modal-body');
+            body.innerHTML = '';
+
+            let stats = {};
+            appData.schools.forEach(school => {
+                stats[school] = { name: school, points: 0, items: [] };
+            });
+
+            appData.results.forEach(res => {
+                if(!stats[res.school]) stats[res.school] = { name: res.school, points: 0, items: [] };
+                let pts = res.position === '1st' ? 5 : (res.position === '2nd' ? 3 : 1);
+                stats[res.school].points += pts;
+                stats[res.school].items.push(res);
+            });
+
+            const sortedSchools = Object.values(stats);
+
+            sortedSchools.forEach(school => {
+                let itemsHtml = '';
+                if(school.items.length === 0) {
+                    itemsHtml = `<p class="text-xs text-slate-400 italic">ഫലങ്ങൾ ഒന്നും രേഖപ്പെടുത്തിയിട്ടില്ല</p>`;
+                } else {
+                    school.items.forEach(i => {
+                        let prizeText = i.position === '1st' ? '1st Prize' : (i.position === '2nd' ? '2nd Prize' : '3rd Prize');
+                        itemsHtml += `<div class="text-xs bg-slate-50 dark:bg-slate-800 p-2 rounded-xl flex justify-between items-center"><span class="font-bold text-slate-800 dark:text-slate-200">${i.item} (${i.category})</span><span class="bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 font-extrabold px-2 py-0.5 rounded">${prizeText}</span></div>`;
+                    });
+                }
+
+                body.innerHTML += `
+                    <div class="bg-slate-100 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-black text-base text-slate-900 dark:text-slate-100">${school.name}</h4>
+                            <span class="bg-amber-700 text-white font-extrabold text-xs px-3 py-1 rounded-full">Total: ${school.points} Pts</span>
+                        </div>
+                        <div class="space-y-1.5 pt-1">
+                            ${itemsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeSchoolWiseModal() {
+            document.getElementById('school-modal').classList.add('hidden');
+        }
+
+        function openCategoryWiseModal() {
+            const modal = document.getElementById('category-modal');
+            const body = document.getElementById('category-modal-body');
+            body.innerHTML = '';
+
+            const categories = ["Junior", "Senior"];
+
+            categories.forEach(cat => {
+                const catResults = appData.results.filter(r => r.category === cat);
+                let listHtml = '';
+
+                if(catResults.length === 0) {
+                    listHtml = `<p class="text-xs text-slate-400 italic">ഫലങ്ങൾ ഒന്നും ലഭ്യമായിട്ടില്ല</p>`;
+                } else {
+                    catResults.forEach(res => {
+                        let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
+                        listHtml += `
+                            <div class="text-xs bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl flex justify-between items-center border border-slate-200 dark:border-slate-700">
+                                <div>
+                                    <h5 class="font-black text-sm text-slate-900 dark:text-slate-100">${res.item}</h5>
+                                    <p class="font-bold text-slate-600 dark:text-slate-300 mt-0.5">${res.school} - <span class="font-normal text-slate-400">${res.participant}</span></p>
+                                </div>
+                                <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold px-3 py-1 rounded-full">${prizeText}</span>
+                            </div>
+                        `;
+                    });
+                }
+
+                body.innerHTML += `
+                    <div class="bg-slate-100 dark:bg-slate-800/60 p-5 rounded-3xl border border-slate-200 dark:border-slate-700 space-y-3">
+                        <h4 class="font-black text-lg text-amber-800 dark:text-amber-400 border-b border-slate-200 dark:border-slate-700 pb-2">${cat} Category Results</h4>
+                        <div class="space-y-2">
+                            ${listHtml}
+                        </div>
+                    </div>
+                `;
+            });
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeCategoryWiseModal() {
+            document.getElementById('category-modal').classList.add('hidden');
+        }
+
+        function openPublishedResultsModal() {
+            const modal = document.getElementById('published-modal');
+            const body = document.getElementById('published-modal-body');
+            body.innerHTML = '';
+
+            if(appData.results.length === 0) {
+                body.innerHTML = `<p class="text-center text-xs text-slate-400 py-8">ഫലങ്ങൾ ഒന്നും ഇതുവരെ പബ്ലിഷ് ചെയ്തിട്ടില്ല</p>`;
+            } else {
+                appData.results.forEach(res => {
+                    let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
+                    body.innerHTML += `
+                        <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                            <div>
+                                <span class="text-[10px] bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 font-bold px-2.5 py-0.5 rounded-full">${res.category} Category</span>
+                                <h4 class="font-black text-sm text-slate-900 dark:text-slate-100 mt-1">${res.item}</h4>
+                                <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-0.5">${res.school} - <span class="font-normal text-slate-400">${res.participant}</span></p>
+                            </div>
+                            <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold text-xs px-3 py-1.5 rounded-xl">${prizeText}</span>
+                        </div>
+                    `;
+                });
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closePublishedResultsModal() {
+            document.getElementById('published-modal').classList.add('hidden');
+        }
+
+        function openLivePointModal() {
+            const modal = document.getElementById('live-point-modal');
+            const body = document.getElementById('live-point-modal-body');
+            body.innerHTML = '';
+
+            const data = calculateLeaderboard();
+
+            data.forEach((item, index) => {
+                body.innerHTML += `
+                    <div class="bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <span class="font-black text-slate-400 text-sm">#${index + 1}</span>
+                            <div>
+                                <h4 class="font-extrabold text-sm text-slate-900 dark:text-slate-100">${item.name}</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">1st: ${item.p1} | 2nd: ${item.p2} | 3rd: ${item.p3}</p>
+                            </div>
+                        </div>
+                        <span class="bg-amber-700 text-white font-black text-xs px-3 py-1.5 rounded-xl">${item.points} Pts</span>
+                    </div>
+                `;
+            });
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeLivePointModal() {
+            document.getElementById('live-point-modal').classList.add('hidden');
         }
 
         function checkAdminLogin() {
             let user = prompt("യൂസർനെയിം (Username) നൽകുക:");
             if(user === null) {
-                window.location.href = window.location.pathname;
+                switchTab('home');
                 return;
             }
             
             let pass = prompt("അഡ്മിൻ പാസ്‌വേഡ് നൽകുക:");
             if(user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
-                ['home', 'results', 'contact'].forEach(t => {
-                    document.getElementById(`content-${t}`).classList.add('hidden');
-                });
-                document.getElementById('content-admin').classList.remove('hidden');
-                populateAdminSchools();
-                renderAdminManageResults();
+                isAdminLoggedIn = true;
+                localStorage.setItem('uyare_admin_logged', 'true');
+                updateAdminTabVisibility();
+                switchTab('admin');
             } else {
                 alert("തെറ്റായ യൂസർനെയിം അല്ലെങ്കിൽ പാസ്‌വേഡ്!");
-                window.location.href = window.location.pathname;
+                switchTab('home');
             }
         }
 
         function logoutAdmin() {
-            alert("അഡ്മിൻ പാനലിൽ നിന്ന് ലോഗ് ഔട്ട് ചെയ്തു.");
-            window.location.href = window.location.pathname;
+            if(confirm("അഡ്മിൻ പാനലിൽ നിന്ന് ലോഗ് ഔട്ട് ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+                isAdminLoggedIn = false;
+                localStorage.setItem('uyare_admin_logged', 'false');
+                updateAdminTabVisibility();
+                switchTab('home');
+                alert("അഡ്മിൻ പാനലിൽ നിന്ന് വിജയകരമായി ലോഗ് ഔട്ട് ചെയ്തു.");
+            }
         }
 
         function calculateLeaderboard() {
             let stats = {};
-            schoolsList.forEach(school => {
+            appData.schools.forEach(school => {
                 stats[school] = { name: school, points: 0, p1: 0, p2: 0, p3: 0 };
             });
 
@@ -394,13 +784,13 @@
             const container = document.getElementById('results-container');
             if(!container) return;
             const catFilter = document.getElementById('filter-category').value;
-            const searchVal = document.getElementById('search-input').value.toLowerCase();
+            const searchVal = document.getElementById('search-input').value.toLowerCase().trim();
             
             container.innerHTML = '';
 
             const filtered = appData.results.filter(res => {
-                const matchCat = catFilter === 'all' || res.category === catFilter;
-                const matchSearch = res.item.toLowerCase().includes(searchVal) || res.school.toLowerCase().includes(searchVal) || res.participant.toLowerCase().includes(searchVal);
+                const matchCat = res.category === catFilter;
+                const matchSearch = res.item.toLowerCase().includes(searchVal) || res.school.toLowerCase().includes(searchVal);
                 return matchCat && matchSearch;
             });
 
@@ -415,7 +805,7 @@
                     <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-md transition">
                         <div>
                             <div class="flex justify-between items-start mb-3">
-                                <span class="bg-amber-100 dark:bg-amber-950/65 text-amber-900 dark:text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/60">${res.category} കാറ്റഗറി</span>
+                                <span class="bg-amber-100 dark:bg-amber-950/65 text-amber-900 dark:text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/60">${res.category} Category</span>
                                 <span class="bg-emerald-100 dark:bg-emerald-950/65 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/60">${prizeText}</span>
                             </div>
                             <h4 class="text-lg font-black text-slate-900 dark:text-slate-100 mb-1">${res.item}</h4>
@@ -430,9 +820,140 @@
             const select = document.getElementById('admin-school');
             if(!select) return;
             select.innerHTML = '';
-            schoolsList.forEach(school => {
+            appData.schools.forEach(school => {
                 select.innerHTML += `<option value="${school}">${school}</option>`;
             });
+        }
+
+        function populateAdminEventItems() {
+            const select = document.getElementById('admin-item');
+            if(!select) return;
+            select.innerHTML = '';
+            appData.schedule.forEach(event => {
+                select.innerHTML += `<option value="${event.item}">${event.item} (${event.stage} - ${event.category || 'Junior'})</option>`;
+            });
+        }
+
+        function renderAdminSchoolsList() {
+            const container = document.getElementById('admin-schools-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            appData.schools.forEach(school => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="text-sm font-bold text-slate-800 dark:text-slate-200">${school}</span>
+                        <button onclick="deleteSchool('${school}')" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">റിമൂവ്</button>
+                    </div>
+                `;
+            });
+        }
+
+        function renderAdminEventsList() {
+            const container = document.getElementById('admin-events-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            appData.schedule.forEach(ev => {
+                container.innerHTML += `
+                    <div class="bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-amber-700 dark:text-amber-400">[${ev.stage}]</span>
+                            <span class="text-xs text-slate-500 font-bold">${ev.time}</span>
+                        </div>
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100 flex-1">${ev.item}</span>
+                            <button onclick="editStageName(${ev.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition whitespace-nowrap">വേദി മാറ്റുക</button>
+                            <button onclick="deleteEventItem(${ev.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition whitespace-nowrap">ഡിലീറ്റ്</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addNewSchool() {
+            const input = document.getElementById('new-school-name');
+            const schoolName = input.value.trim();
+
+            if(!schoolName) {
+                alert('ദയവായി സ്കൂളിന്റെ പേര് നൽകുക!');
+                return;
+            }
+
+            if(appData.schools.includes(schoolName)) {
+                alert('ഈ സ്കൂൾ പേര് നിലവിലുണ്ട്!');
+                return;
+            }
+
+            appData.schools.push(schoolName);
+            saveData();
+            populateAdminSchools();
+            renderAdminSchoolsList();
+            input.value = '';
+            alert('സ്കൂൾ വിജയകരമായി ചേർത്തു!');
+        }
+
+        function deleteSchool(schoolName) {
+            if(confirm(`"${schoolName}" നീക്കം ചെയ്യണം എന്ന് ഉറപ്പാണോ?`)) {
+                appData.schools = appData.schools.filter(s => s !== schoolName);
+                saveData();
+                populateAdminSchools();
+                renderAdminSchoolsList();
+                renderLeaderboard();
+            }
+        }
+
+        function addNewEventItem(e) {
+            e.preventDefault();
+            const itemName = document.getElementById('new-event-name').value.trim();
+            const stage = document.getElementById('new-event-stage').value.trim();
+            const time = document.getElementById('new-event-time').value.trim();
+            const cat = document.getElementById('admin-cat') ? document.getElementById('admin-cat').value : 'Junior';
+
+            if(!itemName || !stage || !time) {
+                alert('ദയവായി എല്ലാ വിവരങ്ങളും നൽകുക!');
+                return;
+            }
+
+            const newEvent = {
+                id: Date.now(),
+                stage: stage,
+                time: time,
+                item: itemName,
+                category: cat
+            };
+
+            appData.schedule.push(newEvent);
+            saveData();
+            populateAdminEventItems();
+            renderAdminEventsList();
+            document.getElementById('new-event-name').value = '';
+            document.getElementById('new-event-stage').value = '';
+            document.getElementById('new-event-time').value = '';
+            alert('മത്സര ഇനം വിജയകരമായി ചേർത്തു!');
+        }
+
+        function editStageName(id) {
+            const ev = appData.schedule.find(item => item.id === id);
+            if(!ev) return;
+
+            const newStage = prompt(`"${ev.item}" എന്ന ഇനത്തിനായുള്ള പുതിയ വേദി (Stage Name) നൽകുക:`, ev.stage);
+            if(newStage !== null && newStage.trim() !== "") {
+                ev.stage = newStage.trim();
+                saveData();
+                renderAdminEventsList();
+                populateAdminEventItems();
+                alert('വേദിയുടെ പേര് വിജയകരമായി മാറ്റി!');
+            }
+        }
+
+        function deleteEventItem(id) {
+            if(confirm("ഈ മത്സര ഇനം നീക്കം ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+                appData.schedule = appData.schedule.filter(ev => ev.id !== id);
+                saveData();
+                populateAdminEventItems();
+                renderAdminEventsList();
+            }
         }
 
         function handleAddResult(e) {
