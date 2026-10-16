@@ -10,6 +10,10 @@
             darkMode: 'class',
         }
     </script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Chathuram:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Manrope', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
@@ -253,10 +257,11 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">Select Participant & School</label>
-                        <select id="admin-participant" required class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">Participant Name (Optional - Select or Type)</label>
+                        <input type="text" id="admin-participant-input" list="admin-participants-datalist" placeholder="Select or type participant name..." class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        <datalist id="admin-participants-datalist">
                             <!-- Populated by JS -->
-                        </select>
+                        </datalist>
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">Select School</label>
@@ -266,6 +271,19 @@
                     </div>
                     <button type="submit" class="w-full py-4 bg-amber-800 text-white font-extrabold rounded-2xl shadow-lg hover:bg-amber-900 transition">Save Result</button>
                 </form>
+            </div>
+
+            <!-- Manage General Site Settings (Hide/Show Individual Champions) -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">⚙️ General Settings</h4>
+                
+                <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div>
+                        <h5 class="font-extrabold text-sm text-slate-900 dark:text-slate-100">Individual Champion Cards</h5>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Show or hide individual champion winner cards in Results tab</p>
+                    </div>
+                    <button onclick="toggleIndividualChampionVisibility()" id="toggle-champ-btn" class="px-4 py-2 rounded-xl text-xs font-bold transition">Loading...</button>
+                </div>
             </div>
 
             <!-- Manage Ticker Notice Section -->
@@ -530,6 +548,20 @@
     </footer>
 
     <script>
+        // Your Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC5KPzVlPrM7RQoYUyijwr6BE5Ozod7Uf8",
+            authDomain: "uyarekalolsavam.firebaseapp.com",
+            projectId: "uyarekalolsavam",
+            storageBucket: "uyarekalolsavam.firebasestorage.app",
+            messagingSenderId: "915057591026",
+            appId: "1:915057591026:web:b5149ee6db07f6d3b5c66b"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
         const ADMIN_USERNAME = "admin@uyare2026";
         const ADMIN_PASSWORD = "2002@vkmsps";
         
@@ -565,11 +597,10 @@
         ];
 
         let defaultTicker = "📢 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 'ഉയരെ' - ഔദ്യോഗിക ലൈവ് പോർട്ടലിലേക്ക് സ്വാഗതം! മത്സരഫലങ്ങളും പോയിന്റ് നിലയും തത്സമയം അറിയാം.";
-
         let defaultContactAddress = "<strong>VKM Special School</strong><br> Puramannur (P.O.), Near Majlis Arts and Science College (Autonomous), Valanchery, Malappuram District - 676 552<br> Kerala, India";
         let defaultContactPhone = "+91 984721495";
 
-        let appData = JSON.parse(localStorage.getItem('uyare_kalotsavam_data')) || {
+        let appData = {
             results: [],
             schools: defaultSchools,
             schedule: defaultSchedule,
@@ -579,20 +610,9 @@
             lbHeaders: defaultLbHeaders,
             tickerNotice: defaultTicker,
             contactAddress: defaultContactAddress,
-            contactPhone: defaultContactPhone
+            contactPhone: defaultContactPhone,
+            showIndividualChampions: true
         };
-
-        if(!appData.schools) appData.schools = defaultSchools;
-        if(!appData.schedule) appData.schedule = defaultSchedule;
-        if(!appData.participants) appData.participants = [];
-        if(!appData.prizes) appData.prizes = defaultPrizes;
-        if(!appData.manualLb) appData.manualLb = [];
-        if(!appData.lbHeaders || appData.lbHeaders.length === 0 || appData.lbHeaders[0].title === 'സ്ഥാനം') {
-            appData.lbHeaders = defaultLbHeaders;
-        }
-        if(!appData.tickerNotice) appData.tickerNotice = defaultTicker;
-        if(!appData.contactAddress) appData.contactAddress = defaultContactAddress;
-        if(!appData.contactPhone) appData.contactPhone = defaultContactPhone;
 
         let isAdminLoggedIn = false;
 
@@ -605,8 +625,33 @@
                 if(textEl) textEl.innerText = 'Dark Mode';
             }
 
-            renderTicker();
-            renderContactInfo();
+            // Real-time synchronization from Firestore
+            db.collection("festivalData").doc("mainData").onSnapshot((doc) => {
+                if (doc.exists) {
+                    const cloudData = doc.data();
+                    appData.results = cloudData.results || [];
+                    appData.schools = cloudData.schools || defaultSchools;
+                    appData.schedule = cloudData.schedule || defaultSchedule;
+                    appData.participants = cloudData.participants || [];
+                    appData.prizes = cloudData.prizes || defaultPrizes;
+                    appData.manualLb = cloudData.manualLb || [];
+                    appData.lbHeaders = cloudData.lbHeaders || defaultLbHeaders;
+                    appData.tickerNotice = cloudData.tickerNotice || defaultTicker;
+                    appData.contactAddress = cloudData.contactAddress || defaultContactAddress;
+                    appData.contactPhone = cloudData.contactPhone || defaultContactPhone;
+                    appData.showIndividualChampions = cloudData.showIndividualChampions !== undefined ? cloudData.showIndividualChampions : true;
+                } else {
+                    saveDataToCloud();
+                }
+
+                renderTicker();
+                renderContactInfo();
+                updateStats();
+                renderIndividualChampions();
+                renderLeaderboard();
+                renderResults();
+                renderSchedule();
+            });
 
             const urlParams = new URLSearchParams(window.location.search);
             if(urlParams.get('uyare') === 'admin') {
@@ -616,8 +661,6 @@
                 updateAdminTabVisibility();
                 switchTab('home');
             }
-            updateStats();
-            renderIndividualChampions();
         };
 
         function renderTicker() {
@@ -642,7 +685,7 @@
                 return;
             }
             appData.tickerNotice = val;
-            saveData();
+            saveDataToCloud();
             renderTicker();
             document.getElementById('admin-ticker-input').value = '';
             alert('Ticker notice updated successfully!');
@@ -660,9 +703,29 @@
 
             appData.contactAddress = address.replace(/\n/g, '<br>');
             appData.contactPhone = phone;
-            saveData();
+            saveDataToCloud();
             renderContactInfo();
             alert('Contact info updated successfully!');
+        }
+
+        function toggleIndividualChampionVisibility() {
+            appData.showIndividualChampions = !appData.showIndividualChampions;
+            saveDataToCloud();
+            updateToggleChampButton();
+            renderIndividualChampions();
+            alert(appData.showIndividualChampions ? 'Individual Champions card is now Visible!' : 'Individual Champions card is now Hidden!');
+        }
+
+        function updateToggleChampButton() {
+            const btn = document.getElementById('toggle-champ-btn');
+            if(!btn) return;
+            if(appData.showIndividualChampions) {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 transition";
+                btn.innerText = "Status: Visible (Click to Hide)";
+            } else {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300 transition";
+                btn.innerText = "Status: Hidden (Click to Show)";
+            }
         }
 
         function toggleDarkMode() {
@@ -679,12 +742,16 @@
             }
         }
 
-        function saveData() {
-            localStorage.setItem('uyare_kalotsavam_data', JSON.stringify(appData));
-            updateStats();
-            renderIndividualChampions();
-            renderTicker();
-            renderContactInfo();
+        function saveDataToCloud() {
+            db.collection("festivalData").doc("mainData").set(appData)
+              .then(() => {
+                  updateStats();
+                  renderIndividualChampions();
+                  renderLeaderboard();
+              })
+              .catch((error) => {
+                  console.error("Error writing document: ", error);
+              });
         }
 
         function updateStats() {
@@ -692,7 +759,6 @@
             if(statEl) statEl.innerText = appData.results.length;
         }
 
-        // Dynamically inject or remove ADMIN button so public users never see it in DOM
         function updateAdminTabVisibility() {
             const container = document.getElementById('nav-tabs-container');
             const existingAdminBtn = document.getElementById('tab-admin');
@@ -744,7 +810,7 @@
             if(tab === 'admin') {
                 populateAdminSchools();
                 populateAdminEventItems();
-                populateAdminParticipantsDropdown();
+                populateAdminParticipantsDatalist();
                 populateAdminPrizesDropdown();
                 renderAdminLbHeadersList();
                 renderAdminManualLbList();
@@ -753,6 +819,8 @@
                 renderAdminEventsList();
                 renderAdminParticipantsList();
                 renderAdminManageResults();
+                updateToggleChampButton();
+
                 const tickerInput = document.getElementById('admin-ticker-input');
                 if(tickerInput) tickerInput.value = appData.tickerNotice || defaultTicker;
 
@@ -797,14 +865,17 @@
             const resultsSection = document.getElementById('results-individual-overall');
             const resultsContent = document.getElementById('results-individual-cards');
 
-            if(appData.results.length === 0) {
-                if(resultsSection) resultsSection.classList.add('hidden');
+            if(!resultsSection) return;
+
+            if(!appData.showIndividualChampions || !appData.results || appData.results.length === 0) {
+                resultsSection.classList.add('hidden');
                 return;
             }
 
             let pStats = {};
 
             appData.results.forEach(res => {
+                if(!res.participant || res.participant.trim() === "") return;
                 const key = `${res.participant}_${res.school}`;
                 if(!pStats[key]) {
                     pStats[key] = {
@@ -821,7 +892,7 @@
             let seniorTop = Object.values(pStats).filter(p => p.category === 'Senior').sort((a,b) => b.points - a.points)[0];
 
             if(!juniorTop && !seniorTop) {
-                if(resultsSection) resultsSection.classList.add('hidden');
+                resultsSection.classList.add('hidden');
                 return;
             }
 
@@ -854,7 +925,7 @@
             }
 
             if(resultsContent) resultsContent.innerHTML = html;
-            if(resultsSection) resultsSection.classList.remove('hidden');
+            resultsSection.classList.remove('hidden');
         }
 
         function openSchoolWiseModal() {
@@ -881,7 +952,8 @@
                     itemsHtml = `<p class="text-xs text-slate-400 italic">No results recorded</p>`;
                 } else {
                     school.items.forEach(i => {
-                        itemsHtml += `<div class="text-xs bg-slate-50 dark:bg-slate-800 p-2 rounded-xl flex justify-between items-center"><span class="font-bold text-slate-800 dark:text-slate-200">${i.item} (${i.category})</span><span class="bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 font-extrabold px-2 py-0.5 rounded">${i.position} (${i.points} Pts)</span></div>`;
+                        let partText = i.participant ? ` (${i.participant})` : '';
+                        itemsHtml += `<div class="text-xs bg-slate-50 dark:bg-slate-800 p-2 rounded-xl flex justify-between items-center"><span class="font-bold text-slate-800 dark:text-slate-200">${i.item}${partText} (${i.category})</span><span class="bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 font-extrabold px-2 py-0.5 rounded">${i.position} (${i.points} Pts)</span></div>`;
                     });
                 }
 
@@ -920,11 +992,12 @@
                     listHtml = `<p class="text-xs text-slate-400 italic">No results available</p>`;
                 } else {
                     catResults.forEach(res => {
+                        let partText = res.participant ? ` - <span class="font-normal text-slate-400">${res.participant}</span>` : '';
                         listHtml += `
                             <div class="text-xs bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl flex justify-between items-center border border-slate-200 dark:border-slate-700">
                                 <div>
                                     <h5 class="font-black text-sm text-slate-900 dark:text-slate-100">${res.item}</h5>
-                                    <p class="font-bold text-slate-600 dark:text-slate-300 mt-0.5">${res.school} - <span class="font-normal text-slate-400">${res.participant}</span></p>
+                                    <p class="font-bold text-slate-600 dark:text-slate-300 mt-0.5">${res.school}${partText}</p>
                                 </div>
                                 <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold px-3 py-1 rounded-full">${res.position}</span>
                             </div>
@@ -958,12 +1031,13 @@
                 body.innerHTML = `<p class="text-center text-xs text-slate-400 py-8">No results published yet</p>`;
             } else {
                 appData.results.forEach(res => {
+                    let partText = res.participant ? ` - <span class="font-normal text-slate-400">${res.participant}</span>` : '';
                     body.innerHTML += `
                         <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex justify-between items-center">
                             <div>
                                 <span class="text-[10px] bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 font-bold px-2.5 py-0.5 rounded-full">${res.category} Category</span>
                                 <h4 class="font-black text-sm text-slate-900 dark:text-slate-100 mt-1">${res.item}</h4>
-                                <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-0.5">${res.school} - <span class="font-normal text-slate-400">${res.participant}</span></p>
+                                <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-0.5">${res.school}${partText}</p>
                             </div>
                             <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold text-xs px-3 py-1.5 rounded-xl">${res.position}</span>
                         </div>
@@ -1072,7 +1146,6 @@
             const tbody = document.getElementById('leaderboard-body');
             if(!headerRow || !tbody) return;
 
-            // Render Headers dynamically
             headerRow.innerHTML = '';
             if(appData.lbHeaders && appData.lbHeaders.length > 0) {
                 appData.lbHeaders.forEach((h, idx) => {
@@ -1082,7 +1155,6 @@
                 });
             }
 
-            // Render Body
             const data = calculateLeaderboard();
             tbody.innerHTML = '';
 
@@ -1122,7 +1194,7 @@
 
             const filtered = appData.results.filter(res => {
                 const matchCat = res.category === catFilter;
-                const matchSearch = res.item.toLowerCase().includes(searchVal) || res.school.toLowerCase().includes(searchVal);
+                const matchSearch = res.item.toLowerCase().includes(searchVal) || res.school.toLowerCase().includes(searchVal) || (res.participant && res.participant.toLowerCase().includes(searchVal));
                 return matchCat && matchSearch;
             });
 
@@ -1132,6 +1204,7 @@
             }
 
             filtered.forEach(res => {
+                let partText = res.participant ? ` - <span class="text-slate-500 dark:text-slate-400 font-normal">${res.participant}</span>` : '';
                 container.innerHTML += `
                     <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-md transition">
                         <div>
@@ -1140,7 +1213,7 @@
                                 <span class="bg-emerald-100 dark:bg-emerald-950/65 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/60">${res.position}</span>
                             </div>
                             <h4 class="text-lg font-black text-slate-900 dark:text-slate-100 mb-1">${res.item}</h4>
-                            <p class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">${res.school} - <span class="text-slate-500 dark:text-slate-400 font-normal">${res.participant}</span></p>
+                            <p class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">${res.school}${partText}</p>
                         </div>
                     </div>
                 `;
@@ -1180,19 +1253,14 @@
             });
         }
 
-        function populateAdminParticipantsDropdown() {
-            const select = document.getElementById('admin-participant');
-            if(!select) return;
-            select.innerHTML = '';
-
-            if(appData.participants.length === 0) {
-                select.innerHTML = `<option value="">Please add participants below first</option>`;
-                return;
-            }
+        function populateAdminParticipantsDatalist() {
+            const datalist = document.getElementById('admin-participants-datalist');
+            if(!datalist) return;
+            datalist.innerHTML = '';
 
             appData.participants.forEach(p => {
                 let chestText = p.chest ? ` (${p.chest})` : '';
-                select.innerHTML += `<option value="${p.name}${chestText} [${p.school}]">${p.name}${chestText} - ${p.school} (${p.category})</option>`;
+                datalist.innerHTML += `<option value="${p.name}${chestText} [${p.school}]"></option>`;
             });
         }
 
@@ -1244,9 +1312,8 @@
 
             if(!appData.lbHeaders) appData.lbHeaders = [];
             appData.lbHeaders.push(newH);
-            saveData();
+            saveDataToCloud();
             renderAdminLbHeadersList();
-            renderLeaderboard();
             document.getElementById('new-lb-header').value = '';
             alert('Leaderboard header added successfully!');
         }
@@ -1258,9 +1325,8 @@
             const newTitle = prompt("Enter new header title:", h.title);
             if(newTitle !== null && newTitle.trim() !== "") {
                 h.title = newTitle.trim();
-                saveData();
+                saveDataToCloud();
                 renderAdminLbHeadersList();
-                renderLeaderboard();
                 alert('Header updated successfully!');
             }
         }
@@ -1272,9 +1338,8 @@
             }
             if(confirm("Are you sure you want to delete this header?")) {
                 appData.lbHeaders = appData.lbHeaders.filter(h => h.id !== id);
-                saveData();
+                saveDataToCloud();
                 renderAdminLbHeadersList();
-                renderLeaderboard();
             }
         }
 
@@ -1316,7 +1381,7 @@
 
             if(!appData.manualLb) appData.manualLb = [];
             appData.manualLb.push(item);
-            saveData();
+            saveDataToCloud();
             renderAdminManualLbList();
             document.getElementById('manual-lb-reason').value = '';
             document.getElementById('manual-lb-points').value = '';
@@ -1350,7 +1415,7 @@
         function deleteManualLb(id) {
             if(confirm("Are you sure you want to delete this entry?")) {
                 appData.manualLb = appData.manualLb.filter(m => m.id !== id);
-                saveData();
+                saveDataToCloud();
                 renderAdminManualLbList();
             }
         }
@@ -1372,7 +1437,7 @@
             };
 
             appData.prizes.push(newPz);
-            saveData();
+            saveDataToCloud();
             populateAdminPrizesDropdown();
             renderAdminPrizesList();
             document.getElementById('new-prize-label').value = '';
@@ -1390,7 +1455,7 @@
             if(newLabel !== null && newPoints !== null && !isNaN(Number(newPoints))) {
                 pz.label = newLabel.trim();
                 pz.points = Number(newPoints);
-                saveData();
+                saveDataToCloud();
                 populateAdminPrizesDropdown();
                 renderAdminPrizesList();
                 alert('Prize info updated!');
@@ -1400,7 +1465,7 @@
         function deletePrizeConfig(id) {
             if(confirm("Are you sure you want to delete this prize/grade?")) {
                 appData.prizes = appData.prizes.filter(p => p.id !== id);
-                saveData();
+                saveDataToCloud();
                 populateAdminPrizesDropdown();
                 renderAdminPrizesList();
             }
@@ -1488,8 +1553,8 @@
             };
 
             appData.participants.push(newP);
-            saveData();
-            populateAdminParticipantsDropdown();
+            saveDataToCloud();
+            populateAdminParticipantsDatalist();
             renderAdminParticipantsList();
             document.getElementById('new-part-name').value = '';
             document.getElementById('new-part-chest').value = '';
@@ -1499,8 +1564,8 @@
         function deleteParticipant(id) {
             if(confirm("Are you sure you want to remove this participant?")) {
                 appData.participants = appData.participants.filter(p => p.id !== id);
-                saveData();
-                populateAdminParticipantsDropdown();
+                saveDataToCloud();
+                populateAdminParticipantsDatalist();
                 renderAdminParticipantsList();
             }
         }
@@ -1520,7 +1585,7 @@
             }
 
             appData.schools.push(schoolName);
-            saveData();
+            saveDataToCloud();
             populateAdminSchools();
             renderAdminSchoolsList();
             input.value = '';
@@ -1530,10 +1595,9 @@
         function deleteSchool(schoolName) {
             if(confirm(`Are you sure you want to remove "${schoolName}"?`)) {
                 appData.schools = appData.schools.filter(s => s !== schoolName);
-                saveData();
+                saveDataToCloud();
                 populateAdminSchools();
                 renderAdminSchoolsList();
-                renderLeaderboard();
             }
         }
 
@@ -1558,7 +1622,7 @@
             };
 
             appData.schedule.push(newEvent);
-            saveData();
+            saveDataToCloud();
             populateAdminEventItems();
             renderAdminEventsList();
             document.getElementById('new-event-name').value = '';
@@ -1574,7 +1638,7 @@
             const newStage = prompt(`Enter new stage name for "${ev.item}":`, ev.stage);
             if(newStage !== null && newStage.trim() !== "") {
                 ev.stage = newStage.trim();
-                saveData();
+                saveDataToCloud();
                 renderAdminEventsList();
                 populateAdminEventItems();
                 alert('Stage updated successfully!');
@@ -1584,7 +1648,7 @@
         function deleteEventItem(id) {
             if(confirm("Are you sure you want to delete this event item?")) {
                 appData.schedule = appData.schedule.filter(ev => ev.id !== id);
-                saveData();
+                saveDataToCloud();
                 populateAdminEventItems();
                 renderAdminEventsList();
             }
@@ -1592,18 +1656,13 @@
 
         function handleAddResult(e) {
             e.preventDefault();
-            const partValue = document.getElementById('admin-participant').value;
-            if(!partValue) {
-                alert('Please select a participant!');
-                return;
-            }
+            const partInputValue = document.getElementById('admin-participant-input').value.trim();
 
             const posSelect = document.getElementById('admin-pos');
             const selectedOpt = posSelect.options[posSelect.selectedIndex];
             const prizeLabel = posSelect.value;
             const pointsVal = Number(selectedOpt.getAttribute('data-points')) || 0;
 
-            let partName = partValue.split(' [')[0];
             let schoolName = document.getElementById('admin-school').value;
 
             const newItem = {
@@ -1613,12 +1672,12 @@
                 position: prizeLabel,
                 points: pointsVal,
                 school: schoolName,
-                participant: partName
+                participant: partInputValue
             };
 
             appData.results.unshift(newItem);
-            saveData();
-            alert('Result saved and published successfully!');
+            saveDataToCloud();
+            alert('Result saved and published live successfully!');
             document.getElementById('result-form').reset();
             renderAdminManageResults();
         }
@@ -1626,7 +1685,7 @@
         function deleteResult(id) {
             if(confirm("Are you sure you want to delete this result?")) {
                 appData.results = appData.results.filter(r => r.id !== id);
-                saveData();
+                saveDataToCloud();
                 renderAdminManageResults();
             }
         }
@@ -1642,13 +1701,14 @@
             }
 
             appData.results.forEach(res => {
+                let partText = res.participant ? ` - ${res.participant}` : '';
                 container.innerHTML += `
                     <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
                         <div>
                             <span class="text-xs font-bold text-amber-700 dark:text-amber-400 mr-2">[${res.category}]</span>
                             <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${res.item}</span>
                             <span class="text-xs bg-amber-100 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold px-2 py-0.5 rounded ml-2">${res.position} (${res.points} Pts)</span>
-                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">${res.school} - ${res.participant}</p>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">${res.school}${partText}</p>
                         </div>
                         <button onclick="deleteResult(${res.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
                     </div>
