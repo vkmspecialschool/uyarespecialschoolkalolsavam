@@ -47,13 +47,12 @@
             
             <!-- Navigation & Dark Mode Toggle -->
             <div class="flex items-center gap-3">
-                <div class="flex flex-wrap gap-1.5 md:gap-2 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
+                <div id="nav-tabs-container" class="flex flex-wrap gap-1.5 md:gap-2 bg-slate-100 dark:bg-slate-800 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
                     <button onclick="switchTab('home')" id="tab-home" class="px-4 py-2 rounded-xl bg-amber-700 text-white text-xs md:text-sm font-bold shadow transition">HOME</button>
                     <button onclick="switchTab('results')" id="tab-results" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">RESULTS</button>
                     <button onclick="switchTab('schedule')" id="tab-schedule" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">SCHEDULE</button>
                     <button onclick="switchTab('contact')" id="tab-contact" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">CONTACT</button>
-                    <!-- Admin Tab (Hidden by default unless logged in) -->
-                    <button onclick="switchTab('admin')" id="tab-admin" class="hidden px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">ADMIN</button>
+                    <!-- Admin Tab will be dynamically injected HERE only if logged in as Admin -->
                 </div>
                 
                 <button onclick="toggleDarkMode()" id="dark-mode-btn" class="px-4 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition shadow-inner text-xs md:text-sm font-bold">
@@ -221,7 +220,7 @@
             </div>
         </div>
 
-        <!-- ADMIN TAB -->
+        <!-- ADMIN TAB CONTENT (Loaded dynamically when logged in) -->
         <div id="content-admin" class="hidden space-y-8">
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
@@ -589,7 +588,7 @@
         if(!appData.contactAddress) appData.contactAddress = defaultContactAddress;
         if(!appData.contactPhone) appData.contactPhone = defaultContactPhone;
 
-        let isAdminLoggedIn = localStorage.getItem('uyare_admin_logged') === 'true';
+        let isAdminLoggedIn = false;
 
         window.onload = function() {
             const textEl = document.getElementById('theme-text');
@@ -602,39 +601,18 @@
 
             renderTicker();
             renderContactInfo();
-            updateAdminTabVisibility();
 
             const urlParams = new URLSearchParams(window.location.search);
             if(urlParams.get('uyare') === 'admin') {
-                if(!isAdminLoggedIn) {
-                    checkAdminLogin();
-                } else {
-                    switchTab('admin');
-                }
+                checkAdminLogin();
             } else {
+                isAdminLoggedIn = false;
+                updateAdminTabVisibility();
                 switchTab('home');
             }
             updateStats();
             renderIndividualChampions();
         };
-
-        window.addEventListener('storage', function(e) {
-            if(e.key === 'uyare_kalotsavam_data') {
-                appData = JSON.parse(e.newValue) || { results: [], schools: defaultSchools, schedule: defaultSchedule, participants: [], prizes: defaultPrizes, manualLb: [], lbHeaders: defaultLbHeaders, tickerNotice: defaultTicker, contactAddress: defaultContactAddress, contactPhone: defaultContactPhone };
-                updateStats();
-                renderIndividualChampions();
-                renderTicker();
-                renderContactInfo();
-                const activeHome = document.getElementById('content-home');
-                const activeResults = document.getElementById('content-results');
-                if(activeHome && !activeHome.classList.contains('hidden')) renderLeaderboard();
-                if(activeResults && !activeResults.classList.contains('hidden')) renderResults();
-            }
-            if(e.key === 'uyare_admin_logged') {
-                isAdminLoggedIn = e.newValue === 'true';
-                updateAdminTabVisibility();
-            }
-        });
 
         function renderTicker() {
             const tickerEl = document.getElementById('ticker-text');
@@ -708,13 +686,23 @@
             if(statEl) statEl.innerText = appData.results.length;
         }
 
+        // Dynamically inject or remove ADMIN button so public users never see it in DOM
         function updateAdminTabVisibility() {
-            const adminTabBtn = document.getElementById('tab-admin');
-            if(adminTabBtn) {
-                if(isAdminLoggedIn) {
-                    adminTabBtn.classList.remove('hidden');
-                } else {
-                    adminTabBtn.classList.add('hidden');
+            const container = document.getElementById('nav-tabs-container');
+            const existingAdminBtn = document.getElementById('tab-admin');
+
+            if (isAdminLoggedIn) {
+                if (!existingAdminBtn) {
+                    const adminBtn = document.createElement('button');
+                    adminBtn.id = 'tab-admin';
+                    adminBtn.onclick = () => switchTab('admin');
+                    adminBtn.className = "px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400";
+                    adminBtn.innerText = "ADMIN";
+                    container.appendChild(adminBtn);
+                }
+            } else {
+                if (existingAdminBtn) {
+                    existingAdminBtn.remove();
                 }
             }
         }
@@ -729,7 +717,9 @@
                 const el = document.getElementById(`content-${t}`);
                 if(el) el.classList.add('hidden');
                 const btn = document.getElementById(`tab-${t}`);
-                if(btn) {
+                if(btn && t !== 'admin') {
+                    btn.className = "px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400";
+                } else if(btn && t === 'admin' && isAdminLoggedIn) {
                     btn.className = "px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400";
                 }
             });
@@ -1014,6 +1004,8 @@
         function checkAdminLogin() {
             let user = prompt("Enter Username:");
             if(user === null) {
+                isAdminLoggedIn = false;
+                updateAdminTabVisibility();
                 switchTab('home');
                 return;
             }
@@ -1021,13 +1013,11 @@
             let pass = prompt("Enter Admin Password:");
             if(user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
                 isAdminLoggedIn = true;
-                localStorage.setItem('uyare_admin_logged', 'true');
                 updateAdminTabVisibility();
                 switchTab('admin');
             } else {
                 alert("Incorrect username or password!");
                 isAdminLoggedIn = false;
-                localStorage.setItem('uyare_admin_logged', 'false');
                 updateAdminTabVisibility();
                 switchTab('home');
             }
@@ -1036,7 +1026,6 @@
         function logoutAdmin() {
             if(confirm("Are you sure you want to log out from admin panel?")) {
                 isAdminLoggedIn = false;
-                localStorage.setItem('uyare_admin_logged', 'false');
                 updateAdminTabVisibility();
                 switchTab('home');
                 alert("Successfully logged out.");
@@ -1598,68 +1587,4 @@
         function handleAddResult(e) {
             e.preventDefault();
             const partValue = document.getElementById('admin-participant').value;
-            if(!partValue) {
-                alert('Please select a participant!');
-                return;
-            }
-
-            const posSelect = document.getElementById('admin-pos');
-            const selectedOpt = posSelect.options[posSelect.selectedIndex];
-            const prizeLabel = posSelect.value;
-            const pointsVal = Number(selectedOpt.getAttribute('data-points')) || 0;
-
-            let partName = partValue.split(' [')[0];
-            let schoolName = document.getElementById('admin-school').value;
-
-            const newItem = {
-                id: Date.now(),
-                item: document.getElementById('admin-item').value,
-                category: document.getElementById('admin-cat').value,
-                position: prizeLabel,
-                points: pointsVal,
-                school: schoolName,
-                participant: partName
-            };
-
-            appData.results.unshift(newItem);
-            saveData();
-            alert('Result saved and published successfully!');
-            document.getElementById('result-form').reset();
-            renderAdminManageResults();
-        }
-
-        function deleteResult(id) {
-            if(confirm("Are you sure you want to delete this result?")) {
-                appData.results = appData.results.filter(r => r.id !== id);
-                saveData();
-                renderAdminManageResults();
-            }
-        }
-
-        function renderAdminManageResults() {
-            const container = document.getElementById('admin-manage-results');
-            if(!container) return;
-            container.innerHTML = '';
-
-            if(appData.results.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400 font-bold py-4">No results added yet.</p>`;
-                return;
-            }
-
-            appData.results.forEach(res => {
-                container.innerHTML += `
-                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
-                        <div>
-                            <span class="text-xs font-bold text-amber-700 dark:text-amber-400 mr-2">[${res.category}]</span>
-                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${res.item}</span>
-                            <span class="text-xs bg-amber-100 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold px-2 py-0.5 rounded ml-2">${res.position} (${res.points} Pts)</span>
-                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">${res.school} - ${res.participant}</p>
-                        </div>
-                        <button onclick="deleteResult(${res.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
-                    </div>
-                `;
-            });
-        }
-    </script>
-</body>
-</html>
+            ... (rest of code)
