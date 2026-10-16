@@ -533,8 +533,10 @@
             appId: "1:915057591026:web:b5149ee6db07f6d3b5c66b"
         };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase safely
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         const db = firebase.firestore();
 
         const ADMIN_USERNAME = "admin@uyare2026";
@@ -591,7 +593,8 @@
 
         let isAdminLoggedIn = false;
 
-        window.onload = function() {
+        // Immediately render initial UI so buttons work right away
+        document.addEventListener("DOMContentLoaded", function() {
             const textEl = document.getElementById('theme-text');
             if(localStorage.getItem('uyare_theme') === 'dark') {
                 document.documentElement.classList.add('dark');
@@ -599,6 +602,8 @@
             } else {
                 if(textEl) textEl.innerText = 'Dark Mode';
             }
+
+            renderAllUI();
 
             // Real-time synchronization from Firestore
             db.collection("festivalData").doc("mainData").onSnapshot((doc) => {
@@ -619,13 +624,9 @@
                     saveDataToCloud();
                 }
 
-                renderTicker();
-                renderContactInfo();
-                updateStats();
-                renderIndividualChampions();
-                renderLeaderboard();
-                renderResults();
-                renderSchedule();
+                renderAllUI();
+            }, (error) => {
+                console.error("Firestore snapshot error: ", error);
             });
 
             const urlParams = new URLSearchParams(window.location.search);
@@ -636,7 +637,17 @@
                 updateAdminTabVisibility();
                 switchTab('home');
             }
-        };
+        });
+
+        function renderAllUI() {
+            renderTicker();
+            renderContactInfo();
+            updateStats();
+            renderIndividualChampions();
+            renderLeaderboard();
+            renderResults();
+            renderSchedule();
+        }
 
         function renderTicker() {
             const tickerEl = document.getElementById('ticker-text');
@@ -1249,3 +1260,447 @@
             });
         }
 
+        function renderAdminLbHeadersList() {
+            const container = document.getElementById('admin-lb-headers-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(!appData.lbHeaders) appData.lbHeaders = defaultLbHeaders;
+
+            appData.lbHeaders.forEach(h => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${h.title} <span class="text-xs text-slate-400">(${h.align})</span></span>
+                        <div class="flex gap-2">
+                            <button onclick="editLeaderboardHeader(${h.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition">Edit</button>
+                            <button onclick="deleteLeaderboardHeader(${h.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addNewLeaderboardHeader(e) {
+            e.preventDefault();
+            const title = document.getElementById('new-lb-header').value.trim();
+            const align = document.getElementById('new-lb-align').value;
+
+            if(!title) {
+                alert('Please enter header title!');
+                return;
+            }
+
+            const newH = {
+                id: Date.now(),
+                title: title,
+                align: align
+            };
+
+            if(!appData.lbHeaders) appData.lbHeaders = [];
+            appData.lbHeaders.push(newH);
+            saveDataToCloud();
+            renderAdminLbHeadersList();
+            document.getElementById('new-lb-header').value = '';
+            alert('Leaderboard header added successfully!');
+        }
+
+        function editLeaderboardHeader(id) {
+            const h = appData.lbHeaders.find(item => item.id === id);
+            if(!h) return;
+
+            const newTitle = prompt("Enter new header title:", h.title);
+            if(newTitle !== null && newTitle.trim() !== "") {
+                h.title = newTitle.trim();
+                saveDataToCloud();
+                renderAdminLbHeadersList();
+                alert('Header updated successfully!');
+            }
+        }
+
+        function deleteLeaderboardHeader(id) {
+            if(appData.lbHeaders.length <= 1) {
+                alert('At least one header must remain!');
+                return;
+            }
+            if(confirm("Are you sure you want to delete this header?")) {
+                appData.lbHeaders = appData.lbHeaders.filter(h => h.id !== id);
+                saveDataToCloud();
+                renderAdminLbHeadersList();
+            }
+        }
+
+        function renderAdminPrizesList() {
+            const container = document.getElementById('admin-prizes-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            appData.prizes.forEach(pz => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${pz.label} - <span class="text-amber-700 dark:text-amber-400 font-bold">${pz.points} Pts</span></span>
+                        <div class="flex gap-2">
+                            <button onclick="editPrizeConfig(${pz.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition">Edit</button>
+                            <button onclick="deletePrizeConfig(${pz.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addManualLeaderboardAdjustment(e) {
+            e.preventDefault();
+            const school = document.getElementById('manual-lb-school').value;
+            const reason = document.getElementById('manual-lb-reason').value.trim();
+            const points = Number(document.getElementById('manual-lb-points').value);
+
+            if(!school || !reason || isNaN(points)) {
+                alert('Please provide valid information!');
+                return;
+            }
+
+            const item = {
+                id: Date.now(),
+                school: school,
+                reason: reason,
+                points: points
+            };
+
+            if(!appData.manualLb) appData.manualLb = [];
+            appData.manualLb.push(item);
+            saveDataToCloud();
+            renderAdminManualLbList();
+            document.getElementById('manual-lb-reason').value = '';
+            document.getElementById('manual-lb-points').value = '';
+            alert('Points added successfully!');
+        }
+
+        function renderAdminManualLbList() {
+            const container = document.getElementById('admin-manual-lb-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(!appData.manualLb || appData.manualLb.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 font-bold py-2">No manual point entries.</p>`;
+                return;
+            }
+
+            appData.manualLb.forEach(m => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${m.school}</span>
+                            <span class="text-xs bg-blue-100 text-blue-900 font-bold px-2 py-0.5 rounded ml-2">+${m.points} Pts</span>
+                            <p class="text-xs text-slate-500 font-medium">${m.reason}</p>
+                        </div>
+                        <button onclick="deleteManualLb(${m.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
+                    </div>
+                `;
+            });
+        }
+
+        function deleteManualLb(id) {
+            if(confirm("Are you sure you want to delete this entry?")) {
+                appData.manualLb = appData.manualLb.filter(m => m.id !== id);
+                saveDataToCloud();
+                renderAdminManualLbList();
+            }
+        }
+
+        function addNewPrizeConfig(e) {
+            e.preventDefault();
+            const label = document.getElementById('new-prize-label').value.trim();
+            const points = Number(document.getElementById('new-prize-points').value);
+
+            if(!label || isNaN(points)) {
+                alert('Please enter valid data!');
+                return;
+            }
+
+            const newPz = {
+                id: Date.now(),
+                label: label,
+                points: points
+            };
+
+            appData.prizes.push(newPz);
+            saveDataToCloud();
+            populateAdminPrizesDropdown();
+            renderAdminPrizesList();
+            document.getElementById('new-prize-label').value = '';
+            document.getElementById('new-prize-points').value = '';
+            alert('Prize/grade added successfully!');
+        }
+
+        function editPrizeConfig(id) {
+            const pz = appData.prizes.find(p => p.id === id);
+            if(!pz) return;
+
+            const newLabel = prompt("Enter new label:", pz.label);
+            const newPoints = prompt("Enter new points:", pz.points);
+
+            if(newLabel !== null && newPoints !== null && !isNaN(Number(newPoints))) {
+                pz.label = newLabel.trim();
+                pz.points = Number(newPoints);
+                saveDataToCloud();
+                populateAdminPrizesDropdown();
+                renderAdminPrizesList();
+                alert('Prize info updated!');
+            }
+        }
+
+        function deletePrizeConfig(id) {
+            if(confirm("Are you sure you want to delete this prize/grade?")) {
+                appData.prizes = appData.prizes.filter(p => p.id !== id);
+                saveDataToCloud();
+                populateAdminPrizesDropdown();
+                renderAdminPrizesList();
+            }
+        }
+
+        function renderAdminSchoolsList() {
+            const container = document.getElementById('admin-schools-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            appData.schools.forEach(school => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="text-sm font-bold text-slate-800 dark:text-slate-200">${school}</span>
+                        <button onclick="deleteSchool('${school}')" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Remove</button>
+                    </div>
+                `;
+            });
+        }
+
+        function renderAdminEventsList() {
+            const container = document.getElementById('admin-events-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            appData.schedule.forEach(ev => {
+                container.innerHTML += `
+                    <div class="bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-amber-700 dark:text-amber-400">[${ev.stage}]</span>
+                            <span class="text-xs text-slate-500 font-bold">${ev.time}</span>
+                        </div>
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100 flex-1">${ev.item}</span>
+                            <button onclick="editStageName(${ev.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition whitespace-nowrap">Change Stage</button>
+                            <button onclick="deleteEventItem(${ev.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition whitespace-nowrap">Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderAdminParticipantsList() {
+            const container = document.getElementById('admin-participants-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(appData.participants.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 font-bold py-2">No participants added yet.</p>`;
+                return;
+            }
+
+            appData.participants.forEach(p => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${p.name}</span>
+                            ${p.chest ? `<span class="text-xs bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded ml-2">${p.chest}</span>` : ''}
+                            <p class="text-xs text-slate-500 font-medium">${p.school} (${p.category})</p>
+                        </div>
+                        <button onclick="deleteParticipant(${p.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Remove</button>
+                    </div>
+                `;
+            });
+        }
+
+        function addNewParticipant(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-part-name').value.trim();
+            const chest = document.getElementById('new-part-chest').value.trim();
+            const school = document.getElementById('new-part-school').value;
+            const category = document.getElementById('new-part-cat').value;
+
+            if(!name || !school) {
+                alert('Please fill out all required fields!');
+                return;
+            }
+
+            const newP = {
+                id: Date.now(),
+                name: name,
+                chest: chest,
+                school: school,
+                category: category
+            };
+
+            appData.participants.push(newP);
+            saveDataToCloud();
+            populateAdminParticipantsDatalist();
+            renderAdminParticipantsList();
+            document.getElementById('new-part-name').value = '';
+            document.getElementById('new-part-chest').value = '';
+            alert('Participant added successfully!');
+        }
+
+        function deleteParticipant(id) {
+            if(confirm("Are you sure you want to remove this participant?")) {
+                appData.participants = appData.participants.filter(p => p.id !== id);
+                saveDataToCloud();
+                populateAdminParticipantsDatalist();
+                renderAdminParticipantsList();
+            }
+        }
+
+        function addNewSchool() {
+            const input = document.getElementById('new-school-name');
+            const schoolName = input.value.trim();
+
+            if(!schoolName) {
+                alert('Please enter school name!');
+                return;
+            }
+
+            if(appData.schools.includes(schoolName)) {
+                alert('This school already exists!');
+                return;
+            }
+
+            appData.schools.push(schoolName);
+            saveDataToCloud();
+            populateAdminSchools();
+            renderAdminSchoolsList();
+            input.value = '';
+            alert('School added successfully!');
+        }
+
+        function deleteSchool(schoolName) {
+            if(confirm(`Are you sure you want to remove "${schoolName}"?`)) {
+                appData.schools = appData.schools.filter(s => s !== schoolName);
+                saveDataToCloud();
+                populateAdminSchools();
+                renderAdminSchoolsList();
+            }
+        }
+
+        function addNewEventItem(e) {
+            e.preventDefault();
+            const itemName = document.getElementById('new-event-name').value.trim();
+            const stage = document.getElementById('new-event-stage').value.trim();
+            const time = document.getElementById('new-event-time').value.trim();
+            const cat = document.getElementById('admin-cat') ? document.getElementById('admin-cat').value : 'Junior';
+
+            if(!itemName || !stage || !time) {
+                alert('Please fill out all fields!');
+                return;
+            }
+
+            const newEvent = {
+                id: Date.now(),
+                stage: stage,
+                time: time,
+                item: itemName,
+                category: cat
+            };
+
+            appData.schedule.push(newEvent);
+            saveDataToCloud();
+            populateAdminEventItems();
+            renderAdminEventsList();
+            document.getElementById('new-event-name').value = '';
+            document.getElementById('new-event-stage').value = '';
+            document.getElementById('new-event-time').value = '';
+            alert('Event item added successfully!');
+        }
+
+        function editStageName(id) {
+            const ev = appData.schedule.find(item => item.id === id);
+            if(!ev) return;
+
+            const newStage = prompt(`Enter new stage name for "${ev.item}":`, ev.stage);
+            if(newStage !== null && newStage.trim() !== "") {
+                ev.stage = newStage.trim();
+                saveDataToCloud();
+                renderAdminEventsList();
+                populateAdminEventItems();
+                alert('Stage updated successfully!');
+            }
+        }
+
+        function deleteEventItem(id) {
+            if(confirm("Are you sure you want to delete this event item?")) {
+                appData.schedule = appData.schedule.filter(ev => ev.id !== id);
+                saveDataToCloud();
+                populateAdminEventItems();
+                renderAdminEventsList();
+            }
+        }
+
+        function handleAddResult(e) {
+            e.preventDefault();
+            const partInputValue = document.getElementById('admin-participant-input').value.trim();
+
+            const posSelect = document.getElementById('admin-pos');
+            const selectedOpt = posSelect.options[posSelect.selectedIndex];
+            const prizeLabel = posSelect.value;
+            const pointsVal = Number(selectedOpt.getAttribute('data-points')) || 0;
+
+            let schoolName = document.getElementById('admin-school').value;
+
+            const newItem = {
+                id: Date.now(),
+                item: document.getElementById('admin-item').value,
+                category: document.getElementById('admin-cat').value,
+                position: prizeLabel,
+                points: pointsVal,
+                school: schoolName,
+                participant: partInputValue
+            };
+
+            appData.results.unshift(newItem);
+            saveDataToCloud();
+            alert('Result saved and published live successfully!');
+            document.getElementById('result-form').reset();
+            renderAdminManageResults();
+        }
+
+        function deleteResult(id) {
+            if(confirm("Are you sure you want to delete this result?")) {
+                appData.results = appData.results.filter(r => r.id !== id);
+                saveDataToCloud();
+                renderAdminManageResults();
+            }
+        }
+
+        function renderAdminManageResults() {
+            const container = document.getElementById('admin-manage-results');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(appData.results.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 font-bold py-4">No results added yet.</p>`;
+                return;
+            }
+
+            appData.results.forEach(res => {
+                let partText = res.participant ? ` - ${res.participant}` : '';
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-xs font-bold text-amber-700 dark:text-amber-400 mr-2">[${res.category}]</span>
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${res.item}</span>
+                            <span class="text-xs bg-amber-100 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold px-2 py-0.5 rounded ml-2">${res.position} (${res.points} Pts)</span>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">${res.school}${partText}</p>
+                        </div>
+                        <button onclick="deleteResult(${res.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
