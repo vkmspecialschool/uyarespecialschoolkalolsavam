@@ -32,7 +32,7 @@
         <div class="max-w-7xl mx-auto flex items-center">
             <span class="bg-amber-600 text-white px-2.5 py-0.5 rounded font-bold mr-3 uppercase tracking-wider text-[10px]">തത്സമയ അറിയിപ്പ്</span>
             <div class="overflow-hidden w-full">
-                <p class="animate-marquee font-medium">📢 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 'ഉയരെ' - ഔദ്യോഗിക ലൈവ് പോർട്ടലിലേക്ക് സ്വാഗതം! മത്സരഫലങ്ങളും പോയിന്റ് നിലയും തത്സമയം അറിയാം.</p>
+                <p id="ticker-text" class="animate-marquee font-medium">📢 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 'ഉയരെ' - ഔദ്യോഗിക ലൈവ് പോർട്ടലിലേക്ക് സ്വാഗതം! മത്സരഫലങ്ങളും പോയിന്റ് നിലയും തത്സമയം അറിയാം.</p>
             </div>
         </div>
     </div>
@@ -52,11 +52,10 @@
                     <button onclick="switchTab('results')" id="tab-results" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">RESULTS</button>
                     <button onclick="switchTab('schedule')" id="tab-schedule" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">SCHEDULE</button>
                     <button onclick="switchTab('contact')" id="tab-contact" class="px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">CONTACT</button>
-                    <!-- Admin Tab (Hidden by default, appears when logged in) -->
+                    <!-- Admin Tab -->
                     <button onclick="switchTab('admin')" id="tab-admin" class="hidden px-4 py-2 rounded-xl text-slate-700 dark:text-slate-300 text-xs md:text-sm font-bold transition hover:text-amber-800 dark:hover:text-amber-400">ADMIN</button>
                 </div>
                 
-                <!-- Dark Mode Button -->
                 <button onclick="toggleDarkMode()" id="dark-mode-btn" class="px-4 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-amber-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition shadow-inner text-xs md:text-sm font-bold">
                     <span id="theme-text">Dark Mode</span>
                 </button>
@@ -81,7 +80,6 @@
                     <p class="text-amber-100/80 text-xs md:text-sm font-medium leading-relaxed">മലപ്പുറം ജില്ലയിലെ സ്പെഷ്യൽ സ്കൂളുകൾ ജൂനിയർ, സീനിയർ വിഭാഗങ്ങളിലായി മാറ്റുരയ്ക്കുന്ന കലാമാമാങ്കം.</p>
                 </div>
 
-                <!-- Poster Box -->
                 <div class="relative z-10 w-full md:w-80 h-64 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md rounded-2xl p-4 border border-amber-500/30 shadow-inner flex items-center justify-center overflow-hidden">
                     <img src="100254.png" alt="Uyare Poster" class="max-h-full max-w-full object-contain rounded-xl shadow-md">
                 </div>
@@ -89,25 +87,21 @@
 
             <!-- Quick Stats Highlights Cards -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <!-- 1st Card: Special Schools -->
                 <div onclick="openSchoolWiseModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
                     <span class="text-3xl">🏫</span>
                     <h4 class="text-xl md:text-2xl font-black text-amber-900 dark:text-amber-400">Special Schools</h4>
                     <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Click for School Results</p>
                 </div>
-                <!-- 2nd Card: Category-wise Results -->
                 <div onclick="openCategoryWiseModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
                     <span class="text-3xl">✨</span>
                     <h4 class="text-lg md:text-xl font-black text-amber-900 dark:text-amber-400">Category-wise Results</h4>
                     <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Junior & Senior</p>
                 </div>
-                <!-- 3rd Card: Published Results -->
                 <div onclick="openPublishedResultsModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
                     <span class="text-3xl">🏆</span>
                     <h4 class="text-2xl font-black text-amber-900 dark:text-amber-400" id="stat-total-results">0</h4>
                     <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Published Results</p>
                 </div>
-                <!-- 4th Card: Live Point Update -->
                 <div onclick="openLivePointModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
                     <span class="text-3xl">🎯</span>
                     <h4 class="text-xl md:text-2xl font-black text-amber-900 dark:text-amber-400">Live Point Update</h4>
@@ -122,7 +116,7 @@
                         <h3 class="text-2xl font-extrabold text-slate-900 dark:text-slate-100 flex items-center gap-2">
                             <span>🏆</span> ഓവറോൾ ലീഡർബോർഡ് (ടോപ്പ് സ്കൂളുകൾ)
                         </h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">മത്സരഫലങ്ങൾക്കനുസരിച്ച് പോയിന്റുകൾ സ്വയം അപ്ഡേറ്റ് ആകുന്നു.</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">മത്സരഫലങ്ങൾക്കും അഡ്മിൻ ക്രമീകരണങ്ങൾക്കും അനുസരിച്ച് പോയിന്റുകൾ അപ്ഡേറ്റ് ആകുന്നു.</p>
                     </div>
                     <span class="text-xs text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 px-3.5 py-1.5 rounded-full font-bold flex items-center gap-1.5">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> ലൈവ് പോയിന്റ് നില
@@ -131,13 +125,8 @@
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
-                                <th class="p-4 rounded-l-2xl font-extrabold">സ്ഥാനം</th>
-                                <th class="p-4 font-extrabold">സ്കൂൾ പേര്</th>
-                                <th class="p-4 text-center font-extrabold text-amber-700 dark:text-amber-400">1st Prize</th>
-                                <th class="p-4 text-center font-extrabold text-blue-600 dark:text-blue-400">2nd Prize</th>
-                                <th class="p-4 text-center font-extrabold text-slate-600 dark:text-slate-400">3rd Prize</th>
-                                <th class="p-4 text-right rounded-r-2xl font-extrabold text-amber-950 dark:text-amber-200">ആകെ പോയിന്റ്</th>
+                            <tr id="leaderboard-header-row" class="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
+                                <!-- Populated dynamically by JS -->
                             </tr>
                         </thead>
                         <tbody id="leaderboard-body" class="divide-y divide-slate-100 dark:divide-slate-800 text-sm font-medium">
@@ -150,6 +139,20 @@
 
         <!-- RESULTS TAB -->
         <div id="content-results" class="hidden space-y-6">
+            
+            <!-- Individual Overall Display ONLY in Results Tab -->
+            <div id="results-individual-overall" class="hidden bg-gradient-to-r from-amber-800 to-amber-950 text-white p-6 rounded-3xl shadow-lg border border-amber-700/50 space-y-4">
+                <div class="flex items-center justify-between border-b border-amber-600/50 pb-3">
+                    <h3 class="text-xl md:text-2xl font-black flex items-center gap-2">
+                        <span>👑</span> ഇൻഡിവിജ്വൽ ഓവറോൾ ടോപ്പർമാർ (Individual Champions)
+                    </h3>
+                    <span class="text-[10px] font-bold bg-amber-500/30 text-amber-200 border border-amber-400/30 px-3 py-1 rounded-full uppercase">Official Winners</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="results-individual-cards">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
             <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-4 justify-between items-center transition-colors duration-300">
                 <div class="w-full md:w-1/3">
                     <label class="block text-xs font-extrabold text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-wider">കാറ്റഗറി ഫിൽട്ടർ</label>
@@ -190,7 +193,6 @@
                 </div>
             </div>
 
-            <!-- Schedule Cards Container -->
             <div id="schedule-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Populated by JS -->
             </div>
@@ -204,17 +206,15 @@
                 <div class="space-y-4 text-sm font-medium text-slate-700 dark:text-slate-300">
                     <div class="flex items-start gap-3 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
                         <span class="text-xl">📍</span>
-                        <p class="leading-relaxed">
-                            <strong>VKM Special School</strong><br>
-                            Puramannur (P.O.), Near Majlis Arts and Science College (Autonomous), Valanchery, Malappuram District - 676 552<br>
-                            Kerala, India
+                        <p id="contact-address-display" class="leading-relaxed">
+                            <!-- Populated by JS -->
                         </p>
                     </div>
 
                     <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
                         <span class="text-xl">📞</span>
-                        <p class="font-bold text-amber-800 dark:text-amber-400">
-                            +91 984721495
+                        <p id="contact-phone-display" class="font-bold text-amber-800 dark:text-amber-400">
+                            <!-- Populated by JS -->
                         </p>
                     </div>
                 </div>
@@ -247,29 +247,170 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">സ്ഥാനം / വിജയം</label>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">സ്ഥാനം / ഗ്രേഡ് / വിജയം</label>
                             <select id="admin-pos" class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
-                                <option value="1st">1st Prize (5 Points)</option>
-                                <option value="2nd">2nd Prize (3 Points)</option>
-                                <option value="3rd">3rd Prize (1 Point)</option>
+                                <!-- Populated dynamically -->
                             </select>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">സ്കൂൾ തിരഞ്ഞെടുക്കുക</label>
-                        <select id="admin-school" class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">മത്സരാർത്ഥിയെ തിരഞ്ഞെടുക്കുക (Select Participant)</label>
+                        <select id="admin-participant" required class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
                             <!-- Populated by JS -->
                         </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1.5">കളിക്കാരന്റെ പേര് / ചെസ്റ്റ് നമ്പർ</label>
-                        <input type="text" id="admin-participant" required placeholder="ഉദാ: അശ്വിൻ (C01)" class="w-full p-3.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
                     </div>
                     <button type="submit" class="w-full py-4 bg-amber-800 text-white font-extrabold rounded-2xl shadow-lg hover:bg-amber-900 transition">ഫലം സേവ് ചെയ്യുക</button>
                 </form>
             </div>
 
-            <!-- Manage Event Items & Stage Names Section -->
+            <!-- Manage Ticker Notice Section -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">📢 തത്സമയ അറിയിപ്പ് മാറ്റാൻ (Manage Ticker Notice)</h4>
+                
+                <form onsubmit="updateTickerNotice(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">അറിയിപ്പ് സന്ദേശം (Ticker Text)</label>
+                        <textarea id="admin-ticker-input" rows="3" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="അറിയിപ്പ് ഇവിടെ ടൈപ്പ് ചെയ്യുക..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-amber-700 text-white font-bold rounded-2xl hover:bg-amber-800 transition text-sm">അറിയിപ്പ് അപ്ഡേറ്റ് ചെയ്യുക</button>
+                </form>
+            </div>
+
+            <!-- Manage Contact Info Section -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">📍 കോൺടാക്ട് വിവരങ്ങൾ എഡിറ്റ്‌ ചെയ്യാൻ (Manage Contact Info)</h4>
+                
+                <form onsubmit="updateContactInfo(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">സ്കൂൾ വിലാസം (Address)</label>
+                        <textarea id="admin-contact-address" rows="3" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="വിലാസം നൽകുക..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">ഫോൺ നമ്പർ (Phone Number)</label>
+                        <input type="text" id="admin-contact-phone" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="ഫോൺ നമ്പർ നൽകുക...">
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-blue-700 text-white font-bold rounded-2xl hover:bg-blue-800 transition text-sm">കോൺടാക്ട് വിവരങ്ങൾ അപ്ഡേറ്റ് ചെയ്യുക</button>
+                </form>
+            </div>
+
+            <!-- Manage Leaderboard Headers Section -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">📊 ലീഡർബോർഡ് ഹെഡിങ്സ് നിയന്ത്രിക്കാൻ (Manage Headers)</h4>
+                
+                <form onsubmit="addNewLeaderboardHeader(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">ഹെഡിങ് പേര് (Title)</label>
+                            <input type="text" id="new-lb-header" required placeholder="ഉദാ: സ്ഥാനങ്ങൾ" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">അലൈൻമെന്റ് (Align)</label>
+                            <select id="new-lb-align" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                                <option value="left">Left</option>
+                                <option value="center">Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-amber-700 text-white font-bold rounded-2xl hover:bg-amber-800 transition text-sm">പുതിയ ഹെഡിങ് ആഡ് ചെയ്യുക</button>
+                </form>
+
+                <div id="admin-lb-headers-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Manage Leaderboard / Manual School Points Section -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">🏆 സ്കൂൾ ലീഡർബോർഡ് പോയിന്റ് (Manual Points / Bonus)</h4>
+                
+                <form onsubmit="addManualLeaderboardAdjustment(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">സ്കൂൾ തിരഞ്ഞെടുക്കുക</label>
+                        <select id="manual-lb-school" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">കാരണം / ലേബൽ</label>
+                            <input type="text" id="manual-lb-reason" required placeholder="ഉദാ: ബോണസ് പോയിന്റ്" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">പോയിന്റ്</label>
+                            <input type="number" id="manual-lb-points" required placeholder="ഉദാ: 10" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-blue-700 text-white font-bold rounded-2xl hover:bg-blue-800 transition text-sm">പോയിന്റ് ചേർക്കുക</button>
+                </form>
+
+                <div id="admin-manual-lb-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Manage Prizes & Points -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">🏅 സമ്മാനങ്ങളും പോയിന്റുകളും സജ്ജീകരിക്കാൻ (Manage Prizes & Points)</h4>
+                
+                <form onsubmit="addNewPrizeConfig(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">പ്രൈസ് / ഗ്രേഡിന്റെ പേര്</label>
+                            <input type="text" id="new-prize-label" required placeholder="ഉദാ: 1st Prize, Grade A" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">പോയിന്റ്</label>
+                            <input type="number" id="new-prize-points" required placeholder="ഉദാ: 5" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-amber-700 text-white font-bold rounded-2xl hover:bg-amber-800 transition text-sm">പുതിയ പ്രൈസ് / ഗ്രേഡ് ആഡ് ചെയ്യുക</button>
+                </form>
+
+                <div id="admin-prizes-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Manage Participants Section -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">👤 മത്സരാർത്ഥികളെ രജിസ്റ്റർ ചെയ്യാൻ (Register Participants)</h4>
+                
+                <form onsubmit="addNewParticipant(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">പേര് (Name)</label>
+                            <input type="text" id="new-part-name" required placeholder="ഉദാ: അശ്വിൻ" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">ചെസ്റ്റ് നമ്പർ (Chest No)</label>
+                            <input type="text" id="new-part-chest" placeholder="ഉദാ: C01" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">സ്കൂൾ (School)</label>
+                            <select id="new-part-school" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                                <!-- Populated by JS -->
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">കാറ്റഗറി (Category)</label>
+                            <select id="new-part-cat" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                                <option value="Junior">Junior</option>
+                                <option value="Senior">Senior</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-emerald-700 text-white font-bold rounded-2xl hover:bg-emerald-800 transition text-sm">മത്സരാർത്ഥിയെ ചേർക്കുക</button>
+                </form>
+
+                <div id="admin-participants-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Manage Event Items Section -->
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
                 <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">📅 മത്സര ഇനങ്ങളും വേദികളും മാറ്റാൻ (Manage Events & Stages)</h4>
                 
@@ -282,7 +423,7 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">വേദി (Stage Name)</label>
-                            <input type="text" id="new-event-stage" required placeholder="ഉദാ: Stage 1 / Main Auditorium" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                            <input type="text" id="new-event-stage" required placeholder="ഉദാ: Stage 1" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">സമയം (Time)</label>
@@ -297,7 +438,7 @@
                 </div>
             </div>
 
-            <!-- Manage Schools Section (Add & Delete Schools) -->
+            <!-- Manage Schools Section -->
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
                 <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">🏫 സ്കൂളുകൾ ചേർക്കാനും നീക്കം ചെയ്യാനും (Manage Schools)</h4>
                 
@@ -311,7 +452,7 @@
                 </div>
             </div>
 
-            <!-- Admin Results Management Section (Delete Feature) -->
+            <!-- Admin Results Management Section -->
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-4xl mx-auto transition-colors duration-300">
                 <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 mb-4 border-b border-slate-100 dark:border-slate-800 pb-3">ചേർത്ത ഫലങ്ങൾ തിരുത്താനും നീക്കം ചെയ്യാനും (Manage Results)</h4>
                 <div id="admin-manage-results" class="space-y-3">
@@ -322,7 +463,7 @@
 
     </main>
 
-    <!-- School-wise Results Modal -->
+    <!-- Modals -->
     <div id="school-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6 max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
@@ -337,7 +478,6 @@
         </div>
     </div>
 
-    <!-- Category-wise Results Modal -->
     <div id="category-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6 max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
@@ -352,7 +492,6 @@
         </div>
     </div>
 
-    <!-- Published Results Modal -->
     <div id="published-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6 max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
@@ -367,7 +506,6 @@
         </div>
     </div>
 
-    <!-- Live Point Update Modal -->
     <div id="live-point-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-6 max-h-[90vh] flex flex-col">
             <div class="flex justify-between items-center pb-4 border-b border-slate-100 dark:border-slate-800">
@@ -382,16 +520,31 @@
         </div>
     </div>
 
-    <!-- Footer Fixed at Bottom across all tabs -->
     <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-16 py-6 text-center text-xs text-slate-500 dark:text-slate-400 font-medium transition-colors duration-300">
         <p>© 2026 ഉയരെ - 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം. എല്ലാ അവകാശങ്ങളും സുരക്ഷിതം.</p>
     </footer>
 
     <script>
-        const ADMIN_USERNAME = "admin";
-        const ADMIN_PASSWORD = "uyare2026";
+        const ADMIN_USERNAME = "admin@uyare2026";
+        const ADMIN_PASSWORD = "2002@vkmsps";
         
         let defaultSchools = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
+
+        let defaultPrizes = [
+            { id: 1, label: "1st Prize", points: 5 },
+            { id: 2, label: "2nd Prize", points: 3 },
+            { id: 3, label: "3rd Prize", points: 1 },
+            { id: 4, label: "A Grade", points: 5 },
+            { id: 5, label: "B Grade", points: 3 },
+            { id: 6, label: "C Grade", points: 1 }
+        ];
+
+        let defaultLbHeaders = [
+            { id: 1, title: "സ്ഥാനം", align: "left" },
+            { id: 2, title: "സ്കൂൾ പേര്", align: "left" },
+            { id: 3, title: "വിജയങ്ങൾ / എൻട്രികൾ", align: "center" },
+            { id: 4, title: "ആകെ പോയിന്റ്", align: "right" }
+        ];
 
         let defaultSchedule = [
             { id: 1, stage: "Stage 1", time: "09:30 AM", item: "ലളിതഗാനം (Light Music)", category: "Junior" },
@@ -404,14 +557,33 @@
             { id: 8, stage: "Stage 4", time: "01:00 PM", item: "ചിത്രരചന (Painting)", category: "Senior" }
         ];
 
+        let defaultTicker = "📢 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 'ഉയരെ' - ഔദ്യോഗിക ലൈവ് പോർട്ടലിലേക്ക് സ്വാഗതം! മത്സരഫലങ്ങളും പോയിന്റ് നിലയും തത്സമയം അറിയാം.";
+
+        let defaultContactAddress = "<strong>VKM Special School</strong><br> Puramannur (P.O.), Near Majlis Arts and Science College (Autonomous), Valanchery, Malappuram District - 676 552<br> Kerala, India";
+        let defaultContactPhone = "+91 984721495";
+
         let appData = JSON.parse(localStorage.getItem('uyare_kalotsavam_data')) || {
             results: [],
             schools: defaultSchools,
-            schedule: defaultSchedule
+            schedule: defaultSchedule,
+            participants: [],
+            prizes: defaultPrizes,
+            manualLb: [],
+            lbHeaders: defaultLbHeaders,
+            tickerNotice: defaultTicker,
+            contactAddress: defaultContactAddress,
+            contactPhone: defaultContactPhone
         };
 
         if(!appData.schools) appData.schools = defaultSchools;
         if(!appData.schedule) appData.schedule = defaultSchedule;
+        if(!appData.participants) appData.participants = [];
+        if(!appData.prizes) appData.prizes = defaultPrizes;
+        if(!appData.manualLb) appData.manualLb = [];
+        if(!appData.lbHeaders) appData.lbHeaders = defaultLbHeaders;
+        if(!appData.tickerNotice) appData.tickerNotice = defaultTicker;
+        if(!appData.contactAddress) appData.contactAddress = defaultContactAddress;
+        if(!appData.contactPhone) appData.contactPhone = defaultContactPhone;
 
         let isAdminLoggedIn = localStorage.getItem('uyare_admin_logged') === 'true';
 
@@ -424,24 +596,31 @@
                 if(textEl) textEl.innerText = 'Dark Mode';
             }
 
+            renderTicker();
+            renderContactInfo();
+            updateAdminTabVisibility();
+
             const urlParams = new URLSearchParams(window.location.search);
-            if(urlParams.get('uyare') === 'admin' && !isAdminLoggedIn) {
-                checkAdminLogin();
-            } else {
-                updateAdminTabVisibility();
-                if(isAdminLoggedIn && urlParams.get('uyare') === 'admin') {
-                    switchTab('admin');
+            if(urlParams.get('uyare') === 'admin') {
+                if(!isAdminLoggedIn) {
+                    checkAdminLogin();
                 } else {
-                    switchTab('home');
+                    switchTab('admin');
                 }
+            } else {
+                switchTab('home');
             }
             updateStats();
+            renderIndividualChampions();
         };
 
         window.addEventListener('storage', function(e) {
             if(e.key === 'uyare_kalotsavam_data') {
-                appData = JSON.parse(e.newValue) || { results: [], schools: defaultSchools, schedule: defaultSchedule };
+                appData = JSON.parse(e.newValue) || { results: [], schools: defaultSchools, schedule: defaultSchedule, participants: [], prizes: defaultPrizes, manualLb: [], lbHeaders: defaultLbHeaders, tickerNotice: defaultTicker, contactAddress: defaultContactAddress, contactPhone: defaultContactPhone };
                 updateStats();
+                renderIndividualChampions();
+                renderTicker();
+                renderContactInfo();
                 const activeHome = document.getElementById('content-home');
                 const activeResults = document.getElementById('content-results');
                 if(activeHome && !activeHome.classList.contains('hidden')) renderLeaderboard();
@@ -452,6 +631,51 @@
                 updateAdminTabVisibility();
             }
         });
+
+        function renderTicker() {
+            const tickerEl = document.getElementById('ticker-text');
+            if(tickerEl) {
+                tickerEl.innerText = appData.tickerNotice || defaultTicker;
+            }
+        }
+
+        function renderContactInfo() {
+            const addrEl = document.getElementById('contact-address-display');
+            const phoneEl = document.getElementById('contact-phone-display');
+            if(addrEl) addrEl.innerHTML = appData.contactAddress || defaultContactAddress;
+            if(phoneEl) phoneEl.innerText = appData.contactPhone || defaultContactPhone;
+        }
+
+        function updateTickerNotice(e) {
+            e.preventDefault();
+            const val = document.getElementById('admin-ticker-input').value.trim();
+            if(!val) {
+                alert('ദയവായി അറിയിപ്പ് നൽകുക!');
+                return;
+            }
+            appData.tickerNotice = val;
+            saveData();
+            renderTicker();
+            document.getElementById('admin-ticker-input').value = '';
+            alert('തത്സമയ അറിയിപ്പ് വിജയകരമായി അപ്ഡേറ്റ് ചെയ്തു!');
+        }
+
+        function updateContactInfo(e) {
+            e.preventDefault();
+            const address = document.getElementById('admin-contact-address').value.trim();
+            const phone = document.getElementById('admin-contact-phone').value.trim();
+
+            if(!address || !phone) {
+                alert('ദയവായി വിലാസവും ഫോൺ നമ്പറും നൽകുക!');
+                return;
+            }
+
+            appData.contactAddress = address.replace(/\n/g, '<br>');
+            appData.contactPhone = phone;
+            saveData();
+            renderContactInfo();
+            alert('കോൺടാക്ട് വിവരങ്ങൾ വിജയകരമായി അപ്ഡേറ്റ് ചെയ്തു!');
+        }
 
         function toggleDarkMode() {
             const htmlEl = document.documentElement;
@@ -470,6 +694,9 @@
         function saveData() {
             localStorage.setItem('uyare_kalotsavam_data', JSON.stringify(appData));
             updateStats();
+            renderIndividualChampions();
+            renderTicker();
+            renderContactInfo();
         }
 
         function updateStats() {
@@ -517,9 +744,22 @@
             if(tab === 'admin') {
                 populateAdminSchools();
                 populateAdminEventItems();
+                populateAdminParticipantsDropdown();
+                populateAdminPrizesDropdown();
+                renderAdminLbHeadersList();
+                renderAdminManualLbList();
+                renderAdminPrizesList();
                 renderAdminSchoolsList();
                 renderAdminEventsList();
+                renderAdminParticipantsList();
                 renderAdminManageResults();
+                const tickerInput = document.getElementById('admin-ticker-input');
+                if(tickerInput) tickerInput.value = appData.tickerNotice || defaultTicker;
+
+                const contactAddrInput = document.getElementById('admin-contact-address');
+                const contactPhoneInput = document.getElementById('admin-contact-phone');
+                if(contactAddrInput) contactAddrInput.value = (appData.contactAddress || defaultContactAddress).replace(/<br\s*[\/]?>/gi, '\n').replace(/<\/?[^>]+(>|$)/g, "");
+                if(contactPhoneInput) contactPhoneInput.value = appData.contactPhone || defaultContactPhone;
             }
         }
 
@@ -553,6 +793,70 @@
             });
         }
 
+        function renderIndividualChampions() {
+            const resultsSection = document.getElementById('results-individual-overall');
+            const resultsContent = document.getElementById('results-individual-cards');
+
+            if(appData.results.length === 0) {
+                if(resultsSection) resultsSection.classList.add('hidden');
+                return;
+            }
+
+            let pStats = {};
+
+            appData.results.forEach(res => {
+                const key = `${res.participant}_${res.school}`;
+                if(!pStats[key]) {
+                    pStats[key] = {
+                        name: res.participant,
+                        school: res.school,
+                        category: res.category,
+                        points: 0
+                    };
+                }
+                pStats[key].points += (Number(res.points) || 0);
+            });
+
+            let juniorTop = Object.values(pStats).filter(p => p.category === 'Junior').sort((a,b) => b.points - a.points)[0];
+            let seniorTop = Object.values(pStats).filter(p => p.category === 'Senior').sort((a,b) => b.points - a.points)[0];
+
+            if(!juniorTop && !seniorTop) {
+                if(resultsSection) resultsSection.classList.add('hidden');
+                return;
+            }
+
+            let html = '';
+
+            if(juniorTop) {
+                html += `
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20">
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-300 text-amber-950 px-2.5 py-0.5 rounded-full">Junior Individual Champion</span>
+                        <h4 class="text-lg font-black mt-2">${juniorTop.name}</h4>
+                        <p class="text-xs text-amber-100 font-medium">${juniorTop.school}</p>
+                        <div class="mt-2 text-right">
+                            <span class="font-extrabold text-sm bg-white text-amber-900 px-3 py-1 rounded-xl">${juniorTop.points} Points</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if(seniorTop) {
+                html += `
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20">
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-300 text-amber-950 px-2.5 py-0.5 rounded-full">Senior Individual Champion</span>
+                        <h4 class="text-lg font-black mt-2">${seniorTop.name}</h4>
+                        <p class="text-xs text-amber-100 font-medium">${seniorTop.school}</p>
+                        <div class="mt-2 text-right">
+                            <span class="font-extrabold text-sm bg-white text-amber-900 px-3 py-1 rounded-xl">${seniorTop.points} Points</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if(resultsContent) resultsContent.innerHTML = html;
+            if(resultsSection) resultsSection.classList.remove('hidden');
+        }
+
         function openSchoolWiseModal() {
             const modal = document.getElementById('school-modal');
             const body = document.getElementById('school-modal-body');
@@ -565,8 +869,7 @@
 
             appData.results.forEach(res => {
                 if(!stats[res.school]) stats[res.school] = { name: res.school, points: 0, items: [] };
-                let pts = res.position === '1st' ? 5 : (res.position === '2nd' ? 3 : 1);
-                stats[res.school].points += pts;
+                stats[res.school].points += (Number(res.points) || 0);
                 stats[res.school].items.push(res);
             });
 
@@ -578,8 +881,7 @@
                     itemsHtml = `<p class="text-xs text-slate-400 italic">ഫലങ്ങൾ ഒന്നും രേഖപ്പെടുത്തിയിട്ടില്ല</p>`;
                 } else {
                     school.items.forEach(i => {
-                        let prizeText = i.position === '1st' ? '1st Prize' : (i.position === '2nd' ? '2nd Prize' : '3rd Prize');
-                        itemsHtml += `<div class="text-xs bg-slate-50 dark:bg-slate-800 p-2 rounded-xl flex justify-between items-center"><span class="font-bold text-slate-800 dark:text-slate-200">${i.item} (${i.category})</span><span class="bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 font-extrabold px-2 py-0.5 rounded">${prizeText}</span></div>`;
+                        itemsHtml += `<div class="text-xs bg-slate-50 dark:bg-slate-800 p-2 rounded-xl flex justify-between items-center"><span class="font-bold text-slate-800 dark:text-slate-200">${i.item} (${i.category})</span><span class="bg-amber-100 dark:bg-amber-950 text-amber-900 dark:text-amber-300 font-extrabold px-2 py-0.5 rounded">${i.position} (${i.points} Pts)</span></div>`;
                     });
                 }
 
@@ -618,14 +920,13 @@
                     listHtml = `<p class="text-xs text-slate-400 italic">ഫലങ്ങൾ ഒന്നും ലഭ്യമായിട്ടില്ല</p>`;
                 } else {
                     catResults.forEach(res => {
-                        let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
                         listHtml += `
                             <div class="text-xs bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl flex justify-between items-center border border-slate-200 dark:border-slate-700">
                                 <div>
                                     <h5 class="font-black text-sm text-slate-900 dark:text-slate-100">${res.item}</h5>
                                     <p class="font-bold text-slate-600 dark:text-slate-300 mt-0.5">${res.school} - <span class="font-normal text-slate-400">${res.participant}</span></p>
                                 </div>
-                                <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold px-3 py-1 rounded-full">${prizeText}</span>
+                                <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold px-3 py-1 rounded-full">${res.position}</span>
                             </div>
                         `;
                     });
@@ -657,7 +958,6 @@
                 body.innerHTML = `<p class="text-center text-xs text-slate-400 py-8">ഫലങ്ങൾ ഒന്നും ഇതുവരെ പബ്ലിഷ് ചെയ്തിട്ടില്ല</p>`;
             } else {
                 appData.results.forEach(res => {
-                    let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
                     body.innerHTML += `
                         <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex justify-between items-center">
                             <div>
@@ -665,7 +965,7 @@
                                 <h4 class="font-black text-sm text-slate-900 dark:text-slate-100 mt-1">${res.item}</h4>
                                 <p class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-0.5">${res.school} - <span class="font-normal text-slate-400">${res.participant}</span></p>
                             </div>
-                            <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold text-xs px-3 py-1.5 rounded-xl">${prizeText}</span>
+                            <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-extrabold text-xs px-3 py-1.5 rounded-xl">${res.position}</span>
                         </div>
                     `;
                 });
@@ -692,7 +992,7 @@
                             <span class="font-black text-slate-400 text-sm">#${index + 1}</span>
                             <div>
                                 <h4 class="font-extrabold text-sm text-slate-900 dark:text-slate-100">${item.name}</h4>
-                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">1st: ${item.p1} | 2nd: ${item.p2} | 3rd: ${item.p3}</p>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Total Entries: ${item.wins}</p>
                             </div>
                         </div>
                         <span class="bg-amber-700 text-white font-black text-xs px-3 py-1.5 rounded-xl">${item.points} Pts</span>
@@ -722,6 +1022,9 @@
                 switchTab('admin');
             } else {
                 alert("തെറ്റായ യൂസർനെയിം അല്ലെങ്കിൽ പാസ്‌വേഡ്!");
+                isAdminLoggedIn = false;
+                localStorage.setItem('uyare_admin_logged', 'false');
+                updateAdminTabVisibility();
                 switchTab('home');
             }
         }
@@ -739,44 +1042,63 @@
         function calculateLeaderboard() {
             let stats = {};
             appData.schools.forEach(school => {
-                stats[school] = { name: school, points: 0, p1: 0, p2: 0, p3: 0 };
+                stats[school] = { name: school, points: 0, wins: 0 };
             });
 
             appData.results.forEach(res => {
-                if(!stats[res.school]) stats[res.school] = { name: res.school, points: 0, p1: 0, p2: 0, p3: 0 };
-                
-                if(res.position === '1st') {
-                    stats[res.school].points += 5;
-                    stats[res.school].p1 += 1;
-                } else if(res.position === '2nd') {
-                    stats[res.school].points += 3;
-                    stats[res.school].p2 += 1;
-                } else if(res.position === '3rd') {
-                    stats[res.school].points += 1;
-                    stats[res.school].p3 += 1;
-                }
+                if(!stats[res.school]) stats[res.school] = { name: res.school, points: 0, wins: 0 };
+                stats[res.school].points += (Number(res.points) || 0);
+                stats[res.school].wins += 1;
             });
+
+            if(appData.manualLb) {
+                appData.manualLb.forEach(m => {
+                    if(!stats[m.school]) stats[m.school] = { name: m.school, points: 0, wins: 0 };
+                    stats[m.school].points += (Number(m.points) || 0);
+                });
+            }
 
             return Object.values(stats).sort((a, b) => b.points - a.points);
         }
 
         function renderLeaderboard() {
+            const headerRow = document.getElementById('leaderboard-header-row');
             const tbody = document.getElementById('leaderboard-body');
-            if(!tbody) return;
+            if(!headerRow || !tbody) return;
+
+            // Render Headers dynamically
+            headerRow.innerHTML = '';
+            if(appData.lbHeaders && appData.lbHeaders.length > 0) {
+                appData.lbHeaders.forEach((h, idx) => {
+                    let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
+                    let roundClass = idx === 0 ? 'rounded-l-2xl' : (idx === appData.lbHeaders.length - 1 ? 'rounded-r-2xl' : '');
+                    headerRow.innerHTML += `<th class="p-4 ${roundClass} font-extrabold ${alignClass}">${h.title}</th>`;
+                });
+            }
+
+            // Render Body
             const data = calculateLeaderboard();
             tbody.innerHTML = '';
 
             data.forEach((item, index) => {
-                tbody.innerHTML += `
-                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
-                        <td class="p-4 font-black text-slate-500 dark:text-slate-400">#${index + 1}</td>
-                        <td class="p-4 font-extrabold text-slate-900 dark:text-slate-100">${item.name}</td>
-                        <td class="p-4 text-center text-amber-700 dark:text-amber-400 font-extrabold">${item.p1}</td>
-                        <td class="p-4 text-center text-blue-600 dark:text-blue-400 font-extrabold">${item.p2}</td>
-                        <td class="p-4 text-center text-slate-600 dark:text-slate-400 font-extrabold">${item.p3}</td>
-                        <td class="p-4 text-right font-black text-amber-950 dark:text-amber-200 text-base">${item.points}</td>
-                    </tr>
-                `;
+                let rowHtml = `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">`;
+                
+                if(appData.lbHeaders) {
+                    appData.lbHeaders.forEach((h, idx) => {
+                        let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
+                        if(idx === 0) {
+                            rowHtml += `<td class="p-4 font-black text-slate-500 dark:text-slate-400 ${alignClass}">#${index + 1}</td>`;
+                        } else if(idx === 1) {
+                            rowHtml += `<td class="p-4 font-extrabold text-slate-900 dark:text-slate-100 ${alignClass}">${item.name}</td>`;
+                        } else if(idx === 2) {
+                            rowHtml += `<td class="p-4 font-extrabold text-amber-700 dark:text-amber-400 ${alignClass}">${item.wins}</td>`;
+                        } else {
+                            rowHtml += `<td class="p-4 font-black text-amber-950 dark:text-amber-200 text-base ${alignClass}">${item.points}</td>`;
+                        }
+                    });
+                }
+                rowHtml += `</tr>`;
+                tbody.innerHTML += rowHtml;
             });
         }
 
@@ -800,13 +1122,12 @@
             }
 
             filtered.forEach(res => {
-                let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
                 container.innerHTML += `
                     <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-md transition">
                         <div>
                             <div class="flex justify-between items-start mb-3">
                                 <span class="bg-amber-100 dark:bg-amber-950/65 text-amber-900 dark:text-amber-300 text-xs font-extrabold px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800/60">${res.category} Category</span>
-                                <span class="bg-emerald-100 dark:bg-emerald-950/65 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/60">${prizeText}</span>
+                                <span class="bg-emerald-100 dark:bg-emerald-950/65 text-emerald-800 dark:text-emerald-300 text-xs font-black px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/60">${res.position}</span>
                             </div>
                             <h4 class="text-lg font-black text-slate-900 dark:text-slate-100 mb-1">${res.item}</h4>
                             <p class="text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">${res.school} - <span class="text-slate-500 dark:text-slate-400 font-normal">${res.participant}</span></p>
@@ -817,12 +1138,27 @@
         }
 
         function populateAdminSchools() {
-            const select = document.getElementById('admin-school');
-            if(!select) return;
-            select.innerHTML = '';
-            appData.schools.forEach(school => {
-                select.innerHTML += `<option value="${school}">${school}</option>`;
-            });
+            const select1 = document.getElementById('admin-school');
+            const select2 = document.getElementById('new-part-school');
+            const select3 = document.getElementById('manual-lb-school');
+            if(select1) {
+                select1.innerHTML = '';
+                appData.schools.forEach(school => {
+                    select1.innerHTML += `<option value="${school}">${school}</option>`;
+                });
+            }
+            if(select2) {
+                select2.innerHTML = '';
+                appData.schools.forEach(school => {
+                    select2.innerHTML += `<option value="${school}">${school}</option>`;
+                });
+            }
+            if(select3) {
+                select3.innerHTML = '';
+                appData.schools.forEach(school => {
+                    select3.innerHTML += `<option value="${school}">${school}</option>`;
+                });
+            }
         }
 
         function populateAdminEventItems() {
@@ -832,6 +1168,229 @@
             appData.schedule.forEach(event => {
                 select.innerHTML += `<option value="${event.item}">${event.item} (${event.stage} - ${event.category || 'Junior'})</option>`;
             });
+        }
+
+        function populateAdminParticipantsDropdown() {
+            const select = document.getElementById('admin-participant');
+            if(!select) return;
+            select.innerHTML = '';
+
+            if(appData.participants.length === 0) {
+                select.innerHTML = `<option value="">ആദ്യമായി മത്സരർത്ഥികളെ താഴെ ആഡ് ചെയ്യൂ</option>`;
+                return;
+            }
+
+            appData.participants.forEach(p => {
+                let chestText = p.chest ? ` (${p.chest})` : '';
+                select.innerHTML += `<option value="${p.name}${chestText} [${p.school}]">${p.name}${chestText} - ${p.school} (${p.category})</option>`;
+            });
+        }
+
+        function populateAdminPrizesDropdown() {
+            const select = document.getElementById('admin-pos');
+            if(!select) return;
+            select.innerHTML = '';
+
+            appData.prizes.forEach(p => {
+                select.innerHTML += `<option value="${p.label}" data-points="${p.points}">${p.label} (${p.points} Points)</option>`;
+            });
+        }
+
+        function renderAdminLbHeadersList() {
+            const container = document.getElementById('admin-lb-headers-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(!appData.lbHeaders) appData.lbHeaders = defaultLbHeaders;
+
+            appData.lbHeaders.forEach(h => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${h.title} <span class="text-xs text-slate-400">(${h.align})</span></span>
+                        <div class="flex gap-2">
+                            <button onclick="editLeaderboardHeader(${h.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition">എഡിറ്റ്‌</button>
+                            <button onclick="deleteLeaderboardHeader(${h.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">ഡിലീറ്റ്</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addNewLeaderboardHeader(e) {
+            e.preventDefault();
+            const title = document.getElementById('new-lb-header').value.trim();
+            const align = document.getElementById('new-lb-align').value;
+
+            if(!title) {
+                alert('ദയവായി ഹെഡിങ് പേര് നൽകുക!');
+                return;
+            }
+
+            const newH = {
+                id: Date.now(),
+                title: title,
+                align: align
+            };
+
+            if(!appData.lbHeaders) appData.lbHeaders = [];
+            appData.lbHeaders.push(newH);
+            saveData();
+            renderAdminLbHeadersList();
+            document.getElementById('new-lb-header').value = '';
+            alert('ലീഡർബോർഡ് ഹെഡിങ് വിജയകരമായി ചേർത്തു!');
+        }
+
+        function editLeaderboardHeader(id) {
+            const h = appData.lbHeaders.find(item => item.id === id);
+            if(!h) return;
+
+            const newTitle = prompt("പുതിയ ഹെഡിങ് പേര് നൽകുക:", h.title);
+            if(newTitle !== null && newTitle.trim() !== "") {
+                h.title = newTitle.trim();
+                saveData();
+                renderAdminLbHeadersList();
+                alert('ഹെഡിങ് അപ്ഡേറ്റ് ചെയ്തു!');
+            }
+        }
+
+        function deleteLeaderboardHeader(id) {
+            if(appData.lbHeaders.length <= 1) {
+                alert('കുറഞ്ഞത് ഒരു ഹെഡിങ് എങ്കിലും ഉണ്ടായിരിക്കണം!');
+                return;
+            }
+            if(confirm("ഈ ഹെഡിങ് നീക്കം ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+                appData.lbHeaders = appData.lbHeaders.filter(h => h.id !== id);
+                saveData();
+                renderAdminLbHeadersList();
+            }
+        }
+
+        function renderAdminPrizesList() {
+            const container = document.getElementById('admin-prizes-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            appData.prizes.forEach(pz => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${pz.label} - <span class="text-amber-700 dark:text-amber-400 font-bold">${pz.points} Pts</span></span>
+                        <div class="flex gap-2">
+                            <button onclick="editPrizeConfig(${pz.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition">എഡിറ്റ്‌</button>
+                            <button onclick="deletePrizeConfig(${pz.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">ഡിലീറ്റ്</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addManualLeaderboardAdjustment(e) {
+            e.preventDefault();
+            const school = document.getElementById('manual-lb-school').value;
+            const reason = document.getElementById('manual-lb-reason').value.trim();
+            const points = Number(document.getElementById('manual-lb-points').value);
+
+            if(!school || !reason || isNaN(points)) {
+                alert('ദയവായി എല്ലാ വിവരങ്ങളും കൃത്യമായി നൽകുക!');
+                return;
+            }
+
+            const item = {
+                id: Date.now(),
+                school: school,
+                reason: reason,
+                points: points
+            };
+
+            if(!appData.manualLb) appData.manualLb = [];
+            appData.manualLb.push(item);
+            saveData();
+            renderAdminManualLbList();
+            document.getElementById('manual-lb-reason').value = '';
+            document.getElementById('manual-lb-points').value = '';
+            alert('ലീഡർബോർഡിൽ പോയിന്റ് വിജയകരമായി ചേർത്തു!');
+        }
+
+        function renderAdminManualLbList() {
+            const container = document.getElementById('admin-manual-lb-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(!appData.manualLb || appData.manualLb.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 font-bold py-2">മാനുവൽ പോയിന്റ് എൻട്രികൾ ഒന്നും ഇല്ല.</p>`;
+                return;
+            }
+
+            appData.manualLb.forEach(m => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${m.school}</span>
+                            <span class="text-xs bg-blue-100 text-blue-900 font-bold px-2 py-0.5 rounded ml-2">+${m.points} Pts</span>
+                            <p class="text-xs text-slate-500 font-medium">${m.reason}</p>
+                        </div>
+                        <button onclick="deleteManualLb(${m.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">ഡിലീറ്റ്</button>
+                    </div>
+                `;
+            });
+        }
+
+        function deleteManualLb(id) {
+            if(confirm("ഈ എൻട്രി നീക്കം ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+                appData.manualLb = appData.manualLb.filter(m => m.id !== id);
+                saveData();
+                renderAdminManualLbList();
+            }
+        }
+
+        function addNewPrizeConfig(e) {
+            e.preventDefault();
+            const label = document.getElementById('new-prize-label').value.trim();
+            const points = Number(document.getElementById('new-prize-points').value);
+
+            if(!label || isNaN(points)) {
+                alert('ദയവായി സാധുവായ വിവരങ്ങൾ നൽകുക!');
+                return;
+            }
+
+            const newPz = {
+                id: Date.now(),
+                label: label,
+                points: points
+            };
+
+            appData.prizes.push(newPz);
+            saveData();
+            populateAdminPrizesDropdown();
+            renderAdminPrizesList();
+            document.getElementById('new-prize-label').value = '';
+            document.getElementById('new-prize-points').value = '';
+            alert('സമ്മാനം/ഗ്രേഡ് സജ്ജീകരണം വിജയകരമായി ചേർത്തു!');
+        }
+
+        function editPrizeConfig(id) {
+            const pz = appData.prizes.find(p => p.id === id);
+            if(!pz) return;
+
+            const newLabel = prompt("പുതിയ പേര് / ലേബൽ നൽകുക:", pz.label);
+            const newPoints = prompt("പുതിയ പോയിന്റ് നൽകുക:", pz.points);
+
+            if(newLabel !== null && newPoints !== null && !isNaN(Number(newPoints))) {
+                pz.label = newLabel.trim();
+                pz.points = Number(newPoints);
+                saveData();
+                populateAdminPrizesDropdown();
+                renderAdminPrizesList();
+                alert('സമ്മാന വിവരങ്ങൾ അപ്ഡേറ്റ് ചെയ്തു!');
+            }
+        }
+
+        function deletePrizeConfig(id) {
+            if(confirm("ഈ പ്രൈസ്/ഗ്രേഡ് ഓപ്ഷൻ നീക്കം ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+                appData.prizes = appData.prizes.filter(p => p.id !== id);
+                saveData();
+                populateAdminPrizesDropdown();
+                renderAdminPrizesList();
+            }
         }
 
         function renderAdminSchoolsList() {
@@ -869,6 +1428,68 @@
                     </div>
                 `;
             });
+        }
+
+        function renderAdminParticipantsList() {
+            const container = document.getElementById('admin-participants-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(appData.participants.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-400 font-bold py-2">മത്സരാർത്ഥികൾ ആഡ് ചെയ്തിട്ടില്ല.</p>`;
+                return;
+            }
+
+            appData.participants.forEach(p => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${p.name}</span>
+                            ${p.chest ? `<span class="text-xs bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded ml-2">${p.chest}</span>` : ''}
+                            <p class="text-xs text-slate-500 font-medium">${p.school} (${p.category})</p>
+                        </div>
+                        <button onclick="deleteParticipant(${p.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">റിമൂവ്</button>
+                    </div>
+                `;
+            });
+        }
+
+        function addNewParticipant(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-part-name').value.trim();
+            const chest = document.getElementById('new-part-chest').value.trim();
+            const school = document.getElementById('new-part-school').value;
+            const category = document.getElementById('new-part-cat').value;
+
+            if(!name || !school) {
+                alert('ദയവായി വിവരങ്ങൾ കൃത്യമായി നൽകുക!');
+                return;
+            }
+
+            const newP = {
+                id: Date.now(),
+                name: name,
+                chest: chest,
+                school: school,
+                category: category
+            };
+
+            appData.participants.push(newP);
+            saveData();
+            populateAdminParticipantsDropdown();
+            renderAdminParticipantsList();
+            document.getElementById('new-part-name').value = '';
+            document.getElementById('new-part-chest').value = '';
+            alert('മത്സരാർത്ഥിയെ വിജയകരമായി ചേർത്തു!');
+        }
+
+        function deleteParticipant(id) {
+            if(confirm("ഈ മത്സരാർത്ഥിയെ നീക്കം ചെയ്യണം എന്ന് ഉറപ്പാണോ?")) {
+                appData.participants = appData.participants.filter(p => p.id !== id);
+                saveData();
+                populateAdminParticipantsDropdown();
+                renderAdminParticipantsList();
+            }
         }
 
         function addNewSchool() {
@@ -958,18 +1579,33 @@
 
         function handleAddResult(e) {
             e.preventDefault();
+            const partValue = document.getElementById('admin-participant').value;
+            if(!partValue) {
+                alert('ദയവായി ഒരു മത്സരാർത്ഥിയെ തിരഞ്ഞെടുക്കുക!');
+                return;
+            }
+
+            const posSelect = document.getElementById('admin-pos');
+            const selectedOpt = posSelect.options[posSelect.selectedIndex];
+            const prizeLabel = posSelect.value;
+            const pointsVal = Number(selectedOpt.getAttribute('data-points')) || 0;
+
+            let partName = partValue.split(' [')[0];
+            let schoolName = document.getElementById('admin-school').value;
+
             const newItem = {
                 id: Date.now(),
                 item: document.getElementById('admin-item').value,
                 category: document.getElementById('admin-cat').value,
-                position: document.getElementById('admin-pos').value,
-                school: document.getElementById('admin-school').value,
-                participant: document.getElementById('admin-participant').value
+                position: prizeLabel,
+                points: pointsVal,
+                school: schoolName,
+                participant: partName
             };
 
             appData.results.unshift(newItem);
             saveData();
-            alert('ഫലം വിജയകരമായി സേവ് ചെയ്തു!');
+            alert('ഫലം വിജയകരമായി സേവ് ചെയ്ത് പബ്ലിഷ് ചെയ്തു!');
             document.getElementById('result-form').reset();
             renderAdminManageResults();
         }
@@ -993,13 +1629,12 @@
             }
 
             appData.results.forEach(res => {
-                let prizeText = res.position === '1st' ? '1st Prize' : (res.position === '2nd' ? '2nd Prize' : '3rd Prize');
                 container.innerHTML += `
                     <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
                         <div>
                             <span class="text-xs font-bold text-amber-700 dark:text-amber-400 mr-2">[${res.category}]</span>
                             <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${res.item}</span>
-                            <span class="text-xs bg-amber-100 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold px-2 py-0.5 rounded ml-2">${prizeText}</span>
+                            <span class="text-xs bg-amber-100 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 font-bold px-2 py-0.5 rounded ml-2">${res.position} (${res.points} Pts)</span>
                             <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">${res.school} - ${res.participant}</p>
                         </div>
                         <button onclick="deleteResult(${res.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">ഡിലീറ്റ്</button>
