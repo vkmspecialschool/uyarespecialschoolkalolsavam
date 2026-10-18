@@ -533,7 +533,6 @@
             appId: "1:915057591026:web:b5149ee6db07f6d3b5c66b"
         };
 
-        // Initialize Firebase safely
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
         }
@@ -593,7 +592,6 @@
 
         let isAdminLoggedIn = false;
 
-        // Immediately render initial UI so buttons work right away
         document.addEventListener("DOMContentLoaded", function() {
             const textEl = document.getElementById('theme-text');
             if(localStorage.getItem('uyare_theme') === 'dark') {
@@ -603,19 +601,17 @@
                 if(textEl) textEl.innerText = 'Dark Mode';
             }
 
-            renderAllUI();
-
             // Real-time synchronization from Firestore
             db.collection("festivalData").doc("mainData").onSnapshot((doc) => {
                 if (doc.exists) {
                     const cloudData = doc.data();
                     appData.results = cloudData.results || [];
-                    appData.schools = cloudData.schools || defaultSchools;
-                    appData.schedule = cloudData.schedule || defaultSchedule;
+                    appData.schools = cloudData.schools && cloudData.schools.length > 0 ? cloudData.schools : defaultSchools;
+                    appData.schedule = cloudData.schedule && cloudData.schedule.length > 0 ? cloudData.schedule : defaultSchedule;
                     appData.participants = cloudData.participants || [];
-                    appData.prizes = cloudData.prizes || defaultPrizes;
+                    appData.prizes = cloudData.prizes && cloudData.prizes.length > 0 ? cloudData.prizes : defaultPrizes;
                     appData.manualLb = cloudData.manualLb || [];
-                    appData.lbHeaders = cloudData.lbHeaders || defaultLbHeaders;
+                    appData.lbHeaders = cloudData.lbHeaders && cloudData.lbHeaders.length > 0 ? cloudData.lbHeaders : defaultLbHeaders;
                     appData.tickerNotice = cloudData.tickerNotice || defaultTicker;
                     appData.contactAddress = cloudData.contactAddress || defaultContactAddress;
                     appData.contactPhone = cloudData.contactPhone || defaultContactPhone;
@@ -625,6 +621,11 @@
                 }
 
                 renderAllUI();
+                
+                // If currently inside admin tab, refresh admin lists dynamically
+                if (isAdminLoggedIn && !document.getElementById('content-admin').classList.contains('hidden')) {
+                    refreshAdminPanelUI();
+                }
             }, (error) => {
                 console.error("Firestore snapshot error: ", error);
             });
@@ -673,7 +674,6 @@
             appData.tickerNotice = val;
             saveDataToCloud();
             renderTicker();
-            document.getElementById('admin-ticker-input').value = '';
             alert('Ticker notice updated successfully!');
         }
 
@@ -794,27 +794,31 @@
             if(tab === 'results') renderResults();
             if(tab === 'schedule') renderSchedule();
             if(tab === 'admin') {
-                populateAdminSchools();
-                populateAdminEventItems();
-                populateAdminParticipantsDatalist();
-                populateAdminPrizesDropdown();
-                renderAdminLbHeadersList();
-                renderAdminManualLbList();
-                renderAdminPrizesList();
-                renderAdminSchoolsList();
-                renderAdminEventsList();
-                renderAdminParticipantsList();
-                renderAdminManageResults();
-                updateToggleChampButton();
-
-                const tickerInput = document.getElementById('admin-ticker-input');
-                if(tickerInput) tickerInput.value = appData.tickerNotice || defaultTicker;
-
-                const contactAddrInput = document.getElementById('admin-contact-address');
-                const contactPhoneInput = document.getElementById('admin-contact-phone');
-                if(contactAddrInput) contactAddrInput.value = (appData.contactAddress || defaultContactAddress).replace(/<br\s*[\/]?>/gi, '\n').replace(/<\/?[^>]+(>|$)/g, "");
-                if(contactPhoneInput) contactPhoneInput.value = appData.contactPhone || defaultContactPhone;
+                refreshAdminPanelUI();
             }
+        }
+
+        function refreshAdminPanelUI() {
+            populateAdminSchools();
+            populateAdminEventItems();
+            populateAdminParticipantsDatalist();
+            populateAdminPrizesDropdown();
+            renderAdminLbHeadersList();
+            renderAdminManualLbList();
+            renderAdminPrizesList();
+            renderAdminSchoolsList();
+            renderAdminEventsList();
+            renderAdminParticipantsList();
+            renderAdminManageResults();
+            updateToggleChampButton();
+
+            const tickerInput = document.getElementById('admin-ticker-input');
+            if(tickerInput && appData.tickerNotice) tickerInput.value = appData.tickerNotice;
+
+            const contactAddrInput = document.getElementById('admin-contact-address');
+            const contactPhoneInput = document.getElementById('admin-contact-phone');
+            if(contactAddrInput && appData.contactAddress) contactAddrInput.value = appData.contactAddress.replace(/<br\s*[\/]?>/gi, '\n').replace(/<\/?[^>]+(>|$)/g, "");
+            if(contactPhoneInput && appData.contactPhone) contactPhoneInput.value = appData.contactPhone;
         }
 
         function renderSchedule() {
