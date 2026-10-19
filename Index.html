@@ -38,6 +38,12 @@
 </head>
 <body class="bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
 
+    <!-- Loading Splash Screen to Prevent Flash -->
+    <div id="page-loader" class="fixed inset-0 bg-slate-950 z-50 flex flex-col items-center justify-center space-y-4 transition-opacity duration-300">
+        <div class="w-12 h-12 border-4 border-amber-600 border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-amber-200 font-bold text-sm tracking-widest animate-pulse">ഉയരെ 2026 ലോഡ് ആകുന്നു...</p>
+    </div>
+
     <!-- Top Ticker Bar -->
     <div class="bg-amber-950 dark:bg-amber-950/80 text-amber-100 text-xs py-2 px-4 overflow-hidden whitespace-nowrap border-b border-amber-900/50 shadow-sm">
         <div class="max-w-7xl mx-auto flex items-center">
@@ -49,7 +55,7 @@
     </div>
 
     <!-- Official Header -->
-    <header class="bg-white dark:bg-slate-900 shadow-md sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <header class="bg-white dark:bg-slate-900 shadow-md sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left space-y-0.5">
                 <span id="header-badge-title" class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800/60">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</span>
@@ -585,8 +591,7 @@
         const ADMIN_USERNAME = "admin@uyare2026";
         const ADMIN_PASSWORD = "2002@vkmsps";
         
-        // Default schools fallback only if database is completely empty
-        let defaultSchools = ["VKM Special School Valanchery", "School 2"];
+        let defaultSchools = ["VKM Special School Valanchery"];
 
         let defaultPrizes = [
             { id: 1, label: "1st Prize", points: 5 },
@@ -655,6 +660,7 @@
         };
 
         let isAdminLoggedIn = false;
+        let isFirstLoad = true;
 
         document.addEventListener("DOMContentLoaded", function() {
             const textEl = document.getElementById('theme-text');
@@ -670,7 +676,6 @@
                     const cloudData = doc.data();
                     appData.results = cloudData.results || [];
                     
-                    // SAFEGUARD: Preserve user's custom schools from Firebase
                     if (cloudData.schools && cloudData.schools.length > 0) {
                         appData.schools = cloudData.schools;
                     } else {
@@ -707,8 +712,20 @@
                 if (isAdminLoggedIn && !document.getElementById('content-admin').classList.contains('hidden')) {
                     refreshAdminPanelUI();
                 }
+
+                // Hide loader smoothly after first successful data render
+                if (isFirstLoad) {
+                    isFirstLoad = false;
+                    const loader = document.getElementById('page-loader');
+                    if(loader) {
+                        loader.style.opacity = '0';
+                        setTimeout(() => loader.remove(), 300);
+                    }
+                }
             }, (error) => {
                 console.error("Firestore snapshot error: ", error);
+                const loader = document.getElementById('page-loader');
+                if(loader) loader.remove();
             });
 
             const urlParams = new URLSearchParams(window.location.search);
