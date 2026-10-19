@@ -27,6 +27,13 @@
             display: inline-block;
             animation: marquee 30s linear infinite;
         }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
@@ -45,8 +52,8 @@
     <header class="bg-white dark:bg-slate-900 shadow-md sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-center md:text-left space-y-0.5">
-                <span class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800/60">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</span>
-                <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
+                <span id="header-badge-title" class="bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300 text-xs font-bold px-3 py-0.5 rounded-full uppercase tracking-wider border border-amber-200 dark:border-amber-800/60">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</span>
+                <p id="header-sub-text" class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
             </div>
             
             <!-- Navigation & Dark Mode Toggle -->
@@ -77,37 +84,19 @@
                 
                 <div class="relative z-10 space-y-4 max-w-xl text-center md:text-left">
                     <span class="bg-amber-500/30 text-amber-200 text-xs font-bold px-3.5 py-1.5 rounded-full border border-amber-400/30 tracking-wider">OFFICIAL FESTIVAL PORTAL</span>
-                    <h2 class="malayalam-title text-4xl md:text-6xl font-black leading-tight text-amber-100 tracking-wide">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</h2>
-                    <p class="text-xs md:text-sm font-medium text-amber-200/90">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
-                    <p class="text-amber-100/80 text-xs md:text-sm font-medium leading-relaxed">മലപ്പുറം ജില്ലയിലെ സ്പെഷ്യൽ സ്കൂളുകൾ ജൂനിയർ, സീനിയർ വിഭാഗങ്ങളിലായി മാറ്റുരയ്ക്കുന്ന കലാമാമാങ്കം.</p>
+                    <h2 id="hero-title-display" class="malayalam-title text-4xl md:text-6xl font-black leading-tight text-amber-100 tracking-wide">19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026</h2>
+                    <p id="hero-subtitle-display" class="text-xs md:text-sm font-medium text-amber-200/90">@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി</p>
+                    <p id="hero-desc-display" class="text-amber-100/80 text-xs md:text-sm font-medium leading-relaxed">മലപ്പുറം ജില്ലയിലെ സ്പെഷ്യൽ സ്കൂളുകൾ ജൂനിയർ, സീനിയർ വിഭാഗങ്ങളിലായി മാറ്റുരയ്ക്കുന്ന കലാമാമാങ്കം.</p>
                 </div>
 
                 <div class="relative z-10 w-full md:w-80 h-64 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md rounded-2xl p-4 border border-amber-500/30 shadow-inner flex items-center justify-center overflow-hidden">
-                    <img src="100254.png" alt="Uyare Poster" class="max-h-full max-w-full object-contain rounded-xl shadow-md">
+                    <img id="hero-logo-img" src="100254.png" alt="Uyare Poster" class="max-h-full max-w-full object-contain rounded-xl shadow-md">
                 </div>
             </div>
 
             <!-- Quick Stats Highlights Cards -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div onclick="openSchoolWiseModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
-                    <span class="text-3xl">🏫</span>
-                    <h4 class="text-xl md:text-2xl font-black text-amber-900 dark:text-amber-400">Special Schools</h4>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Click for School Results</p>
-                </div>
-                <div onclick="openCategoryWiseModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
-                    <span class="text-3xl">✨</span>
-                    <h4 class="text-lg md:text-xl font-black text-amber-900 dark:text-amber-400">Category-wise Results</h4>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Junior & Senior</p>
-                </div>
-                <div onclick="openPublishedResultsModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
-                    <span class="text-3xl">🏆</span>
-                    <h4 class="text-2xl font-black text-amber-900 dark:text-amber-400" id="stat-total-results">0</h4>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Published Results</p>
-                </div>
-                <div onclick="openLivePointModal()" class="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-1 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1">
-                    <span class="text-3xl">🎯</span>
-                    <h4 class="text-xl md:text-2xl font-black text-amber-900 dark:text-amber-400">Live Point Update</h4>
-                    <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Click for Leaderboard</p>
+            <div class="relative">
+                <div id="home-cards-container" class="flex gap-4 overflow-x-auto no-scrollbar pb-2 pt-1 px-1 snap-x">
                 </div>
             </div>
 
@@ -125,7 +114,7 @@
                     </span>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
+                    <table class="w-full text-left border-collapse min-w-[700px]">
                         <thead>
                             <tr id="leaderboard-header-row" class="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
                             </tr>
@@ -139,8 +128,6 @@
 
         <!-- RESULTS TAB -->
         <div id="content-results" class="hidden space-y-6">
-            
-            <!-- Individual Overall Display -->
             <div id="results-individual-overall" class="hidden bg-gradient-to-r from-amber-800 to-amber-950 text-white p-6 rounded-3xl shadow-lg border border-amber-700/50 space-y-4">
                 <div class="flex items-center justify-between border-b border-amber-600/50 pb-3">
                     <h3 class="text-xl md:text-2xl font-black flex items-center gap-2">
@@ -166,7 +153,6 @@
                 </div>
             </div>
 
-            <!-- Results Grid -->
             <div id="results-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
             </div>
         </div>
@@ -261,6 +247,65 @@
                 </form>
             </div>
 
+            <!-- Manage Hero Banner Section -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">🎨 Manage Hero Banner / Festival Header</h4>
+                
+                <form onsubmit="updateHeroBanner(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Festival Title</label>
+                        <input type="text" id="admin-hero-title" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="Enter title...">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Venue / Location Subtitle</label>
+                        <input type="text" id="admin-hero-subtitle" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="e.g. @ VKM Special School Valanchery">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Festival Description</label>
+                        <textarea id="admin-hero-desc" rows="2" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="Enter description..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Logo / Poster Image File Path or URL</label>
+                        <input type="text" id="admin-hero-logo" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="e.g. 100254.png or image URL">
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-amber-700 text-white font-bold rounded-2xl hover:bg-amber-800 transition text-sm">Update Banner & Logo</button>
+                </form>
+            </div>
+
+            <!-- Manage Home Cards Section -->
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">🃏 Manage Home Page Cards</h4>
+                
+                <form onsubmit="addNewHomeCard(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <h5 class="font-extrabold text-sm text-amber-800 dark:text-amber-400">Add New Scrollable Card</h5>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Emoji / Icon</label>
+                        <input type="text" id="new-card-emoji" required placeholder="e.g. 🌟" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Title</label>
+                        <input type="text" id="new-card-title" required placeholder="e.g. Special Events" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Subtitle / Description</label>
+                        <input type="text" id="new-card-subtitle" required placeholder="e.g. Click to view details" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Action Type / Target Modal</label>
+                        <select id="new-card-action" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                            <option value="school">Open School Results Modal</option>
+                            <option value="category">Open Category Modal</option>
+                            <option value="published">Open Published Results Modal</option>
+                            <option value="live">Open Live Points Modal</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-amber-700 text-white font-bold rounded-2xl hover:bg-amber-800 transition text-sm">Add Card</button>
+                </form>
+
+                <div id="admin-home-cards-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                </div>
+            </div>
+
             <!-- Manage General Site Settings -->
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
                 <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">⚙️ General Settings</h4>
@@ -312,7 +357,7 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Header Title</label>
-                            <input type="text" id="new-lb-header" required placeholder="e.g. Rank" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                            <input type="text" id="new-lb-header" required placeholder="e.g. 1ˢᵗ Prize" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Alignment</label>
@@ -523,7 +568,6 @@
     </footer>
 
     <script>
-        // Your Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyC5KPzVlPrM7RQoYUyijwr6BE5Ozod7Uf8",
             authDomain: "uyarekalolsavam.firebaseapp.com",
@@ -555,10 +599,13 @@
         let defaultLbHeaders = [
             { id: 1, title: "Rank", align: "left" },
             { id: 2, title: "School Name", align: "left" },
-            { id: 3, title: "1st Prize", align: "center" },
-            { id: 4, title: "2nd Prize", align: "center" },
-            { id: 5, title: "3rd Prize", align: "center" },
-            { id: 6, title: "Total Points", align: "right" }
+            { id: 3, title: "1ˢᵗ Prize", align: "center" },
+            { id: 4, title: "2ⁿᵈ Prize", align: "center" },
+            { id: 5, title: "3ʳᵈ Prize", align: "center" },
+            { id: 6, title: "A Grade", align: "center" },
+            { id: 7, title: "B Grade", align: "center" },
+            { id: 8, title: "C Grade", align: "center" },
+            { id: 9, title: "Total Points", align: "right" }
         ];
 
         let defaultSchedule = [
@@ -572,9 +619,23 @@
             { id: 8, stage: "Stage 4", time: "01:00 PM", item: "ചിത്രരചന (Painting)", category: "Senior" }
         ];
 
+        let defaultHomeCards = [
+            { id: 1, emoji: "🏫", title: "Special Schools", subtitle: "Click for School Results", action: "school", isDynamicStat: false },
+            { id: 2, emoji: "✨", title: "Category-wise Results", subtitle: "Junior & Senior", action: "category", isDynamicStat: false },
+            { id: 3, emoji: "🏆", title: "Published Results", subtitle: "Total Results", action: "published", isDynamicStat: true },
+            { id: 4, emoji: "🎯", title: "Live Point Update", subtitle: "Click for Leaderboard", action: "live", isDynamicStat: false }
+        ];
+
         let defaultTicker = "📢 19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 'ഉയരെ' - ഔദ്യോഗിക ലൈവ് പോർട്ടലിലേക്ക് സ്വാഗതം! മത്സരഫലങ്ങളും പോയിന്റ് നിലയും തത്സമയം അറിയാം.";
         let defaultContactAddress = "<strong>VKM Special School</strong><br> Puramannur (P.O.), Near Majlis Arts and Science College (Autonomous), Valanchery, Malappuram District - 676 552<br> Kerala, India";
         let defaultContactPhone = "+91 984721495";
+
+        let defaultHero = {
+            title: "19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026",
+            subtitle: "@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി",
+            desc: "മലപ്പുറം ജില്ലയിലെ സ്പെഷ്യൽ സ്കൂളുകൾ ജൂനിയർ, സീനിയർ വിഭാഗങ്ങളിലായി മാറ്റുരയ്ക്കുന്ന കലാമാമാങ്കം.",
+            logo: "100254.png"
+        };
 
         let appData = {
             results: [],
@@ -584,6 +645,8 @@
             prizes: defaultPrizes,
             manualLb: [],
             lbHeaders: defaultLbHeaders,
+            homeCards: defaultHomeCards,
+            heroBanner: defaultHero,
             tickerNotice: defaultTicker,
             contactAddress: defaultContactAddress,
             contactPhone: defaultContactPhone,
@@ -601,7 +664,6 @@
                 if(textEl) textEl.innerText = 'Dark Mode';
             }
 
-            // Real-time synchronization from Firestore
             db.collection("festivalData").doc("mainData").onSnapshot((doc) => {
                 if (doc.exists) {
                     const cloudData = doc.data();
@@ -612,6 +674,8 @@
                     appData.prizes = cloudData.prizes && cloudData.prizes.length > 0 ? cloudData.prizes : defaultPrizes;
                     appData.manualLb = cloudData.manualLb || [];
                     appData.lbHeaders = cloudData.lbHeaders && cloudData.lbHeaders.length > 0 ? cloudData.lbHeaders : defaultLbHeaders;
+                    appData.homeCards = cloudData.homeCards && cloudData.homeCards.length > 0 ? cloudData.homeCards : defaultHomeCards;
+                    appData.heroBanner = cloudData.heroBanner || defaultHero;
                     appData.tickerNotice = cloudData.tickerNotice || defaultTicker;
                     appData.contactAddress = cloudData.contactAddress || defaultContactAddress;
                     appData.contactPhone = cloudData.contactPhone || defaultContactPhone;
@@ -622,7 +686,6 @@
 
                 renderAllUI();
                 
-                // If currently inside admin tab, refresh admin lists dynamically
                 if (isAdminLoggedIn && !document.getElementById('content-admin').classList.contains('hidden')) {
                     refreshAdminPanelUI();
                 }
@@ -642,12 +705,54 @@
 
         function renderAllUI() {
             renderTicker();
+            renderHeroBanner();
             renderContactInfo();
-            updateStats();
+            renderHomeCards();
             renderIndividualChampions();
             renderLeaderboard();
             renderResults();
             renderSchedule();
+        }
+
+        function renderHeroBanner() {
+            const hero = appData.heroBanner || defaultHero;
+            const titleEl = document.getElementById('hero-title-display');
+            const subEl = document.getElementById('hero-subtitle-display');
+            const descEl = document.getElementById('hero-desc-display');
+            const logoEl = document.getElementById('hero-logo-img');
+            const headerBadge = document.getElementById('header-badge-title');
+            const headerSub = document.getElementById('header-sub-text');
+
+            if(titleEl) titleEl.innerText = hero.title;
+            if(subEl) subEl.innerText = hero.subtitle;
+            if(descEl) descEl.innerText = hero.desc;
+            if(logoEl) logoEl.src = hero.logo;
+            if(headerBadge) headerBadge.innerText = hero.title;
+            if(headerSub) headerSub.innerText = hero.subtitle;
+        }
+
+        function updateHeroBanner(e) {
+            e.preventDefault();
+            const title = document.getElementById('admin-hero-title').value.trim();
+            const subtitle = document.getElementById('admin-hero-subtitle').value.trim();
+            const desc = document.getElementById('admin-hero-desc').value.trim();
+            const logo = document.getElementById('admin-hero-logo').value.trim();
+
+            if(!title || !logo) {
+                alert('Please enter title and logo image URL/path!');
+                return;
+            }
+
+            appData.heroBanner = {
+                title: title,
+                subtitle: subtitle,
+                desc: desc,
+                logo: logo
+            };
+
+            saveDataToCloud();
+            renderHeroBanner();
+            alert('Hero banner and logo updated successfully!');
         }
 
         function renderTicker() {
@@ -662,6 +767,35 @@
             const phoneEl = document.getElementById('contact-phone-display');
             if(addrEl) addrEl.innerHTML = appData.contactAddress || defaultContactAddress;
             if(phoneEl) phoneEl.innerText = appData.contactPhone || defaultContactPhone;
+        }
+
+        function renderHomeCards() {
+            const container = document.getElementById('home-cards-container');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(!appData.homeCards) appData.homeCards = defaultHomeCards;
+
+            appData.homeCards.forEach(card => {
+                let onclickFunc = "";
+                if(card.action === 'school') onclickFunc = "openSchoolWiseModal()";
+                else if(card.action === 'category') onclickFunc = "openCategoryWiseModal()";
+                else if(card.action === 'published') onclickFunc = "openPublishedResultsModal()";
+                else if(card.action === 'live') onclickFunc = "openLivePointModal()";
+
+                let displayTitle = card.title;
+                if(card.isDynamicStat) {
+                    displayTitle = appData.results.length;
+                }
+
+                container.innerHTML += `
+                    <div onclick="${onclickFunc}" class="min-w-[240px] md:min-w-[280px] flex-1 bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-2 hover:border-amber-500 cursor-pointer transition transform hover:-translate-y-1 snap-start">
+                        <span class="text-4xl">${card.emoji}</span>
+                        <h4 class="text-xl md:text-2xl font-black text-amber-900 dark:text-amber-400">${displayTitle}</h4>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">${card.subtitle}</p>
+                    </div>
+                `;
+            });
         }
 
         function updateTickerNotice(e) {
@@ -692,6 +826,99 @@
             saveDataToCloud();
             renderContactInfo();
             alert('Contact info updated successfully!');
+        }
+
+        function addNewHomeCard(e) {
+            e.preventDefault();
+            const emoji = document.getElementById('new-card-emoji').value.trim();
+            const title = document.getElementById('new-card-title').value.trim();
+            const subtitle = document.getElementById('new-card-subtitle').value.trim();
+            const action = document.getElementById('new-card-action').value;
+
+            if(!emoji || !title) {
+                alert('Please enter emoji and title!');
+                return;
+            }
+
+            const newCard = {
+                id: Date.now(),
+                emoji: emoji,
+                title: title,
+                subtitle: subtitle,
+                action: action,
+                isDynamicStat: false
+            };
+
+            if(!appData.homeCards) appData.homeCards = [];
+            appData.homeCards.push(newCard);
+            saveDataToCloud();
+            renderHomeCards();
+            renderAdminHomeCardsList();
+            document.getElementById('new-card-emoji').value = '';
+            document.getElementById('new-card-title').value = '';
+            document.getElementById('new-card-subtitle').value = '';
+            alert('Card added successfully!');
+        }
+
+        function renderAdminHomeCardsList() {
+            const container = document.getElementById('admin-home-cards-list');
+            if(!container) return;
+            container.innerHTML = '';
+
+            if(!appData.homeCards) appData.homeCards = defaultHomeCards;
+
+            appData.homeCards.forEach(c => {
+                container.innerHTML += `
+                    <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">${c.emoji}</span>
+                            <div>
+                                <h5 class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${c.title}</h5>
+                                <p class="text-[11px] text-slate-500">${c.subtitle}</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="editHomeCard(${c.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition">Edit</button>
+                            <button onclick="deleteHomeCard(${c.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function editHomeCard(id) {
+            const card = appData.homeCards.find(c => c.id === id);
+            if(!card) return;
+
+            const newEmoji = prompt("Enter Emoji:", card.emoji);
+            if(newEmoji === null) return;
+            const newTitle = prompt("Enter Title:", card.title);
+            if(newTitle === null) return;
+            const newSubtitle = prompt("Enter Subtitle:", card.subtitle);
+            if(newSubtitle === null) return;
+
+            if(newEmoji.trim() !== "" && newTitle.trim() !== "") {
+                card.emoji = newEmoji.trim();
+                card.title = newTitle.trim();
+                card.subtitle = newSubtitle.trim();
+                saveDataToCloud();
+                renderHomeCards();
+                renderAdminHomeCardsList();
+                alert('Card updated successfully!');
+            }
+        }
+
+        function deleteHomeCard(id) {
+            if(appData.homeCards.length <= 1) {
+                alert('At least one card must remain!');
+                return;
+            }
+            if(confirm("Are you sure you want to delete this card?")) {
+                appData.homeCards = appData.homeCards.filter(c => c.id !== id);
+                saveDataToCloud();
+                renderHomeCards();
+                renderAdminHomeCardsList();
+            }
         }
 
         function toggleIndividualChampionVisibility() {
@@ -731,18 +958,14 @@
         function saveDataToCloud() {
             db.collection("festivalData").doc("mainData").set(appData)
               .then(() => {
-                  updateStats();
+                  renderHeroBanner();
+                  renderHomeCards();
                   renderIndividualChampions();
                   renderLeaderboard();
               })
               .catch((error) => {
                   console.error("Error writing document: ", error);
               });
-        }
-
-        function updateStats() {
-            const statEl = document.getElementById('stat-total-results');
-            if(statEl) statEl.innerText = appData.results.length;
         }
 
         function updateAdminTabVisibility() {
@@ -810,7 +1033,19 @@
             renderAdminEventsList();
             renderAdminParticipantsList();
             renderAdminManageResults();
+            renderAdminHomeCardsList();
             updateToggleChampButton();
+
+            const hero = appData.heroBanner || defaultHero;
+            const hTitle = document.getElementById('admin-hero-title');
+            const hSub = document.getElementById('admin-hero-subtitle');
+            const hDesc = document.getElementById('admin-hero-desc');
+            const hLogo = document.getElementById('admin-hero-logo');
+
+            if(hTitle) hTitle.value = hero.title;
+            if(hSub) hSub.value = hero.subtitle;
+            if(hDesc) hDesc.value = hero.desc;
+            if(hLogo) hLogo.value = hero.logo;
 
             const tickerInput = document.getElementById('admin-ticker-input');
             if(tickerInput && appData.tickerNotice) tickerInput.value = appData.tickerNotice;
@@ -1056,7 +1291,7 @@
                             <span class="font-black text-slate-400 text-sm">#${index + 1}</span>
                             <div>
                                 <h4 class="font-extrabold text-sm text-slate-900 dark:text-slate-100">${item.name}</h4>
-                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">1st: ${item.firsts} | 2nd: ${item.seconds} | 3rd: ${item.thirds}</p>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">1ˢᵗ: ${item.firsts} | 2ⁿᵈ: ${item.seconds} | 3ʳᵈ: ${item.thirds} | A: ${item.aGrades} | B: ${item.bGrades} | C: ${item.cGrades}</p>
                             </div>
                         </div>
                         <span class="bg-amber-700 text-white font-black text-xs px-3 py-1.5 rounded-xl">${item.points} Pts</span>
@@ -1102,28 +1337,44 @@
             }
         }
 
+        // Leaderboard calculation where each prize/grade counts +1 per win, and total points add up the configured values
         function calculateLeaderboard() {
             let stats = {};
             appData.schools.forEach(school => {
-                stats[school] = { name: school, points: 0, firsts: 0, seconds: 0, thirds: 0 };
+                stats[school] = { name: school, points: 0, firsts: 0, seconds: 0, thirds: 0, aGrades: 0, bGrades: 0, cGrades: 0 };
             });
 
+            // Map prize points dynamically from config
+            let prizePointMap = {};
+            if(appData.prizes) {
+                appData.prizes.forEach(p => {
+                    prizePointMap[p.label.toLowerCase()] = Number(p.points) || 0;
+                });
+            }
+
             appData.results.forEach(res => {
-                if(!stats[res.school]) stats[res.school] = { name: res.school, points: 0, firsts: 0, seconds: 0, thirds: 0 };
-                stats[res.school].points += (Number(res.points) || 0);
+                if(!stats[res.school]) stats[res.school] = { name: res.school, points: 0, firsts: 0, seconds: 0, thirds: 0, aGrades: 0, bGrades: 0, cGrades: 0 };
                 
-                if(res.position.toLowerCase().includes('1st')) {
-                    stats[res.school].firsts += 1;
-                } else if(res.position.toLowerCase().includes('2nd')) {
-                    stats[res.school].seconds += 1;
-                } else if(res.position.toLowerCase().includes('3rd')) {
-                    stats[res.school].thirds += 1;
+                // Calculate total points based on config or result value
+                let resPoints = Number(res.points);
+                if(isNaN(resPoints)) {
+                    let posLowerKey = res.position.toLowerCase();
+                    resPoints = prizePointMap[posLowerKey] || 0;
                 }
+                stats[res.school].points += resPoints;
+                
+                let posLower = res.position.toLowerCase();
+                if(posLower.includes('1st')) stats[res.school].firsts += 1;
+                else if(posLower.includes('2nd')) stats[res.school].seconds += 1;
+                else if(posLower.includes('3rd')) stats[res.school].thirds += 1;
+                else if(posLower.includes('a grade') || posLower.includes('grade a') || posLower === 'a') stats[res.school].aGrades += 1;
+                else if(posLower.includes('b grade') || posLower.includes('grade b') || posLower === 'b') stats[res.school].bGrades += 1;
+                else if(posLower.includes('c grade') || posLower.includes('grade c') || posLower === 'c') stats[res.school].cGrades += 1;
             });
 
             if(appData.manualLb) {
                 appData.manualLb.forEach(m => {
-                    if(!stats[m.school]) stats[m.school] = { name: m.school, points: 0, firsts: 0, seconds: 0, thirds: 0 };
+                    if(!stats[m.school]) stats[m.school] = { name: m.school, points: 0, firsts: 0, seconds: 0, thirds: 0, aGrades: 0, bGrades: 0, cGrades: 0 };
                     stats[m.school].points += (Number(m.points) || 0);
                 });
             }
@@ -1137,13 +1388,13 @@
             if(!headerRow || !tbody) return;
 
             headerRow.innerHTML = '';
-            if(appData.lbHeaders && appData.lbHeaders.length > 0) {
-                appData.lbHeaders.forEach((h, idx) => {
-                    let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
-                    let roundClass = idx === 0 ? 'rounded-l-2xl' : (idx === appData.lbHeaders.length - 1 ? 'rounded-r-2xl' : '');
-                    headerRow.innerHTML += `<th class="p-4 ${roundClass} font-extrabold ${alignClass}">${h.title}</th>`;
-                });
-            }
+            if(!appData.lbHeaders) appData.lbHeaders = defaultLbHeaders;
+
+            appData.lbHeaders.forEach((h, idx) => {
+                let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
+                let roundClass = idx === 0 ? 'rounded-l-2xl' : (idx === appData.lbHeaders.length - 1 ? 'rounded-r-2xl' : '');
+                headerRow.innerHTML += `<th class="p-4 ${roundClass} font-extrabold ${alignClass}">${h.title}</th>`;
+            });
 
             const data = calculateLeaderboard();
             tbody.innerHTML = '';
@@ -1151,24 +1402,32 @@
             data.forEach((item, index) => {
                 let rowHtml = `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">`;
                 
-                if(appData.lbHeaders) {
-                    appData.lbHeaders.forEach((h, idx) => {
-                        let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
-                        if(idx === 0) {
-                            rowHtml += `<td class="p-4 font-black text-slate-500 dark:text-slate-400 ${alignClass}">#${index + 1}</td>`;
-                        } else if(idx === 1) {
-                            rowHtml += `<td class="p-4 font-extrabold text-slate-900 dark:text-slate-100 ${alignClass}">${item.name}</td>`;
-                        } else if(idx === 2) {
-                            rowHtml += `<td class="p-4 font-extrabold text-amber-700 dark:text-amber-400 ${alignClass}">${item.firsts}</td>`;
-                        } else if(idx === 3) {
-                            rowHtml += `<td class="p-4 font-extrabold text-slate-600 dark:text-slate-300 ${alignClass}">${item.seconds}</td>`;
-                        } else if(idx === 4) {
-                            rowHtml += `<td class="p-4 font-extrabold text-amber-900 dark:text-amber-500 ${alignClass}">${item.thirds}</td>`;
-                        } else {
-                            rowHtml += `<td class="p-4 font-black text-amber-950 dark:text-amber-200 text-base ${alignClass}">${item.points}</td>`;
-                        }
-                    });
-                }
+                appData.lbHeaders.forEach((h, idx) => {
+                    let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
+                    let titleLower = h.title.toLowerCase();
+
+                    if(idx === 0 || titleLower.includes('rank')) {
+                        rowHtml += `<td class="p-4 font-black text-slate-500 dark:text-slate-400 ${alignClass}">#${index + 1}</td>`;
+                    } else if(idx === 1 || titleLower.includes('school name')) {
+                        rowHtml += `<td class="p-4 font-extrabold text-slate-900 dark:text-slate-100 ${alignClass}">${item.name}</td>`;
+                    } else if(titleLower.includes('1ˢᵗ') || titleLower.includes('1st')) {
+                        rowHtml += `<td class="p-4 font-extrabold text-amber-700 dark:text-amber-400 ${alignClass}">${item.firsts}</td>`;
+                    } else if(titleLower.includes('2ⁿᵈ') || titleLower.includes('2nd')) {
+                        rowHtml += `<td class="p-4 font-extrabold text-slate-600 dark:text-slate-300 ${alignClass}">${item.seconds}</td>`;
+                    } else if(titleLower.includes('3ʳᵈ') || titleLower.includes('3rd')) {
+                        rowHtml += `<td class="p-4 font-extrabold text-amber-900 dark:text-amber-500 ${alignClass}">${item.thirds}</td>`;
+                    } else if(titleLower.includes('a grade')) {
+                        rowHtml += `<td class="p-4 font-extrabold text-emerald-600 dark:text-emerald-400 ${alignClass}">${item.aGrades}</td>`;
+                    } else if(titleLower.includes('b grade')) {
+                        rowHtml += `<td class="p-4 font-extrabold text-blue-600 dark:text-blue-400 ${alignClass}">${item.bGrades}</td>`;
+                    } else if(titleLower.includes('c grade')) {
+                        rowHtml += `<td class="p-4 font-extrabold text-purple-600 dark:text-purple-400 ${alignClass}">${item.cGrades}</td>`;
+                    } else if(titleLower.includes('total')) {
+                        rowHtml += `<td class="p-4 font-black text-amber-950 dark:text-amber-200 text-base ${alignClass}">${item.points}</td>`;
+                    } else {
+                        rowHtml += `<td class="p-4 font-bold text-slate-700 dark:text-slate-300 ${alignClass}">-</td>`;
+                    }
+                });
                 rowHtml += `</tr>`;
                 tbody.innerHTML += rowHtml;
             });
@@ -1277,7 +1536,7 @@
                         <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${h.title} <span class="text-xs text-slate-400">(${h.align})</span></span>
                         <div class="flex gap-2">
                             <button onclick="editLeaderboardHeader(${h.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition">Edit</button>
-                            <button onclick="deleteLeaderboardHeader(${h.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
+                            <button onclick="deleteLeaderboardHeader(${h.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Hide/Delete</button>
                         </div>
                     </div>
                 `;
@@ -1317,6 +1576,7 @@
                 h.title = newTitle.trim();
                 saveDataToCloud();
                 renderAdminLbHeadersList();
+                renderLeaderboard();
                 alert('Header updated successfully!');
             }
         }
@@ -1326,10 +1586,11 @@
                 alert('At least one header must remain!');
                 return;
             }
-            if(confirm("Are you sure you want to delete this header?")) {
+            if(confirm("Are you sure you want to hide/delete this header?")) {
                 appData.lbHeaders = appData.lbHeaders.filter(h => h.id !== id);
                 saveDataToCloud();
                 renderAdminLbHeadersList();
+                renderLeaderboard();
             }
         }
 
@@ -1470,10 +1731,42 @@
                 container.innerHTML += `
                     <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
                         <span class="text-sm font-bold text-slate-800 dark:text-slate-200">${school}</span>
-                        <button onclick="deleteSchool('${school}')" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Remove</button>
+                        <div class="flex gap-2">
+                            <button onclick="editSchool('${school}')" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition">Edit</button>
+                            <button onclick="deleteSchool('${school}')" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Remove</button>
+                        </div>
                     </div>
                 `;
             });
+        }
+
+        function editSchool(oldName) {
+            const newName = prompt(`Enter new name for "${oldName}":`, oldName);
+            if(newName !== null && newName.trim() !== "") {
+                const trimmedName = newName.trim();
+                if(appData.schools.includes(trimmedName) && trimmedName !== oldName) {
+                    alert("This school name already exists!");
+                    return;
+                }
+
+                appData.schools = appData.schools.map(s => s === oldName ? trimmedName : s);
+
+                appData.results = appData.results.map(r => {
+                    if(r.school === oldName) r.school = trimmedName;
+                    return r;
+                });
+
+                if(appData.manualLb) {
+                    appData.manualLb = appData.manualLb.map(m => {
+                        if(m.school === oldName) m.school = trimmedName;
+                        return m;
+                    });
+                }
+
+                saveDataToCloud();
+                refreshAdminPanelUI();
+                alert("School name updated successfully!");
+            }
         }
 
         function renderAdminEventsList() {
@@ -1490,7 +1783,7 @@
                         </div>
                         <div class="flex justify-between items-center gap-2">
                             <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100 flex-1">${ev.item}</span>
-                            <button onclick="editStageName(${ev.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition whitespace-nowrap">Change Stage</button>
+                            <button onclick="editStageName(${ev.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition whitespace-nowrap">Edit Event/Stage</button>
                             <button onclick="deleteEventItem(${ev.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition whitespace-nowrap">Delete</button>
                         </div>
                     </div>
@@ -1626,12 +1919,30 @@
             if(!ev) return;
 
             const newStage = prompt(`Enter new stage name for "${ev.item}":`, ev.stage);
-            if(newStage !== null && newStage.trim() !== "") {
+            if(newStage === null) return;
+
+            const newItemName = prompt(`Enter item name:`, ev.item);
+            if(newItemName === null) return;
+
+            const newTime = prompt(`Enter event time:`, ev.time);
+            if(newTime === null) return;
+
+            if(newStage.trim() !== "" && newItemName.trim() !== "" && newTime.trim() !== "") {
+                const oldItemName = ev.item;
                 ev.stage = newStage.trim();
+                ev.item = newItemName.trim();
+                ev.time = newTime.trim();
+
+                if(oldItemName !== ev.item) {
+                    appData.results = appData.results.map(r => {
+                        if(r.item === oldItemName) r.item = ev.item;
+                        return r;
+                    });
+                }
+
                 saveDataToCloud();
-                renderAdminEventsList();
-                populateAdminEventItems();
-                alert('Stage updated successfully!');
+                refreshAdminPanelUI();
+                alert('Event details updated successfully!');
             }
         }
 
