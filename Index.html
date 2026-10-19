@@ -114,7 +114,7 @@
                     </span>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse min-w-[700px]">
+                    <table class="w-full text-left border-collapse min-w-[800px]">
                         <thead>
                             <tr id="leaderboard-header-row" class="bg-slate-50 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 text-xs uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
                             </tr>
@@ -596,6 +596,7 @@
             { id: 6, label: "C Grade", points: 1 }
         ];
 
+        // Updated default Leaderboard Headers to explicitly include B Grade and C Grade
         let defaultLbHeaders = [
             { id: 1, title: "Rank", align: "left" },
             { id: 2, title: "School Name", align: "left" },
@@ -1337,39 +1338,43 @@
             }
         }
 
-        // Leaderboard calculation where each prize/grade counts +1 per win, and total points add up the configured values
         function calculateLeaderboard() {
             let stats = {};
             appData.schools.forEach(school => {
                 stats[school] = { name: school, points: 0, firsts: 0, seconds: 0, thirds: 0, aGrades: 0, bGrades: 0, cGrades: 0 };
             });
 
-            // Map prize points dynamically from config
             let prizePointMap = {};
             if(appData.prizes) {
                 appData.prizes.forEach(p => {
-                    prizePointMap[p.label.toLowerCase()] = Number(p.points) || 0;
+                    prizePointMap[p.label.toLowerCase().trim()] = Number(p.points) || 0;
                 });
             }
 
             appData.results.forEach(res => {
                 if(!stats[res.school]) stats[res.school] = { name: res.school, points: 0, firsts: 0, seconds: 0, thirds: 0, aGrades: 0, bGrades: 0, cGrades: 0 };
                 
-                // Calculate total points based on config or result value
+                let posLower = (res.position || '').toLowerCase().trim();
+
                 let resPoints = Number(res.points);
-                if(isNaN(resPoints)) {
-                    let posLowerKey = res.position.toLowerCase();
-                    resPoints = prizePointMap[posLowerKey] || 0;
+                if(isNaN(resPoints) || resPoints === 0) {
+                    resPoints = prizePointMap[posLower] || 0;
                 }
                 stats[res.school].points += resPoints;
                 
-                let posLower = res.position.toLowerCase();
-                if(posLower.includes('1st')) stats[res.school].firsts += 1;
-                else if(posLower.includes('2nd')) stats[res.school].seconds += 1;
-                else if(posLower.includes('3rd')) stats[res.school].thirds += 1;
-                else if(posLower.includes('a grade') || posLower.includes('grade a') || posLower === 'a') stats[res.school].aGrades += 1;
-                else if(posLower.includes('b grade') || posLower.includes('grade b') || posLower === 'b') stats[res.school].bGrades += 1;
-                else if(posLower.includes('c grade') || posLower.includes('grade c') || posLower === 'c') stats[res.school].cGrades += 1;
+                if(posLower.includes('1st') || posLower.includes('first')) {
+                    stats[res.school].firsts += 1;
+                } else if(posLower.includes('2nd') || posLower.includes('second')) {
+                    stats[res.school].seconds += 1;
+                } else if(posLower.includes('3rd') || posLower.includes('third')) {
+                    stats[res.school].thirds += 1;
+                } else if(posLower.includes('a grade') || posLower.includes('grade a') || posLower === 'a') {
+                    stats[res.school].aGrades += 1;
+                } else if(posLower.includes('b grade') || posLower.includes('grade b') || posLower === 'b') {
+                    stats[res.school].bGrades += 1;
+                } else if(posLower.includes('c grade') || posLower.includes('grade c') || posLower === 'c') {
+                    stats[res.school].cGrades += 1;
+                }
             });
 
             if(appData.manualLb) {
@@ -1388,7 +1393,7 @@
             if(!headerRow || !tbody) return;
 
             headerRow.innerHTML = '';
-            if(!appData.lbHeaders) appData.lbHeaders = defaultLbHeaders;
+            if(!appData.lbHeaders || appData.lbHeaders.length === 0) appData.lbHeaders = defaultLbHeaders;
 
             appData.lbHeaders.forEach((h, idx) => {
                 let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
@@ -1528,7 +1533,7 @@
             if(!container) return;
             container.innerHTML = '';
 
-            if(!appData.lbHeaders) appData.lbHeaders = defaultLbHeaders;
+            if(!appData.lbHeaders || appData.lbHeaders.length === 0) appData.lbHeaders = defaultLbHeaders;
 
             appData.lbHeaders.forEach(h => {
                 container.innerHTML += `
