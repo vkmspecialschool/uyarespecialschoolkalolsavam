@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="relative z-10 w-full md:w-80 h-64 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md rounded-2xl p-4 border border-amber-500/30 shadow-inner flex items-center justify-center overflow-hidden">
-                    <img id="hero-logo-img" src="image001.JPG" alt="Uyare Poster" class="max-h-full max-w-full object-contain rounded-xl shadow-md">
+                    <img id="hero-logo-img" src="Image001.JPG" alt="Uyare Poster" class="max-h-full max-w-full object-contain rounded-xl shadow-md">
                 </div>
             </div>
 
@@ -272,7 +272,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Logo / Poster Image File Path or URL</label>
-                        <input type="text" id="admin-hero-logo" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="e.g. 100254.png or image URL">
+                        <input type="text" id="admin-hero-logo" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none" placeholder="e.g. Image001.JPG or image URL">
                     </div>
                     <button type="submit" class="w-full py-3 bg-amber-700 text-white font-bold rounded-2xl hover:bg-amber-800 transition text-sm">Update Banner & Logo</button>
                 </form>
@@ -591,7 +591,8 @@
         const ADMIN_USERNAME = "admin@uyare2026";
         const ADMIN_PASSWORD = "2002@vkmsps";
         
-        let defaultSchools = ["VKM Special School Valanchery"];
+        // സെർവർ ഡാറ്റയെ ഓവർറൈറ്റ് ചെയ്യാതിരിക്കാൻ ഡിഫോൾട്ട് സ്കൂൾ ലിസ്റ്റ് ബ്ലാങ്ക് ആക്കിയിരിക്കുന്നു
+        let defaultSchools = [];
 
         let defaultPrizes = [
             { id: 1, label: "1st Prize", points: 5 },
@@ -640,7 +641,7 @@
             title: "19-ാമത് മലപ്പുറം ജില്ലാ സ്പെഷ്യൽ സ്കൂൾ കലോത്സവം 2026",
             subtitle: "@ വി.കെ.എം സ്പെഷ്യൽ സ്കൂൾ വളാഞ്ചേരി",
             desc: "മലപ്പുറം ജില്ലയിലെ സ്പെഷ്യൽ സ്കൂളുകൾ ജൂനിയർ, സീനിയർ വിഭാഗങ്ങളിലായി മാറ്റുരയ്ക്കുന്ന കലാമാമാങ്കം.",
-            logo: "image001.JPG"
+            logo: "Image001.JPG"
         };
 
         let appData = {
@@ -676,10 +677,9 @@
                     const cloudData = doc.data();
                     appData.results = cloudData.results || [];
                     
+                    // സെർവറിൽ സ്കൂളുകൾ ഉണ്ടെങ്കിൽ മാത്രം അത് എടുക്കുക (ഓവർറൈറ്റ് തടയാൻ)
                     if (cloudData.schools && cloudData.schools.length > 0) {
                         appData.schools = cloudData.schools;
-                    } else {
-                        appData.schools = defaultSchools;
                     }
 
                     appData.schedule = cloudData.schedule && cloudData.schedule.length > 0 ? cloudData.schedule : defaultSchedule;
@@ -698,13 +698,20 @@
                     }
 
                     appData.homeCards = cloudData.homeCards && cloudData.homeCards.length > 0 ? cloudData.homeCards : defaultHomeCards;
-                    appData.heroBanner = cloudData.heroBanner || defaultHero;
+                    
+                    if (cloudData.heroBanner) {
+                        appData.heroBanner = cloudData.heroBanner;
+                        if (!appData.heroBanner.logo || appData.heroBanner.logo === "100254.png") {
+                            appData.heroBanner.logo = "Image001.JPG";
+                        }
+                    } else {
+                        appData.heroBanner = defaultHero;
+                    }
+
                     appData.tickerNotice = cloudData.tickerNotice || defaultTicker;
                     appData.contactAddress = cloudData.contactAddress || defaultContactAddress;
                     appData.contactPhone = cloudData.contactPhone || defaultContactPhone;
                     appData.showIndividualChampions = cloudData.showIndividualChampions !== undefined ? cloudData.showIndividualChampions : true;
-                } else {
-                    saveDataToCloud();
                 }
 
                 renderAllUI();
@@ -713,7 +720,6 @@
                     refreshAdminPanelUI();
                 }
 
-                // Hide loader smoothly after first successful data render
                 if (isFirstLoad) {
                     isFirstLoad = false;
                     const loader = document.getElementById('page-loader');
@@ -761,7 +767,7 @@
             if(titleEl) titleEl.innerText = hero.title;
             if(subEl) subEl.innerText = hero.subtitle;
             if(descEl) descEl.innerText = hero.desc;
-            if(logoEl) logoEl.src = hero.logo;
+            if(logoEl) logoEl.src = hero.logo || "Image001.JPG";
             if(headerBadge) headerBadge.innerText = hero.title;
             if(headerSub) headerSub.innerText = hero.subtitle;
         }
@@ -1080,7 +1086,7 @@
             if(hTitle) hTitle.value = hero.title;
             if(hSub) hSub.value = hero.subtitle;
             if(hDesc) hDesc.value = hero.desc;
-            if(hLogo) hLogo.value = hero.logo;
+            if(hLogo) hLogo.value = hero.logo || "Image001.JPG";
 
             const tickerInput = document.getElementById('admin-ticker-input');
             if(tickerInput && appData.tickerNotice) tickerInput.value = appData.tickerNotice;
@@ -1428,7 +1434,6 @@
 
             headerRow.innerHTML = '';
             
-            // Filter out hidden headers for public view
             let activeHeaders = (appData.lbHeaders || defaultLbHeaders).filter(h => !h.isHidden);
 
             activeHeaders.forEach((h, idx) => {
