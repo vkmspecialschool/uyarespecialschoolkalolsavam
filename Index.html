@@ -585,7 +585,8 @@
         const ADMIN_USERNAME = "admin@uyare2026";
         const ADMIN_PASSWORD = "2002@vkmsps";
         
-        let defaultSchools = Array.from({length: 20}, (_, i) => `School ${i + 1}`);
+        // Default schools fallback only if database is completely empty
+        let defaultSchools = ["VKM Special School Valanchery", "School 2"];
 
         let defaultPrizes = [
             { id: 1, label: "1st Prize", points: 5 },
@@ -596,7 +597,6 @@
             { id: 6, label: "C Grade", points: 1 }
         ];
 
-        // Leaderboard Headers with isHidden property support
         let defaultLbHeaders = [
             { id: 1, title: "Rank", align: "left", isHidden: false },
             { id: 2, title: "School Name", align: "left", isHidden: false },
@@ -669,7 +669,14 @@
                 if (doc.exists) {
                     const cloudData = doc.data();
                     appData.results = cloudData.results || [];
-                    appData.schools = cloudData.schools && cloudData.schools.length > 0 ? cloudData.schools : defaultSchools;
+                    
+                    // SAFEGUARD: Preserve user's custom schools from Firebase
+                    if (cloudData.schools && cloudData.schools.length > 0) {
+                        appData.schools = cloudData.schools;
+                    } else {
+                        appData.schools = defaultSchools;
+                    }
+
                     appData.schedule = cloudData.schedule && cloudData.schedule.length > 0 ? cloudData.schedule : defaultSchedule;
                     appData.participants = cloudData.participants || [];
                     appData.prizes = cloudData.prizes && cloudData.prizes.length > 0 ? cloudData.prizes : defaultPrizes;
@@ -679,7 +686,6 @@
                     if (cloudHeaders.length === 0) {
                         appData.lbHeaders = defaultLbHeaders;
                     } else {
-                        // Ensure all headers have isHidden property
                         appData.lbHeaders = cloudHeaders.map(h => ({
                             ...h,
                             isHidden: h.isHidden !== undefined ? h.isHidden : false
