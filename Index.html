@@ -349,9 +349,9 @@
                 </form>
             </div>
 
-            <!-- Manage Leaderboard Headers Section -->
+            <!-- Manage Leaderboard Headers Section with Hide/Show Toggle -->
             <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 max-w-2xl mx-auto transition-colors duration-300 space-y-4">
-                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">📊 Manage Leaderboard Headers</h4>
+                <h4 class="text-xl font-black text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-3">📊 Manage Leaderboard Headers (Hide / Show)</h4>
                 
                 <form onsubmit="addNewLeaderboardHeader(event)" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
                     <div class="grid grid-cols-2 gap-4">
@@ -596,17 +596,17 @@
             { id: 6, label: "C Grade", points: 1 }
         ];
 
-        // Explicitly defining standard Leaderboard Headers
+        // Leaderboard Headers with isHidden property support
         let defaultLbHeaders = [
-            { id: 1, title: "Rank", align: "left" },
-            { id: 2, title: "School Name", align: "left" },
-            { id: 3, title: "1ˢᵗ Prize", align: "center" },
-            { id: 4, title: "2ⁿᵈ Prize", align: "center" },
-            { id: 5, title: "3ʳᵈ Prize", align: "center" },
-            { id: 6, title: "A Grade", align: "center" },
-            { id: 7, title: "B Grade", align: "center" },
-            { id: 8, title: "C Grade", align: "center" },
-            { id: 9, title: "Total Points", align: "right" }
+            { id: 1, title: "Rank", align: "left", isHidden: false },
+            { id: 2, title: "School Name", align: "left", isHidden: false },
+            { id: 3, title: "1ˢᵗ Prize", align: "center", isHidden: false },
+            { id: 4, title: "2ⁿᵈ Prize", align: "center", isHidden: false },
+            { id: 5, title: "3ʳᵈ Prize", align: "center", isHidden: false },
+            { id: 6, title: "A Grade", align: "center", isHidden: false },
+            { id: 7, title: "B Grade", align: "center", isHidden: false },
+            { id: 8, title: "C Grade", align: "center", isHidden: false },
+            { id: 9, title: "Total Points", align: "right", isHidden: false }
         ];
 
         let defaultSchedule = [
@@ -675,15 +675,15 @@
                     appData.prizes = cloudData.prizes && cloudData.prizes.length > 0 ? cloudData.prizes : defaultPrizes;
                     appData.manualLb = cloudData.manualLb || [];
                     
-                    // Force complete headers if B/C grade headers are missing in cloud data
                     let cloudHeaders = cloudData.lbHeaders || [];
-                    let hasBGrade = cloudHeaders.some(h => h.title.toLowerCase().includes('b grade'));
-                    let hasCGrade = cloudHeaders.some(h => h.title.toLowerCase().includes('c grade'));
-                    
-                    if (!hasBGrade || !hasCGrade || cloudHeaders.length < 8) {
+                    if (cloudHeaders.length === 0) {
                         appData.lbHeaders = defaultLbHeaders;
                     } else {
-                        appData.lbHeaders = cloudHeaders;
+                        // Ensure all headers have isHidden property
+                        appData.lbHeaders = cloudHeaders.map(h => ({
+                            ...h,
+                            isHidden: h.isHidden !== undefined ? h.isHidden : false
+                        }));
                     }
 
                     appData.homeCards = cloudData.homeCards && cloudData.homeCards.length > 0 ? cloudData.homeCards : defaultHomeCards;
@@ -1405,8 +1405,8 @@
 
             headerRow.innerHTML = '';
             
-            // ALWAYS use standard complete headers for leaderboard
-            let activeHeaders = defaultLbHeaders;
+            // Filter out hidden headers for public view
+            let activeHeaders = (appData.lbHeaders || defaultLbHeaders).filter(h => !h.isHidden);
 
             activeHeaders.forEach((h, idx) => {
                 let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
@@ -1549,16 +1549,34 @@
             if(!appData.lbHeaders || appData.lbHeaders.length === 0) appData.lbHeaders = defaultLbHeaders;
 
             appData.lbHeaders.forEach(h => {
+                let isHidden = h.isHidden || false;
+                let toggleBtnText = isHidden ? "Show" : "Hide";
+                let toggleBtnClass = isHidden ? "bg-emerald-600 hover:bg-emerald-700" : "bg-yellow-600 hover:bg-yellow-700";
+
                 container.innerHTML += `
                     <div class="flex justify-between items-center bg-slate-50 dark:bg-slate-800/60 p-3 rounded-2xl border border-slate-200 dark:border-slate-700">
-                        <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${h.title} <span class="text-xs text-slate-400">(${h.align})</span></span>
+                        <div>
+                            <span class="text-sm font-extrabold text-slate-900 dark:text-slate-100">${h.title} <span class="text-xs text-slate-400">(${h.align})</span></span>
+                            ${isHidden ? `<span class="ml-2 text-[10px] bg-red-100 text-red-800 font-bold px-2 py-0.5 rounded">Hidden</span>` : `<span class="ml-2 text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Visible</span>`}
+                        </div>
                         <div class="flex gap-2">
+                            <button onclick="toggleLeaderboardHeaderVisibility(${h.id})" class="text-xs ${toggleBtnClass} text-white font-bold px-3 py-1.5 rounded-xl transition">${toggleBtnText}</button>
                             <button onclick="editLeaderboardHeader(${h.id})" class="text-xs bg-amber-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-amber-700 transition">Edit</button>
-                            <button onclick="deleteLeaderboardHeader(${h.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Hide/Delete</button>
+                            <button onclick="deleteLeaderboardHeader(${h.id})" class="text-xs bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl hover:bg-red-700 transition">Delete</button>
                         </div>
                     </div>
                 `;
             });
+        }
+
+        function toggleLeaderboardHeaderVisibility(id) {
+            const h = appData.lbHeaders.find(item => item.id === id);
+            if(!h) return;
+
+            h.isHidden = !h.isHidden;
+            saveDataToCloud();
+            renderAdminLbHeadersList();
+            renderLeaderboard();
         }
 
         function addNewLeaderboardHeader(e) {
@@ -1574,13 +1592,15 @@
             const newH = {
                 id: Date.now(),
                 title: title,
-                align: align
+                align: align,
+                isHidden: false
             };
 
             if(!appData.lbHeaders) appData.lbHeaders = [];
             appData.lbHeaders.push(newH);
             saveDataToCloud();
             renderAdminLbHeadersList();
+            renderLeaderboard();
             document.getElementById('new-lb-header').value = '';
             alert('Leaderboard header added successfully!');
         }
@@ -1604,7 +1624,7 @@
                 alert('At least one header must remain!');
                 return;
             }
-            if(confirm("Are you sure you want to hide/delete this header?")) {
+            if(confirm("Are you sure you want to permanently delete this header?")) {
                 appData.lbHeaders = appData.lbHeaders.filter(h => h.id !== id);
                 saveDataToCloud();
                 renderAdminLbHeadersList();
@@ -2013,11 +2033,6 @@
             const container = document.getElementById('admin-manage-results');
             if(!container) return;
             container.innerHTML = '';
-
-            if(appData.results.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400 font-bold py-4">No results added yet.</p>`;
-                return;
-            }
 
             appData.results.forEach(res => {
                 let partText = res.participant ? ` - ${res.participant}` : '';
