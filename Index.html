@@ -596,7 +596,7 @@
             { id: 6, label: "C Grade", points: 1 }
         ];
 
-        // Updated default Leaderboard Headers to explicitly include B Grade and C Grade
+        // Explicitly defining standard Leaderboard Headers
         let defaultLbHeaders = [
             { id: 1, title: "Rank", align: "left" },
             { id: 2, title: "School Name", align: "left" },
@@ -674,7 +674,18 @@
                     appData.participants = cloudData.participants || [];
                     appData.prizes = cloudData.prizes && cloudData.prizes.length > 0 ? cloudData.prizes : defaultPrizes;
                     appData.manualLb = cloudData.manualLb || [];
-                    appData.lbHeaders = cloudData.lbHeaders && cloudData.lbHeaders.length > 0 ? cloudData.lbHeaders : defaultLbHeaders;
+                    
+                    // Force complete headers if B/C grade headers are missing in cloud data
+                    let cloudHeaders = cloudData.lbHeaders || [];
+                    let hasBGrade = cloudHeaders.some(h => h.title.toLowerCase().includes('b grade'));
+                    let hasCGrade = cloudHeaders.some(h => h.title.toLowerCase().includes('c grade'));
+                    
+                    if (!hasBGrade || !hasCGrade || cloudHeaders.length < 8) {
+                        appData.lbHeaders = defaultLbHeaders;
+                    } else {
+                        appData.lbHeaders = cloudHeaders;
+                    }
+
                     appData.homeCards = cloudData.homeCards && cloudData.homeCards.length > 0 ? cloudData.homeCards : defaultHomeCards;
                     appData.heroBanner = cloudData.heroBanner || defaultHero;
                     appData.tickerNotice = cloudData.tickerNotice || defaultTicker;
@@ -1393,11 +1404,13 @@
             if(!headerRow || !tbody) return;
 
             headerRow.innerHTML = '';
-            if(!appData.lbHeaders || appData.lbHeaders.length === 0) appData.lbHeaders = defaultLbHeaders;
+            
+            // ALWAYS use standard complete headers for leaderboard
+            let activeHeaders = defaultLbHeaders;
 
-            appData.lbHeaders.forEach((h, idx) => {
+            activeHeaders.forEach((h, idx) => {
                 let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
-                let roundClass = idx === 0 ? 'rounded-l-2xl' : (idx === appData.lbHeaders.length - 1 ? 'rounded-r-2xl' : '');
+                let roundClass = idx === 0 ? 'rounded-l-2xl' : (idx === activeHeaders.length - 1 ? 'rounded-r-2xl' : '');
                 headerRow.innerHTML += `<th class="p-4 ${roundClass} font-extrabold ${alignClass}">${h.title}</th>`;
             });
 
@@ -1407,7 +1420,7 @@
             data.forEach((item, index) => {
                 let rowHtml = `<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">`;
                 
-                appData.lbHeaders.forEach((h, idx) => {
+                activeHeaders.forEach((h, idx) => {
                     let alignClass = h.align === 'center' ? 'text-center' : (h.align === 'right' ? 'text-right' : 'text-left');
                     let titleLower = h.title.toLowerCase();
 
