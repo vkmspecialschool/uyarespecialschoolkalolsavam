@@ -476,10 +476,17 @@
                         <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Item Name</label>
                         <input type="text" id="new-event-name" required placeholder="e.g. Light Music" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-3 gap-3">
                         <div>
-                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Stage Name</label>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Stage</label>
                             <input type="text" id="new-event-stage" required placeholder="e.g. Stage 1" class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Category</label>
+                            <select id="new-event-cat" required class="w-full p-3.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100 rounded-2xl text-sm font-medium outline-none">
+                                <option value="Junior">Junior</option>
+                                <option value="Senior">Senior</option>
+                            </select>
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Time</label>
@@ -591,7 +598,6 @@
         const ADMIN_USERNAME = "admin@uyare2026";
         const ADMIN_PASSWORD = "2002@vkmsps";
         
-        // സെർവർ ഡാറ്റയെ ഓവർറൈറ്റ് ചെയ്യാതിരിക്കാൻ ഡിഫോൾട്ട് സ്കൂൾ ലിസ്റ്റ് ബ്ലാങ്ക് ആക്കിയിരിക്കുന്നു
         let defaultSchools = [];
 
         let defaultPrizes = [
@@ -677,12 +683,14 @@
                     const cloudData = doc.data();
                     appData.results = cloudData.results || [];
                     
-                    // സെർവറിൽ സ്കൂളുകൾ ഉണ്ടെങ്കിൽ മാത്രം അത് എടുക്കുക (ഓവർറൈറ്റ് തടയാൻ)
                     if (cloudData.schools && cloudData.schools.length > 0) {
                         appData.schools = cloudData.schools;
                     }
 
-                    appData.schedule = cloudData.schedule && cloudData.schedule.length > 0 ? cloudData.schedule : defaultSchedule;
+                    if (cloudData.schedule && cloudData.schedule.length > 0) {
+                        appData.schedule = cloudData.schedule;
+                    }
+
                     appData.participants = cloudData.participants || [];
                     appData.prizes = cloudData.prizes && cloudData.prizes.length > 0 ? cloudData.prizes : defaultPrizes;
                     appData.manualLb = cloudData.manualLb || [];
@@ -1844,7 +1852,7 @@
                 container.innerHTML += `
                     <div class="bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-2">
                         <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-amber-700 dark:text-amber-400">[${ev.stage}]</span>
+                            <span class="text-xs font-bold text-amber-700 dark:text-amber-400">[${ev.stage}] - <span class="bg-amber-100 dark:bg-amber-900 text-amber-900 dark:text-amber-200 px-2 py-0.5 rounded text-[10px]">${ev.category || 'Junior'}</span></span>
                             <span class="text-xs text-slate-500 font-bold">${ev.time}</span>
                         </div>
                         <div class="flex justify-between items-center gap-2">
@@ -1954,8 +1962,8 @@
             e.preventDefault();
             const itemName = document.getElementById('new-event-name').value.trim();
             const stage = document.getElementById('new-event-stage').value.trim();
+            const cat = document.getElementById('new-event-cat').value;
             const time = document.getElementById('new-event-time').value.trim();
-            const cat = document.getElementById('admin-cat') ? document.getElementById('admin-cat').value : 'Junior';
 
             if(!itemName || !stage || !time) {
                 alert('Please fill out all fields!');
@@ -1990,6 +1998,9 @@
             const newItemName = prompt(`Enter item name:`, ev.item);
             if(newItemName === null) return;
 
+            const newCat = prompt(`Enter Category (Junior or Senior):`, ev.category || "Junior");
+            if(newCat === null) return;
+
             const newTime = prompt(`Enter event time:`, ev.time);
             if(newTime === null) return;
 
@@ -1997,6 +2008,7 @@
                 const oldItemName = ev.item;
                 ev.stage = newStage.trim();
                 ev.item = newItemName.trim();
+                ev.category = newCat.trim();
                 ev.time = newTime.trim();
 
                 if(oldItemName !== ev.item) {
